@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import loginPageView from '@/views/loginPageView.vue'
+import esqueceuSenhaView from '@/views/esqueceuSenhaView.vue'
 
 
 const router = createRouter({
@@ -14,6 +15,15 @@ const router = createRouter({
             name: 'login',
             component: loginPageView
           },
+
+          {
+            path: 'recuperar',
+            name: 'esqueceuSenha',
+            component: esqueceuSenhaView
+
+            
+          },
+
         ]
     },
 

@@ -21,88 +21,74 @@ const validateUsername = () => {
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
-// const toggleDropdown = () => {
-//   isOpen.value = !isOpen.value;
-// };
 </script>
 
 <template>
-  <div class="ajustes">
-  <div class="container">
-    <div class="image-container">
-      <div class="img">
-        <img src="/tittle.png" alt="Imagem" class="img2" />
-      </div>
-    </div>
-
-    <div @click="toggleDropdown" class="dropdown">
-      <button class="dropbtn">Servidor</button>
-      <div class="dropdown-content">
-        <a href="#">Professor</a>
-        <a href="#">Estudantes</a>
-        <a href="#">Servidor Nupe</a>
-      </div>
-    </div>
-
-
-    <div class="top-container">
-      <div class="login-container">
-        <div class="card">
-          <h2>Login</h2>
-          <p>Coloque suas informações</p>
+    <div class="container">
+      <div class="image-container">
+        <div class="img">
+          <img src="/tittle.png" alt="Imagem" class="img2" />
         </div>
-        <div class="input-group">
-          <label for="username">Usuário</label>
-          <div class="input-wrapper">
-            <input
-              id="username"
-              type="text"
-              v-model="username"
-              @input="validateUsername"
-              class="input"
-            />
-            <div>
-              <mdicon
-                v-if="isUsernameValid"
-                class="icon-success"
-                name="check-circle"
-              ></mdicon>
+      </div>
+      <div class="top-container">
+        <div class="login-container">
+          <div class="card">
+            <h2>Login</h2>
+            <p>Coloque suas informações</p>
+          </div>
+          <div class="input-group">
+            <label for="username">Usuário</label>
+            <div class="input-wrapper">
+              <input
+                id="username"
+                type="text"
+                v-model="username"
+                @input="validateUsername"
+                class="input"
+              />
+              <div>
+                <mdicon
+                  v-if="isUsernameValid"
+                  class="icon-success"
+                  name="check-circle"
+                ></mdicon>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="input-group">
-          <label for="password">Senha</label>
-          <div class="input-wrapper">
-            <input
-              id="password"
-              :type="isPasswordVisible ? 'text' : 'password'"
-              v-model="password"
-              class="input"
-            />
-            <button
-              type="button"
-              class="toggle-password"
-              @click="togglePasswordVisibility"
+          <div class="input-group">
+            <label for="password">Senha</label>
+            <div class="input-wrapper">
+              <input
+                id="password"
+                :type="isPasswordVisible ? 'text' : 'password'"
+                v-model="password"
+                class="input"
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                @click="togglePasswordVisibility"
+              >
+                <mdicon v-if="isPasswordVisible" name="eye-outline"></mdicon>
+                <mdicon
+                  v-if="!isPasswordVisible"
+                  name="eye-off-outline"
+                ></mdicon>
+              </button>
+            </div>
+            <RouterLink to="/esquecer" class="forgot-password"
+              >Esqueceu sua senha?</RouterLink
             >
-              <mdicon v-if="isPasswordVisible" name="eye-outline"></mdicon>
-              <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
-            </button>
           </div>
-
-          <RouterLink to="/esquecer" class="forgot-password"
-            >Esqueceu sua senha?</RouterLink>
+          <RouterLink to="/home">
+            <button class="login-button" :disabled="!isFormValid">Login</button>
+          </RouterLink>
         </div>
-        <RouterLink to="/home">
-          <button class="login-button" :disabled="!isFormValid">Login</button>
-        </RouterLink>
       </div>
     </div>
-  </div>
-</div>
 </template>
 
 <style scoped>
-
 .container {
   display: flex;
   justify-content: center;
@@ -115,43 +101,42 @@ const togglePasswordVisibility = () => {
 }
 
 h2 {
-  font-size: 26px;
+  font-size: 24px;
   color: #333;
   margin-bottom: 12px;
-  margin-left: 10rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 80px;
-  margin-left: 3rem;
+  margin-bottom: 24px;
 }
-
+/* Container principal */
 .login-container {
   display: flex;
   flex-direction: column;
+  font-family: Arial, sans-serif;
   width: 70%;
   color: #333;
-  margin-bottom: 120px;
 }
 
-
+/* Grupo de inputs */
 .input-group {
   max-width: 70%;
   margin-bottom: 20px;
   border-radius: 50px;
 }
 
-
+/* Label do input */
 label {
   display: block;
-  /* margin-bottom: 8px; */
+  margin-bottom: 8px;
   font-weight: bold;
   font-size: 14px;
-  
 }
 
+/* Wrapper do input com ícones */
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -160,7 +145,7 @@ label {
 
 input {
   width: 100%;
-  padding: 18px;
+  padding: 10px;
   border: 2px solid #000;
   border-radius: 10px;
   font-size: 14px;
@@ -182,7 +167,7 @@ input:focus {
   cursor: pointer;
 }
 
-
+/* Botão para alternar visibilidade da senha */
 .toggle-password {
   background: none;
   border: none;
@@ -193,30 +178,29 @@ input:focus {
   color: #666;
 }
 
+/* Estilo do link "Esqueceu sua senha?" */
 .forgot-password {
-  margin-left: 310px;
   display: block;
   margin-top: 8px;
   font-size: 12px;
   text-decoration: none;
-  color: #000000;
+  color: #007bff;
 }
 
 .forgot-password:hover {
   text-decoration: underline;
 }
 
-
+/* Botão de login */
 .login-button {
-  margin-top:30px;
   background-color: #ff6b6b;
   color: white;
   justify-content: center;
   align-items: center;
-  padding: 19px 205px;
+  padding: 15px 30px;
   border: none;
   border-radius: 25px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -232,17 +216,16 @@ input:focus {
 }
 
 .dropbtn {
-
-    background-color: #000000;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 20px; /* Distância do topo */
-    right: 20px; /* Alinhamento à direita */
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px; /* Distância do topo */
+  right: 20px; /* Alinhamento à direita */
 }
 
 .dropdown {
@@ -251,9 +234,9 @@ input:focus {
 }
 
 .dropdown-content {
+  margin-left: 90rem;
   display: none;
   position: absolute;
-  right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -267,12 +250,8 @@ input:focus {
   display: block;
 }
 
-.dropdown-content a:hover {
+.dropdown-content a:click {
   background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }
 
 .img {
@@ -302,8 +281,7 @@ input:focus {
   cursor: pointer;
 }
 
-.image-container{
-  margin-bottom: 40px;
+.image-container {
   width: 50%;
   height: 100%;
   display: flex;
@@ -311,40 +289,38 @@ input:focus {
   align-items: center;
 }
 
-  @media (max-width: 500px) {
-    .container {
-      flex-direction: column;
-      align-items: flex-start;
-      box-sizing: border-box;
-    }
-
-    .img2{
-      margin-left: 0;
-    }
-
-    .image-container {
-      width: 100%;    
-    }
-
-    .top-container {
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .login-container {
-      align-items: center;
-    }
-
-    .card {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .input-group{
-      width: 100%;
-    }
-
-    
+@media (max-width: 780px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
   }
+
+  .img2 {
+    margin-left: 0;
+  }
+
+  .image-container {
+    width: 100%;
+  }
+
+  .top-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-container {
+    align-items: center;
+  }
+
+  .card {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+}
 </style>

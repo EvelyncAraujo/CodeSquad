@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <div :class="['dashboard', isDarkMode ? 'dark' : 'light']">
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="logo">NUPE</div>
@@ -17,6 +17,7 @@
   
       <!-- Main Content -->
       <main class="content">
+        <!-- Header -->
         <header class="header">
           <div class="user-info">
             <img
@@ -24,7 +25,7 @@
               alt="User Avatar"
               class="avatar"
             />
-            <div>
+            <div class="name">
               <h2>Oliver Calenbard</h2>
               <p>Nupe</p>
             </div>
@@ -32,27 +33,32 @@
           <div class="actions">
             <input
               type="text"
+              v-model="searchQuery"
               placeholder="Pesquisar conselhos"
               class="search-input"
             />
-            <button class="theme-toggle">Light / Dark</button>
+            <button @click="toggleDarkMode" class="theme-toggle">
+              {{ isDarkMode ? 'Light' : 'Dark' }}
+            </button>
           </div>
         </header>
   
+        <!-- Recent Councils -->
         <section class="recent-councils">
           <h3>Conselhos recentes</h3>
           <div class="filters">
             <label for="filter">Filtrar por:</label>
-            <select id="filter">
-              <option>Trimestre</option>
-              <option>Data</option>
+            <select id="filter" v-model="selectedFilter">
+              <option value="Trimestre">Trimestre</option>
+              <option value="Data">Data</option>
             </select>
           </div>
           <div class="council-cards">
             <div
-              v-for="council in councils"
+              v-for="council in filteredCouncils"
               :key="council.id"
-              :class="['council-card', council.color]"
+              class="council-card"
+              :style="{ backgroundColor: council.color }"
             >
               <h4>{{ council.name }}</h4>
               <p>{{ council.date }}</p>
@@ -66,29 +72,65 @@
   </template>
   
   <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   
-  // Dados fictícios para os cartões
+   // Controle do modo escuro
+  const isDarkMode = ref(false);
+  const toggleDarkMode = () => {
+    isDarkMode.value = !isDarkMode.value;
+  };
+  
+  // Dados fictícios dos conselhos
   const councils = ref([
-    { id: 1, name: "Conselho 1", date: "25 de junho de 2023", trimester: "Trimestre 1", color: "color-1" },
-    { id: 2, name: "Conselho 2", date: "25 de junho de 2023", trimester: "Trimestre 1", color: "color-2" },
-    { id: 3, name: "Conselho 3", date: "25 de junho de 2023", trimester: "Trimestre 1", color: "color-3" },
-    { id: 4, name: "Conselho 4", date: "25 de junho de 2023", trimester: "Trimestre 2", color: "color-4" },
-    { id: 5, name: "Conselho 5", date: "25 de junho de 2023", trimester: "Trimestre 2", color: "color-1" },
-    { id: 6, name: "Conselho 6", date: "25 de junho de 2023", trimester: "Trimestre 2", color: "color-2" },
+    { id: 1, name: "Conselho 1", date: "25 de junho de 2023", trimester: "Trimestre 1", color: "#F28C8C" },
+    { id: 2, name: "Conselho 2", date: "26 de junho de 2023", trimester: "Trimestre 1", color: "#F7B26A" },
+    { id: 3, name: "Conselho 3", date: "27 de junho de 2023", trimester: "Trimestre 1", color: "#A0D995" },
+    { id: 4, name: "Conselho 4", date: "28 de junho de 2023", trimester: "Trimestre 2", color: "#D0A5F5" },
+    { id: 5, name: "Conselho 5", date: "29 de junho de 2023", trimester: "Trimestre 2", color: "#79B4D9" },
+    { id: 6, name: "Conselho 6", date: "30 de junho de 2023", trimester: "Trimestre 2", color: "#F5A6B7" },
   ]);
+  
+  // Estado para a pesquisa e filtro
+  const searchQuery = ref("");
+  const selectedFilter = ref("Trimestre");
+  
+  // Computed para filtrar conselhos
+  const filteredCouncils = computed(() => {
+    return councils.value.filter(
+      (council) =>
+        council.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
+        (selectedFilter.value === "Trimestre" || council.trimester === selectedFilter.value)
+    );
+  });
   </script>
   
   <style scoped>
+
+
+  /* Estilos principais */
   .dashboard {
     display: flex;
-    font-family: Arial, sans-serif;
+    font-family: "Arial", sans-serif;
+    transition: background 0.3s, color 0.3s;
   }
   
+  /* Modos claro e escuro */
+  .light {
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  .dark {
+    background: #333;
+    color: #f9f9f9;
+  }
+  
+  /* Sidebar */
   .sidebar {
     width: 250px;
-    background: #f5f5f5;
+    background: #e0e0e0;
     padding: 20px;
+ 
   }
   
   .menu {
@@ -108,17 +150,24 @@
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
+    border-radius: 5px;
   }
   
+  /* Conteúdo principal */
   .content {
     flex: 1;
     padding: 20px;
   }
   
   .header {
-    display: flex;
+    display:flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
+  }
+  .h2 {
+    text-align: right;
+
   }
   
   .avatar {
@@ -127,40 +176,61 @@
     height: 40px;
   }
   
-  .recent-councils {
-    margin-top: 20px;
+  .search-input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: 250px;
+  }
+  
+  .theme-toggle {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  
+  /* Conselhos Recentes */
+  .recent-councils h3 {
+    margin-bottom: 10px;
   }
   
   .council-cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
   }
   
   .council-card {
     width: calc(33.33% - 10px);
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 10px;
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    transition: transform 0.2s;
   }
   
-  .color-1 {
-    background: #d2a8ff;
+  .council-card:hover {
+    transform: scale(1.05);
   }
   
-  .color-2 {
-    background: #ff8a80;
+  .view-details {
+    align-self: flex-start;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
   }
-  
-  .color-3 {
-    background: #ffa726;
-  }
-  
-  .color-4 {
-    background: #66bb6a;
+  .user-info{
+
+
+
   }
   </style>
   

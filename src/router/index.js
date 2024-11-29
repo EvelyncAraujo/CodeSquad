@@ -49,6 +49,11 @@ const router = createRouter({
         },
       ]
     },
+    {
+      path: '/home', // Corrigido: adicionada a barra no início
+      name: 'Página principal',
+      component: HomeView
+    },
   ],
 });
 

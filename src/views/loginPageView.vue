@@ -122,7 +122,6 @@ p {
   margin-left: 8rem;
 }
 
-
 .login-container {
   display: flex;
   flex-direction: column;
@@ -235,6 +234,7 @@ input:focus {
   top: 1rem;
   right: 1rem;
 }
+
 
 .dropdown {
   position: relative;

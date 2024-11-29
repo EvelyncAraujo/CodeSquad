@@ -3,9 +3,9 @@ import loginPageView from '@/views/loginPageView.vue';
 import EsqueceuSenhaView from '@/views/EsqueceuSenhaView.vue';
 import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
 import novaSenhaView from '@/views/novaSenhaView.vue';
+import HomeView from '@/views/HomeView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
-import HomeView from '@/views/HomeView.vue';
 import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
 import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
 
@@ -18,6 +18,11 @@ const router = createRouter({
       name: 'blankLayout',
       component: BlankLayout,
       children: [
+        {
+          path: '/home', // Corrigido: adicionada a barra no início
+          name: 'Página principal',
+          component: HomeView
+        },
         {
           path: '/gerenciamento', 
           name: 'Gerenciamento',

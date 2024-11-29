@@ -34,13 +34,13 @@ const students = ref([
     id: 4,
     name: "Diana",
     year: "Primeiro",
-    course: "Química",
+    course: "Administração",
     grade: 6.0,
     occurrence: "Não",
   },
 ]);
 
-const courses = ref(["Agropecuária", "Informática", "Química"]);
+const courses = ref(["Agropecuária", "Informática", "Administração"]);
 const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");
@@ -91,11 +91,10 @@ const applyFilters = () => {
     <aside class="sidebar">
       <img src="/src/assets/logo.png" alt="Logo" />
 
-      <ul class="menu"> 
+      <ul class="menu">
         <li>Explore</li>
         <li>Conselho</li>
         <li>Gerenciamento Acadêmico</li>
-        
       </ul>
       <button class="logout">Sair</button>
     </aside>
@@ -113,55 +112,58 @@ const applyFilters = () => {
         </div>
       </div>
      
-      <button @click="toggleDarkMode" class="theme-toggle">
-        {{ isDarkMode ? "Light" : "Dark" }}
-      </button>
+        <div :class="{ dark: isDarkMode }" class="app">
+    <button @click="toggleDarkMode" class="toggle-button">
+      <span v-if="isDarkMode">🌙 Dark</span>
+      <span v-else>☀️ Light</span>
+    </button>
+  </div>
       <section class="management">
         <h3>Gerenciamento Acadêmico</h3>
-        <div class="filters">
-          <select v-model="selectedCourse">
-            <option disabled value="">Selecione o curso</option>
-            <option v-for="course in courses" :key="course" :value="course">
-              {{ course }}
-            </option>
-          </select>
+        <div class="fundo">
+          <div class="filters">
+            <select v-model="selectedCourse">
+              <option disabled value="">Selecione o curso</option>
+              <option v-for="course in courses" :key="course" :value="course">
+                {{ course }}
+              </option>
+            </select>
 
-          <select v-model="selectedYear">
-            <option disabled value="">Ano</option>
-            <option v-for="year in years" :key="year" :value="year">
-              {{ year }}
-            </option>
-          </select>
+            <select v-model="selectedYear">
+              <option disabled value="">Ano</option>
+              <option v-for="year in years" :key="year" :value="year">
+                {{ year }}
+              </option>
+            </select>
 
-          <input
-            v-model="nameFilter"
-            type="text"
-            placeholder="Nome"
-            class="name-input"
-          />
+            <input
+              v-model="nameFilter"
+              type="text"
+              placeholder="Nome"
+              class="name-input"
+            />
 
-          <select v-model="selectedGrade">
-            <option disabled value="">Nota</option>
-            <option value="maior">Média maior que 6</option>
-            <option value="menor">Média menor que 6</option>
-          </select>
+            <select v-model="selectedGrade">
+              <option disabled value="">Nota</option>
+              <option value="maior">Média maior que 6</option>
+              <option value="menor">Média menor que 6</option>
+            </select>
 
-          <select v-model="hasOccurrence">
-            <option disabled value="">Ocorrência</option>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
-          </select>
+            <select v-model="hasOccurrence">
+              <option disabled value="">Ocorrência</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
 
-          <button @click="applyFilters" class="search-button">Buscar</button>
+            <button @click="applyFilters" class="search-button">Buscar</button>
+          </div>
         </div>
 
-        <!-- Lista de Resultados -->
         <div class="results">
           <div
             v-for="student in filteredStudents"
             :key="student.id"
-            class="result-card"
-          >
+            class="result-card" >
             <p>{{ student.name }}</p>
             <button class="view-details">Ver</button>
           </div>
@@ -177,7 +179,7 @@ const applyFilters = () => {
   font-family: "Arial", sans-serif;
   transition: background 0.3s, color 0.3s;
   height: 57rem;
-  background-color: #cccccc46;
+  /* background-color: #751f1f46; */
 }
 
 .page.light {
@@ -240,15 +242,19 @@ const applyFilters = () => {
   margin-left: 5rem;
 }
 .search {
-    float: right;
-    position: fixed;
-    margin-left: 70rem;
-    border: none;
-    background-color: white;
+  float: right;
+  position: fixed;
+  margin-left: 70rem;
+  border: none;
+  background-color: white;
 }
-
+.fundo {
+  border-radius: 2rem;
+  background-color: #c2bfbf1f;
+  padding: 2rem;
+}
 .theme-toggle {
-  position: fixed ;
+  position: fixed;
   margin-left: 85rem;
   background: #007bff;
   color: white;
@@ -259,42 +265,40 @@ const applyFilters = () => {
 
 .filters {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   margin-bottom: 20px;
-  border: none;
-  padding-left: 8rem;
-  padding: 25px;
 }
 
 .filters select,
 .filters input {
-  padding: 5px 10px;
+  padding: 10px 20px;
   border: 1px solid rgba(226, 174, 210, 1);
-  border-radius: 25px;
-  
-
-  
+  border-radius: 20px;
+  color: white;
+  background-color: rgba(226, 174, 210, 1);
 }
 
 .search-button {
   background: #f28c8c;
   border: none;
   color: white;
-  padding: 5px 15px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
 .results {
+  border-radius: 10rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
+  margin-top: 5rem;
 }
 
 .result-card {
   background: #f7e1e1;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -306,5 +310,42 @@ const applyFilters = () => {
   border: none;
   border-radius: 20px;
   padding: 5px 10px;
+}
+/* .app {
+  transition: background-color 0.5s, color 0.5s;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .app.dark {
+  background-color: #121212;
+  color: white;
+} */
+
+.app:not(.dark) {
+  background-color: white;
+  color: black;
+}
+
+.toggle-button {
+  margin-left: 80rem;
+  padding: 5px 15px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background: #f0f0f0;
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.app.dark .toggle-button {
+  background: #333;
+  color: white;
+}
+
+.toggle-button:hover {
+  opacity: 0.8;
 }
 </style>

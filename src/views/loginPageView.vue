@@ -5,10 +5,10 @@ const dropdownStore = useDropdownStore();
 
 const { isOpen, toggleDropdown } = dropdownStore;
 
-const username = ref("Olivercalenbard");
+const username = ref("");
 const password = ref("");
 const isPasswordVisible = ref(false);
-const isUsernameValid = ref(true);
+const isUsernameValid = ref(false);
 
 const isFormValid = computed(
   () => isUsernameValid.value && password.value.length > 0
@@ -27,9 +27,12 @@ const togglePasswordVisibility = () => {
 </script>
 
 <template>
+  <div class="ajustes">
   <div class="container">
-    <div class="img">
-      <img src="/tittle.png" alt="Imagem" class="img2" />
+    <div class="image-container">
+      <div class="img">
+        <img src="/tittle.png" alt="Imagem" class="img2" />
+      </div>
     </div>
 
     <div @click="toggleDropdown" class="dropdown">
@@ -41,11 +44,12 @@ const togglePasswordVisibility = () => {
       </div>
     </div>
 
+
     <div class="top-container">
       <div class="login-container">
         <div class="card">
           <h2>Login</h2>
-          <p>coloque suas informações</p>
+          <p>Coloque suas informações</p>
         </div>
         <div class="input-group">
           <label for="username">Usuário</label>
@@ -55,8 +59,15 @@ const togglePasswordVisibility = () => {
               type="text"
               v-model="username"
               @input="validateUsername"
+              class="input"
             />
-            <span class="icon success" v-if="isUsernameValid">✔</span>
+            <div>
+              <mdicon
+                v-if="isUsernameValid"
+                class="icon-success"
+                name="check-circle"
+              ></mdicon>
+            </div>
           </div>
         </div>
         <div class="input-group">
@@ -66,24 +77,36 @@ const togglePasswordVisibility = () => {
               id="password"
               :type="isPasswordVisible ? 'text' : 'password'"
               v-model="password"
+              class="input"
             />
             <button
               type="button"
               class="toggle-password"
               @click="togglePasswordVisibility"
             >
-              👁️
+              <mdicon v-if="isPasswordVisible" name="eye-outline"></mdicon>
+              <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
             </button>
           </div>
-          <a href="/esquecer" class="forgot-password">Esqueceu sua senha?</a>
+<<<<<<< HEAD
+
+          <RouterLink to="/esquecer" class="forgot-password"
+            >Esqueceu sua senha?</RouterLink>
+=======
+          <RouterLink to="/esquecer" class="forgot-password">Esqueceu sua senha?</RouterLink>
+>>>>>>> cdd1c77 (Alterações layout)
         </div>
-        <button class="login-button" :disabled="!isFormValid">Login</button>
+        <RouterLink to="/home">
+          <button class="login-button" :disabled="!isFormValid">Login</button>
+        </RouterLink>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>
+
 .container {
   display: flex;
   justify-content: center;
@@ -92,47 +115,47 @@ const togglePasswordVisibility = () => {
 
 .card {
   max-width: 400px;
-  /* background-color: #fff; */
-  /* border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  padding: 24px;
+  text-align: center;
 }
 
 h2 {
   font-size: 26px;
   color: #333;
   margin-bottom: 12px;
-  margin-left: 10rem;
+  margin-left: 3rem;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 24px;
-  margin-left: 8rem;
+  margin-bottom: 80px;
+  margin-left: 3rem;
 }
-
 
 .login-container {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  width: 50%;
+  width: 70%;
   color: #333;
+  margin-bottom: 120px;
 }
 
 
 .input-group {
+  max-width: 70%;
   margin-bottom: 20px;
+  border-radius: 50px;
 }
 
 
 label {
   display: block;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   font-weight: bold;
   font-size: 14px;
+  
 }
 
 .input-wrapper {
@@ -143,7 +166,7 @@ label {
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 18px;
   border: 2px solid #000;
   border-radius: 10px;
   font-size: 14px;
@@ -154,12 +177,15 @@ input:focus {
   border-color: #ff6b6b;
 }
 
-
-.icon.success {
+/* Ícone de sucesso */
+.icon-success {
+  color: rgb(149, 218, 116);
+  background: none;
   position: absolute;
   right: 12px;
-  color: #4caf50;
+  bottom: 8px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 
@@ -174,11 +200,12 @@ input:focus {
 }
 
 .forgot-password {
+  margin-left: 310px;
   display: block;
   margin-top: 8px;
   font-size: 12px;
   text-decoration: none;
-  color: #007bff;
+  color: #000000;
 }
 
 .forgot-password:hover {
@@ -187,12 +214,15 @@ input:focus {
 
 
 .login-button {
+  margin-top:30px;
   background-color: #ff6b6b;
   color: white;
-  padding: 12px 0;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 205px;
   border: none;
   border-radius: 25px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -208,16 +238,17 @@ input:focus {
 }
 
 .dropbtn {
-  background-color: #000000;
-  color: white;
-  padding: 16px;
-  border-radius: 25px;
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
+
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px; /* Distância do topo */
+    right: 20px; /* Alinhamento à direita */
 }
 
 .dropdown {
@@ -251,7 +282,7 @@ input:focus {
 }
 
 .img {
-  width: 100%;
+  width: 200%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -263,9 +294,63 @@ input:focus {
 }
 
 .top-container {
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.image-container{
+  margin-bottom: 40px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  @media (max-width: 500px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+      box-sizing: border-box;
+    }
+
+    .img2{
+      margin-left: 0;
+    }
+
+    .image-container {
+      width: 100%;    
+    }
+
+    .top-container {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-container {
+      align-items: center;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group{
+      width: 100%;
+    }
+
+    
+  }
 </style>

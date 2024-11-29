@@ -2,14 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 import loginPageView from '@/views/loginPageView.vue';
 import EsqueceuSenhaView from '@/views/EsqueceuSenhaView.vue';
 import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
+import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
 import novaSenhaView from '@/views/novaSenhaView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
-<<<<<<< HEAD
 import HomeView from '@/views/HomeView.vue';
-=======
-import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
->>>>>>> origin/front-evy
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +23,6 @@ const router = createRouter({
         },
       ] 
     },
-<<<<<<< HEAD
 
     {
       path: '/home', // Corrigido: adicionada a barra no início
@@ -34,10 +30,6 @@ const router = createRouter({
       component: HomeView
     },
 
-=======
-   
- 
->>>>>>> origin/front-evy
     {
       path: '/',
       name: 'fullLayout',

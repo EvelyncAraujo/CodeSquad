@@ -1,8 +1,47 @@
+<script setup>
+  import { ref, computed } from "vue";
+  
+   // Controle do modo escuro
+  const isDarkMode = ref(false);
+  const toggleDarkMode = () => {
+    isDarkMode.value = !isDarkMode.value;
+  };
+  
+  // Dados fictícios dos conselhos
+  const councils = ref([
+    { id: 1, name: "Conselho 1", date: "25 de junho de 2023", trimester: "Trimestre 1", color: "#E2AED2" },
+    { id: 2, name: "Conselho 2", date: "26 de junho de 2023", trimester: "Trimestre 1", color: "#EA8C8C" },
+    { id: 3, name: "Conselho 3", date: "27 de junho de 2023", trimester: "Trimestre 1", color: "#F2866C" },
+    { id: 4, name: "Conselho 4", date: "28 de junho de 2023", trimester: "Trimestre 2", color: "#F06A45" },
+    { id: 5, name: "Conselho 5", date: "29 de junho de 2023", trimester: "Trimestre 2", color: "#E2AED2" },
+    { id: 6, name: "Conselho 6", date: "30 de junho de 2023", trimester: "Trimestre 2", color: "#EA8C8C" },
+    { id: 7, name: "Conselho 7", date: "28 de junho de 2023", trimester: "Trimestre 2", color: "#F2866C" },
+    { id: 8, name: "Conselho 8", date: "29 de junho de 2023", trimester: "Trimestre 2", color: "#F06A45" },
+    { id: 9, name: "Conselho 9", date: "30 de junho de 2023", trimester: "Trimestre 2", color: "#E2AED2" },
+  ]);
+  
+  // Estado para a pesquisa e filtro
+  const searchQuery = ref("");
+  const selectedFilter = ref("Trimestre");
+  
+  
+  // Computed para filtrar conselhos
+  const filteredCouncils = computed(() => {
+    return councils.value.filter(
+      (council) =>
+        council.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
+        (selectedFilter.value === "Trimestre" || council.trimester === selectedFilter.value)
+    );
+  });
+  </script>
+
 <template>
     <div :class="['dashboard', isDarkMode ? 'dark' : 'light']">
       <!-- Sidebar -->
       <aside class="sidebar">
-        <div class="logo">NUPE</div>
+        <div class="logo">
+        
+        </div>
         <ul class="menu">
           <li>Explore</li>
           <li>Conselho</li>
@@ -71,38 +110,7 @@
     </div>
   </template>
   
-  <script setup>
-  import { ref, computed } from "vue";
   
-   // Controle do modo escuro
-  const isDarkMode = ref(false);
-  const toggleDarkMode = () => {
-    isDarkMode.value = !isDarkMode.value;
-  };
-  
-  // Dados fictícios dos conselhos
-  const councils = ref([
-    { id: 1, name: "Conselho 1", date: "25 de junho de 2023", trimester: "Trimestre 1", color: "#F28C8C" },
-    { id: 2, name: "Conselho 2", date: "26 de junho de 2023", trimester: "Trimestre 1", color: "#F7B26A" },
-    { id: 3, name: "Conselho 3", date: "27 de junho de 2023", trimester: "Trimestre 1", color: "#A0D995" },
-    { id: 4, name: "Conselho 4", date: "28 de junho de 2023", trimester: "Trimestre 2", color: "#D0A5F5" },
-    { id: 5, name: "Conselho 5", date: "29 de junho de 2023", trimester: "Trimestre 2", color: "#79B4D9" },
-    { id: 6, name: "Conselho 6", date: "30 de junho de 2023", trimester: "Trimestre 2", color: "#F5A6B7" },
-  ]);
-  
-  // Estado para a pesquisa e filtro
-  const searchQuery = ref("");
-  const selectedFilter = ref("Trimestre");
-  
-  // Computed para filtrar conselhos
-  const filteredCouncils = computed(() => {
-    return councils.value.filter(
-      (council) =>
-        council.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
-        (selectedFilter.value === "Trimestre" || council.trimester === selectedFilter.value)
-    );
-  });
-  </script>
   
   <style scoped>
 
@@ -116,7 +124,7 @@
   
   /* Modos claro e escuro */
   .light {
-    background: #f9f9f9;
+    background: #eceaea;
     color: #333;
   }
   
@@ -128,8 +136,8 @@
   /* Sidebar */
   .sidebar {
     width: 250px;
-    background: #e0e0e0;
-    padding: 20px;
+    background-color:#fff9f9de;
+  
  
   }
   
@@ -204,7 +212,7 @@
   }
   
   .council-card {
-    width: calc(33.33% - 10px);
+    width: calc(30.30% - 10px);
     padding: 15px;
     border-radius: 10px;
     color: white;

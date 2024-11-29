@@ -6,7 +6,7 @@ import novaSenhaView from '@/views/novaSenhaView.vue';
 import HomeView from '@/views/HomeView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
-import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
+import GerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,11 +24,6 @@ const router = createRouter({
       ] 
     },
 
-    {
-      path: '/home', // Corrigido: adicionada a barra no início
-      name: 'Página principal',
-      component: HomeView
-    },
 
     {
       path: '/',
@@ -56,7 +51,7 @@ const router = createRouter({
           name: 'Nova Senha',
           component: novaSenhaView
         },
-      
+        
       ]
     },
   ],

@@ -43,6 +43,7 @@ const togglePasswordVisibility = () => {
       </div>
     </div>
 
+
     <div class="top-container">
       <div class="login-container">
         <div class="card">
@@ -84,6 +85,7 @@ const togglePasswordVisibility = () => {
               <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
             </button>
           </div>
+
           <RouterLink to="/esquecer" class="forgot-password"
             >Esqueceu sua senha?</RouterLink>
         </div>
@@ -121,7 +123,6 @@ p {
   margin-bottom: 24px;
   margin-left: 8rem;
 }
-
 
 .login-container {
   display: flex;
@@ -224,6 +225,7 @@ input:focus {
 }
 
 .dropbtn {
+
     background-color: #000000;
     color: white;
     padding: 10px 20px;

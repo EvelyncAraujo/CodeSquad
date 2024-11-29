@@ -6,6 +6,7 @@ import novaSenhaView from '@/views/novaSenhaView.vue';
 import HomeView from '@/views/HomeView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
+import GerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,14 +16,14 @@ const router = createRouter({
       name: 'blankLayout',
       component: BlankLayout,
       children: [
+        {
+          path: '/home', // Corrigido: adicionada a barra no início
+          name: 'Página principal',
+          component: HomeView
+        },
       ]
     },
 
-    {
-      path: '/home', // Corrigido: adicionada a barra no início
-      name: 'Página principal',
-      component: HomeView
-    },
 
     {
       path: '/',
@@ -31,30 +32,26 @@ const router = createRouter({
       children: [
       
         {
-          path: '/login', // Corrigido: adicionada a barra no início
+          path: '/login', 
           name: 'Login',
           component: loginPageView,
         },
         {
-          path: '/esquecer', // Corrigido: adicionada a barra no início
+          path: '/esquecer', 
           name: 'EsqueceuSenha',
           component: EsqueceuSenhaView
         },
         {
-          path: '/verificacao', // Corrigido: adicionada a barra no início
+          path: '/verificacao', 
           name: 'CodVerificação',
           component: codigoVerificacaoView
         },
         {
-          path: '/recuperacao', // Corrigido: adicionada a barra no início
+          path: '/recuperacao', 
           name: 'Nova Senha',
           component: novaSenhaView
         },
-        {
-          path: '/home',
-          name: 'Home',
-          component: HomeView,
-        },
+        
       ]
     },
   ],

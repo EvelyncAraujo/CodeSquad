@@ -23,13 +23,19 @@ const router = createRouter({
         },
       ] 
     },
-   
- 
+
+    {
+      path: '/home', // Corrigido: adicionada a barra no início
+      name: 'Página principal',
+      component: HomeView
+    },
+
     {
       path: '/',
       name: 'fullLayout',
       component: FullLayout,
       children: [
+      
         {
           path: '/login', 
           name: 'Login',
@@ -52,11 +58,6 @@ const router = createRouter({
         },
       
       ]
-    },
-    {
-      path: '/home', // Corrigido: adicionada a barra no início
-      name: 'Página principal',
-      component: HomeView
     },
   ],
 });

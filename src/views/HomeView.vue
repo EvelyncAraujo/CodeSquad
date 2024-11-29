@@ -37,22 +37,22 @@
 
 <template>
     <div :class="['dashboard', isDarkMode ? 'dark' : 'light']">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="logo">
-        
-        </div>
-        <ul class="menu">
-          <li>Explore</li>
-          <li>Conselho</li>
-          <li>Gerenciamento Acadêmico</li>
-          <li>Histórico</li>
-          <li>Perfil</li>
-          <li>Ocorrências</li>
-          <li>Turmas</li>
-        </ul>
-        <button class="logout">Sair</button>
-      </aside>
+  <aside class="aside-menu">
+    <img alt="Logo" src="/src/assets/logo.png">
+    <ul class="menu">
+      <li>
+        <button class="menu-item">Explore</button>
+      </li>
+      <li>
+        <button class="menu-item">Conselho</button>
+      </li>
+      <li>
+        <button class="menu-item">Gerenciamento Acadêmico</button>
+      </li>
+    
+    </ul>
+    <button class="logout">Sair</button>
+  </aside>
   
       <!-- Main Content -->
       <main class="content">
@@ -114,7 +114,7 @@
   
   <style scoped>
 
-
+ 
   /* Estilos principais */
   .dashboard {
     display: flex;
@@ -124,7 +124,7 @@
   
   /* Modos claro e escuro */
   .light {
-    background: #eceaea;
+    background: #FAF9F9;
     color: #333;
   }
   
@@ -134,12 +134,69 @@
   }
   
   /* Sidebar */
-  .sidebar {
-    width: 250px;
-    background-color:#fff9f9de;
-  
  
-  }
+/* Container principal do aside */
+.aside-menu {
+  width: 240px;
+  background-color: #ffffff;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e6e6e6;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.name{
+margin-left: 5rem;
+}
+
+
+
+/* Lista de itens do menu */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.menu-item {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333333;
+  text-align: left;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #f9f9f9;
+  color: #ff6b6b;
+}
+
+/* Botão de sair */
+.logout {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff6b6b;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logout:hover {
+  background-color: #fceaea;
+}
   
   .menu {
     list-style: none;
@@ -149,6 +206,7 @@
   .menu li {
     margin: 10px 0;
     cursor: pointer;
+    line-height: 35px;
   }
   
   .logout {
@@ -156,9 +214,11 @@
     color: white;
     border: none;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 400px;
     cursor: pointer;
     border-radius: 5px;
+    
+    
   }
   
   /* Conteúdo principal */
@@ -179,6 +239,7 @@
   }
   
   .avatar {
+    position: fixed;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -187,7 +248,7 @@
   .search-input {
     border: 1px solid #ccc;
     border-radius: 20px;
-    padding: 5px 15px;
+
     width: 250px;
   }
   
@@ -235,10 +296,10 @@
     padding: 5px 10px;
     cursor: pointer;
   }
-  .user-info{
 
 
 
-  }
+
+  
   </style>
   

@@ -6,7 +6,7 @@ import novaSenhaView from '@/views/novaSenhaView.vue';
 import HomeView from '@/views/HomeView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
-import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
+import gerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
 
 
@@ -26,7 +26,7 @@ const router = createRouter({
         {
           path: '/gerenciamento', 
           name: 'Gerenciamento',
-          component: gerencionamentoAcademicoView
+          component: gerenciamentoAcademicoView
         },
         {
           path: '/home', // Corrigido: adicionada a barra no início

@@ -1,3 +1,8 @@
+<script setup>
+  function enviarCodigo() {
+    alert("Código enviado para olivercalenbard@gmail.com");
+  }
+  </script>
 <template>
     <div class="container">
       <div class="card">
@@ -19,11 +24,7 @@
     </div>
   </template>
   
-  <script setup>
-  function enviarCodigo() {
-    alert("Código enviado para olivercalenbard@gmail.com");
-  }
-  </script>
+  
   
   <style scoped>
   .container {

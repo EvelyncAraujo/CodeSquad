@@ -26,47 +26,47 @@ const togglePasswordVisibility = () => {
 <template>
   <div class="container">
     <div class="img">
-    <img src="/tittle.png" alt="Imagem" class="img2" />
+      <img src="/tittle.png" alt="Imagem" class="img2" />
     </div>
     <div class="top-container">
-    <div class="login-container">
-      <div class="card">
-      <h2>Login</h2>
-      <p>coloque suas informações</p>
-    </div>
-      <div class="input-group">
-        <label for="username">Usuário</label>
-        <div class="input-wrapper">
-          <input
-            id="username"
-            type="text"
-            v-model="username"
-            @input="validateUsername"
-          />
-          <span class="icon success" v-if="isUsernameValid">✔</span>
+      <div class="login-container">
+        <div class="card">
+          <h2>Login</h2>
+          <p>coloque suas informações</p>
         </div>
-      </div>
-      <div class="input-group">
-        <label for="password">Senha</label>
-        <div class="input-wrapper">
-          <input
-            id="password"
-            :type="isPasswordVisible ? 'text' : 'password'"
-            v-model="password"
-          />
-          <button
-            type="button"
-            class="toggle-password"
-            @click="togglePasswordVisibility"
-          >
-            👁️
-          </button>
+        <div class="input-group">
+          <label for="username">Usuário</label>
+          <div class="input-wrapper">
+            <input
+              id="username"
+              type="text"
+              v-model="username"
+              @input="validateUsername"
+            />
+            <span class="icon success" v-if="isUsernameValid">✔</span>
+          </div>
         </div>
-        <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              :type="isPasswordVisible ? 'text' : 'password'"
+              v-model="password"
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              @click="togglePasswordVisibility"
+            >
+              👁️
+            </button>
+          </div>
+          <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+        </div>
+        <button class="login-button" :disabled="!isFormValid">Login</button>
       </div>
-      <button class="login-button" :disabled="!isFormValid">Login</button>
     </div>
-  </div>
   </div>
 </template>
 
@@ -230,7 +230,7 @@ input:focus {
   background-color: #f1f1f1;
 }
 
-.img{
+.img {
   width: 100%;
   height: 100%;
   display: flex;
@@ -242,11 +242,10 @@ input:focus {
   margin-left: 15rem;
 }
 
-.top-container{
+.top-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 </style>

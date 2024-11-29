@@ -1,37 +1,17 @@
 <script setup>
 function enviarCodigo() {
-<<<<<<< HEAD
   alert("Código enviado para");
-=======
-  alert("Código enviado para olivercalenbard@gmail.com");
->>>>>>> c025581 (andamento das páginas)
 }
 </script>
 <template>
   <div class="container">
     <div class="card">
-<<<<<<< HEAD
       <h2>Esqueceu a senha?</h2>
       <p>Digite o email que será enviado o código de verificação</p>
       <div class="input-container">
         <input class="option" placeholder="Digite seu email">
         </input>
         <mdicon class="email" name="email-outline"></mdicon>
-=======
-      <h2>Esqueceu a senha</h2>
-      <p>
-        Selecione quais detalhes de contato devemos usar para redefinir sua
-        senha
-      </p>
-      <div class="option">
-        <div class="icon">
-          <span>📧</span>
-        </div>
-        <div class="details">
-          <p>Enviar via email</p>
-          <p class="email">olivercalenbard@gmail.com</p>
-        </div>
->>>>>>> c025581 (andamento das páginas)
       </div>
       <button @click="enviarCodigo">Enviar código</button>
     </div>
@@ -39,13 +19,10 @@ function enviarCodigo() {
 </template>
 
 <style scoped>
-<<<<<<< HEAD
 .input-container{
   position: relative;
 }
 
-=======
->>>>>>> c025581 (andamento das páginas)
 .container {
   display: flex;
   justify-content: center;

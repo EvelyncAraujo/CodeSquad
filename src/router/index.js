@@ -18,11 +18,7 @@ const router = createRouter({
       name: 'blankLayout',
       component: BlankLayout,
       children: [
-        {
-          path: '/home', // Corrigido: adicionada a barra no início
-          name: 'Página principal',
-          component: HomeView
-        },
+     
         {
           path: '/gerenciamento', 
           name: 'Gerenciamento',

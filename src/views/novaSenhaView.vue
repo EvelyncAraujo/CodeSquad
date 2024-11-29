@@ -1,5 +1,10 @@
 <script setup>
 import { ref, computed } from "vue";
+import Swal from "sweetalert2";
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const password = ref("");
 const confirmPassword = ref("");
@@ -29,10 +34,19 @@ const changePassword = () => {
   success.value = true;
 };
 
+function submitCode() {
+  Swal.fire({
+    confirmButtonColor: "#f36b6b",
+    title: "Senha redefinida com sucesso",
+    text: "Sua nova senha foi redefinida",
+    icon: "success",
+  }).then(() => {
+    router.push({
+      path: "/home",
+    });
+  });
+}
 
-const proceed = () => {
-  alert("Navegando para próxima etapa...");
-};
 
 </script>
 <template>
@@ -89,7 +103,7 @@ const proceed = () => {
           </div>
         </div>
         <p>Senha atualizada com sucesso!</p>
-        <button class="submit-button" @click="proceed">Prosseguir</button>
+        <button class="submit-button" @click="submitCode">Prosseguir</button>
       </div>
     </transition>
   </div>

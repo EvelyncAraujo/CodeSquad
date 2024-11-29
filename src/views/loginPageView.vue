@@ -44,6 +44,7 @@ const togglePasswordVisibility = () => {
               type="text"
               v-model="username"
               @input="validateUsername"
+              class="input"
             />
             <div>
               <mdicon
@@ -61,6 +62,7 @@ const togglePasswordVisibility = () => {
               id="password"
               :type="isPasswordVisible ? 'text' : 'password'"
               v-model="password"
+              class="input"
             />
             <button
               type="button"
@@ -75,7 +77,7 @@ const togglePasswordVisibility = () => {
             >Esqueceu sua senha?</RouterLink
           >
         </div>
-        <RouterLink to="/">
+        <RouterLink to="/home">
           <button class="login-button" :disabled="!isFormValid">Login</button>
         </RouterLink>
       </div>
@@ -283,4 +285,41 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
+
+  @media (max-width: 500px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+      box-sizing: border-box;
+    }
+
+    .img2{
+      margin-left: 0;
+    }
+
+    .image-container {
+      width: 100%;    
+    }
+
+    .top-container {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-container {
+      align-items: center;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group{
+      width: 100%;
+    }
+
+    
+  }
 </style>

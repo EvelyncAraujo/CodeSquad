@@ -31,17 +31,10 @@ const students = ref([
     grade: 8.0,
     occurrence: "Sim",
   },
-  {
-    id: 4,
-    name: "Diana",
-    year: "Primeiro",
-    course: "Administração",
-    grade: 6.0,
-    occurrence: "Não",
-  },
+  
 ]);
 
-const courses = ref(["Agropecuária", "Informática", "Administração"]);
+const courses = ref(["Agropecuária", "Informática"]);
 const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");

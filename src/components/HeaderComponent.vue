@@ -6,10 +6,13 @@
 </template>
 <style>
 .logo {
-  position: fixed;
+  position: sticky;
+  background-color: white;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 </style>

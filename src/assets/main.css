@@ -1,8 +1,12 @@
 @import './base.css';
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap');
 
+body {
+  width: 100vw;
+  margin: 0 !important; 
+}
+
 #app {
-  max-width: 1280px;
   font-weight: normal;
   font-family:'Courier New', Courier, monospace;
 }
@@ -23,8 +27,9 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    width: 100vw;
+    /* display: flex;
+    place-items: center; */
   }
 
   #app {

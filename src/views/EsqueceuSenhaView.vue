@@ -1,13 +1,29 @@
 <script setup>
+import Swal from 'sweetalert2'
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
 function enviarCodigo() {
-  alert("Código enviado para");
+  Swal.fire({
+  confirmButtonColor: "#f36b6b",
+  title: "Email enviado com sucesso",
+  text: "Um código de verificação foi enviado para seu email",
+  icon: "success"
+}).then(() => {
+  router.push({
+    path: '/verificacao'
+  })
+});
 }
 </script>
 <template>
   <div class="container">
     <div class="card">
-      <h2>Esqueceu a senha?</h2>
-      <p>Digite o email que será enviado o código de verificação</p>
+      <h2>Esqueceu a senha</h2>
+      <p>Selecione quais detalhes de contato <br>
+ devemos usar para redefinir sua senha</p>
       <div class="input-container">
         <input class="option" placeholder="Digite seu email">
         </input>
@@ -37,7 +53,7 @@ function enviarCodigo() {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  padding:50px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -45,36 +61,36 @@ function enviarCodigo() {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 28px;
   color: #333;
-  margin-bottom: 12px;
+  margin-bottom: 2px;
 }
 
 p {
-  font-size: 14px;
+  font-size: 20px;
   color: #555;
-  margin-bottom: 24px;
+  margin-bottom: 60px;
 }
 
 .option {
   display: flex;
   align-items: center;
-  background: #fdf5f5;
-  border: 1px solid #f8d7da;
+  background: #ffffff;
+  border: 1px solid #000000;
   border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 24px;
+  padding: 30px 12px;
+  margin-bottom:50px;
   width: 87%;
   padding-left: 40px;
 }
 
 .email{
   position: absolute;
-  font-size: 12px;
+  font-size: 8px;
   color: #888;
   top: 8px;
   left: 10px;
-  color: #f36b6b;
+  color: #000000;
 }
 
 .details {

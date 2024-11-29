@@ -1,9 +1,27 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import Swal from "sweetalert2";
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const code = ref(["", "", "", ""]);
 const resendTimer = ref(30);
 let timerInterval = null;
+
+function submitCode() {
+  Swal.fire({
+    confirmButtonColor: "#f36b6b",
+    title: "Código correto",
+    text: "Você será redirecionado para redefinir sua senha...",
+    icon: "success",
+  }).then(() => {
+    router.push({
+      path: "/recuperacao",
+    });
+  });
+}
 
 const isComplete = computed(() => code.value.every((digit) => digit !== ""));
 
@@ -16,9 +34,6 @@ const focusNext = (index) => {
   }
 };
 
-const submitCode = () => {
-  alert(`Código enviado: ${code.value.join("")}`);
-};
 
 const startResendTimer = () => {
   resendTimer.value = 30;

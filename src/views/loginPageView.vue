@@ -27,6 +27,7 @@ const togglePasswordVisibility = () => {
 </script>
 
 <template>
+  <div class="ajustes">
   <div class="container">
     <div class="image-container">
       <div class="img">
@@ -58,6 +59,7 @@ const togglePasswordVisibility = () => {
               type="text"
               v-model="username"
               @input="validateUsername"
+              class="input"
             />
             <div>
               <mdicon
@@ -75,6 +77,7 @@ const togglePasswordVisibility = () => {
               id="password"
               :type="isPasswordVisible ? 'text' : 'password'"
               v-model="password"
+              class="input"
             />
             <button
               type="button"
@@ -89,15 +92,17 @@ const togglePasswordVisibility = () => {
           <RouterLink to="/esquecer" class="forgot-password"
             >Esqueceu sua senha?</RouterLink>
         </div>
-        <RouterLink to="/">
+        <RouterLink to="/home">
           <button class="login-button" :disabled="!isFormValid">Login</button>
         </RouterLink>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>
+
 .container {
   display: flex;
   justify-content: center;
@@ -119,8 +124,8 @@ h2 {
 p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 24px;
-  margin-left: 8rem;
+  margin-bottom: 80px;
+  margin-left: 3rem;
 }
 
 .login-container {
@@ -128,6 +133,7 @@ p {
   flex-direction: column;
   width: 70%;
   color: #333;
+  margin-bottom: 120px;
 }
 
 
@@ -140,9 +146,10 @@ p {
 
 label {
   display: block;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   font-weight: bold;
   font-size: 14px;
+  
 }
 
 .input-wrapper {
@@ -153,7 +160,7 @@ label {
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 18px;
   border: 2px solid #000;
   border-radius: 10px;
   font-size: 14px;
@@ -187,11 +194,12 @@ input:focus {
 }
 
 .forgot-password {
+  margin-left: 310px;
   display: block;
   margin-top: 8px;
   font-size: 12px;
   text-decoration: none;
-  color: #007bff;
+  color: #000000;
 }
 
 .forgot-password:hover {
@@ -200,14 +208,15 @@ input:focus {
 
 
 .login-button {
+  margin-top:30px;
   background-color: #ff6b6b;
   color: white;
   justify-content: center;
   align-items: center;
-  padding: 15px 30px;
+  padding: 19px 205px;
   border: none;
   border-radius: 25px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -294,10 +303,48 @@ input:focus {
 }
 
 .image-container{
+  margin-bottom: 40px;
   width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+  @media (max-width: 500px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+      box-sizing: border-box;
+    }
+
+    .img2{
+      margin-left: 0;
+    }
+
+    .image-container {
+      width: 100%;    
+    }
+
+    .top-container {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-container {
+      align-items: center;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group{
+      width: 100%;
+    }
+
+    
+  }
 </style>

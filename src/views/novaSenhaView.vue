@@ -28,12 +28,6 @@ const success = ref(false);
 const changePassword = () => {
   success.value = true;
 };
-
-
-const proceed = () => {
-  alert("Navegando para próxima etapa...");
-};
-
 </script>
 <template>
   <div class="container">
@@ -89,7 +83,9 @@ const proceed = () => {
           </div>
         </div>
         <p>Senha atualizada com sucesso!</p>
-        <button class="submit-button" @click="proceed">Prosseguir</button>
+        <router-link to="/home">
+          <button class="submit-button">Prosseguir</button>
+        </router-link>
       </div>
     </transition>
   </div>

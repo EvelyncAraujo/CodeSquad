@@ -7,6 +7,15 @@ const confirmPassword = ref("");
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 
+
+const toggleShowPassword = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const toggleShowConfirmPassword = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
+};
+
 const isFormValid = computed(() => {
   return (
     password.value &&
@@ -26,6 +35,7 @@ const changePassword = () => {
     <transition name="fade">
       <div v-if="!success" class="reset-password-container">
         <h2>Digite sua nova senha</h2>
+
         <div class="input-group">
           <label for="password">Senha</label>
           <div class="password-input">

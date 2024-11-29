@@ -47,7 +47,11 @@
         <button class="menu-item">Conselho</button>
       </li>
       <li>
-        <button class="menu-item">Gerenciamento Acadêmico</button>
+      <RouterLink to="/gerenciamento">
+        <button class="menu-item" > Gerenciamento Acadêmico </button>
+      </RouterLink>
+      
+
       </li>
     
     </ul>
@@ -114,7 +118,7 @@
   
   <style scoped>
 
- 
+  
   /* Estilos principais */
   .dashboard {
     display: flex;

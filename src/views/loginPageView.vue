@@ -27,6 +27,7 @@ const togglePasswordVisibility = () => {
 </script>
 
 <template>
+  <div class="ajustes">
   <div class="container">
     <div class="image-container">
       <div class="img">
@@ -85,9 +86,13 @@ const togglePasswordVisibility = () => {
               <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
             </button>
           </div>
+<<<<<<< HEAD
 
           <RouterLink to="/esquecer" class="forgot-password"
             >Esqueceu sua senha?</RouterLink>
+=======
+          <RouterLink to="/esquecer" class="forgot-password">Esqueceu sua senha?</RouterLink>
+>>>>>>> cdd1c77 (Alterações layout)
         </div>
         <RouterLink to="/">
           <button class="login-button" :disabled="!isFormValid">Login</button>
@@ -95,9 +100,11 @@ const togglePasswordVisibility = () => {
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>
+
 .container {
   display: flex;
   justify-content: center;
@@ -113,15 +120,15 @@ h2 {
   font-size: 26px;
   color: #333;
   margin-bottom: 12px;
-  margin-left: 10rem;
+  margin-left: 3rem;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 24px;
-  margin-left: 8rem;
+  margin-bottom: 80px;
+  margin-left: 3rem;
 }
 
 .login-container {
@@ -130,6 +137,7 @@ p {
   font-family: Arial, sans-serif;
   width: 70%;
   color: #333;
+  margin-bottom: 120px;
 }
 
 
@@ -142,9 +150,10 @@ p {
 
 label {
   display: block;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   font-weight: bold;
   font-size: 14px;
+  
 }
 
 .input-wrapper {
@@ -155,7 +164,7 @@ label {
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 18px;
   border: 2px solid #000;
   border-radius: 10px;
   font-size: 14px;
@@ -189,11 +198,12 @@ input:focus {
 }
 
 .forgot-password {
+  margin-left: 310px;
   display: block;
   margin-top: 8px;
   font-size: 12px;
   text-decoration: none;
-  color: #007bff;
+  color: #000000;
 }
 
 .forgot-password:hover {
@@ -202,14 +212,15 @@ input:focus {
 
 
 .login-button {
+  margin-top:30px;
   background-color: #ff6b6b;
   color: white;
   justify-content: center;
   align-items: center;
-  padding: 15px 30px;
+  padding: 19px 205px;
   border: none;
   border-radius: 25px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -296,6 +307,7 @@ input:focus {
 }
 
 .image-container{
+  margin-bottom: 40px;
   width: 50%;
   height: 100%;
   display: flex;

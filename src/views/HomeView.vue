@@ -1,5 +1,6 @@
 <script setup>
   import { ref, computed } from "vue";
+  import AsideComponent from '@/components/AsideComponent.vue'
   
    // Controle do modo escuro
   const isDarkMode = ref(false);
@@ -36,93 +37,74 @@
   </script>
 
 <template>
-    <div :class="['dashboard', isDarkMode ? 'dark' : 'light']">
-  <aside class="aside-menu">
-    <img alt="Logo" src="/src/assets/logo.png">
-    <ul class="menu">
-      <li>
-        <button class="menu-item">Explore</button>
-      </li>
-      <li>
-        <button class="menu-item">Conselho</button>
-      </li>
-      <li>
-      <RouterLink to="/gerenciamento">
-        <button class="menu-item" > Gerenciamento Acadêmico </button>
-      </RouterLink>
-      
-
-      </li>
-    
-    </ul>
-    <button class="logout">Sair</button>
-  </aside>
-  
-      <!-- Main Content -->
-      <main class="content">
-        <!-- Header -->
-        <header class="header">
-          <div class="user-info">
-            <img
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-              class="avatar"
-            />
-            <div class="name">
-              <h2>Oliver Calenbard</h2>
-              <p>Nupe</p>
+      <div class="main-container">
+        <div class="aside">
+          <AsideComponent/>
+        </div>
+        <main class="content">
+          <header class="header">
+            <div class="user-info">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="User Avatar"
+                class="avatar"
+              />
+              <div class="name">
+                <h2>Oliver Calenbard</h2>
+                <p>Nupe</p>
+              </div>
             </div>
-          </div>
-          <div class="actions">
-            <input
-              type="text"
-              v-model="searchQuery"
-              placeholder="Pesquisar conselhos"
-              class="search-input"
-            />
-            <button @click="toggleDarkMode" class="theme-toggle">
-              {{ isDarkMode ? 'Light' : 'Dark' }}
-            </button>
-          </div>
-        </header>
-  
-        <!-- Recent Councils -->
-        <section class="recent-councils">
-          <h3>Conselhos recentes</h3>
-          <div class="filters">
-            <label for="filter">Filtrar por:</label>
-            <select id="filter" v-model="selectedFilter">
-              <option value="Trimestre">Trimestre</option>
-              <option value="Data">Data</option>
-            </select>
-          </div>
-          <div class="council-cards">
-            <div
-              v-for="council in filteredCouncils"
-              :key="council.id"
-              class="council-card"
-              :style="{ backgroundColor: council.color }"
-            >
-              <h4>{{ council.name }}</h4>
-              <p>{{ council.date }}</p>
-              <p>{{ council.trimester }}</p>
-              <button class="view-details">Ver</button>
+            <div class="actions">
+              <input
+                type="text"
+                v-model="searchQuery"
+                placeholder="Pesquisar conselhos"
+                class="search-input"
+              />
+              <button @click="toggleDarkMode" class="theme-toggle">
+                {{ isDarkMode ? 'Light' : 'Dark' }}
+              </button>
             </div>
-          </div>
-        </section>
-      </main>
-    </div>
+          </header>
+          <!-- Recent Councils -->
+          <section class="recent-councils">
+            <h3>Conselhos recentes</h3>
+            <div class="filters">
+              <label for="filter">Filtrar por:</label>
+              <select id="filter" v-model="selectedFilter">
+                <option value="Trimestre">Trimestre</option>
+                <option value="Data">Data</option>
+              </select>
+            </div>
+            <div class="council-cards">
+              <div
+                v-for="council in filteredCouncils"
+                :key="council.id"
+                class="council-card"
+                :style="{ backgroundColor: council.color }"
+              >
+                <h4>{{ council.name }}</h4>
+                <p>{{ council.date }}</p>
+                <p>{{ council.trimester }}</p>
+                <button class="view-details">Ver</button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
   </template>
-  
-  
-  
   <style scoped>
 
-  
+  .aside{
+    min-width: 240px;
+  }
+  .main-container{
+    display: flex;
+  }
+
   /* Estilos principais */
   .dashboard {
     display: flex;
-    font-family: "Arial", sans-serif;
     transition: background 0.3s, color 0.3s;
   }
   
@@ -137,71 +119,10 @@
     color: #f9f9f9;
   }
   
-  /* Sidebar */
- 
-/* Container principal do aside */
-.aside-menu {
-  width: 240px;
-  background-color: #ffffff;
-  padding: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #e6e6e6;
-  height: 100vh;
-  box-sizing: border-box;
-}
 .name{
 margin-left: 5rem;
 }
 
-
-
-/* Lista de itens do menu */
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1;
-}
-
-.menu-item {
-  font-size: 16px;
-  font-weight: 400;
-  color: #333333;
-  text-align: left;
-  padding: 10px 20px;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.menu-item:hover {
-  background-color: #f9f9f9;
-  color: #ff6b6b;
-}
-
-/* Botão de sair */
-.logout {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ff6b6b;
-  padding: 10px 20px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-align: left;
-  border-radius: 8px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.logout:hover {
-  background-color: #fceaea;
-}
-  
   .menu {
     list-style: none;
     padding: 0;
@@ -211,18 +132,6 @@ margin-left: 5rem;
     margin: 10px 0;
     cursor: pointer;
     line-height: 35px;
-  }
-  
-  .logout {
-    background: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 400px;
-    cursor: pointer;
-    border-radius: 5px;
-    
-    
   }
   
   /* Conteúdo principal */

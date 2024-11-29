@@ -75,7 +75,6 @@ const inputs = ref([]);
   max-width: 300px;
   margin: 0 auto;
   text-align: center;
-  font-family: Arial, sans-serif;
   background: #f9f9f9;
   padding: 20px;
   border-radius: 8px;

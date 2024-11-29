@@ -114,7 +114,6 @@ h2 {
   color: #333;
   margin-bottom: 12px;
   margin-left: 10rem;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
@@ -127,7 +126,6 @@ p {
 .login-container {
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif;
   width: 70%;
   color: #333;
 }

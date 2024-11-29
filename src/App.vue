@@ -1,6 +1,13 @@
 <script setup>
- import { RouterView, useRoute } from 'vue-router'
+ import { RouterView } from 'vue-router'
 </script>
 <template>
-<RouterView />
+<div class="font">
+    <RouterView />
+</div>
 </template>
+<style>
+.font{
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>

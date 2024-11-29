@@ -174,7 +174,6 @@ const applyFilters = () => {
 <style scoped>
 .page {
   display: flex;
-  font-family: "Arial", sans-serif;
   transition: background 0.3s, color 0.3s;
   height: 57rem;
   background-color: #cccccc46;

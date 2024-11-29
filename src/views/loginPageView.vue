@@ -235,7 +235,6 @@ input:focus {
   right: 1rem;
 }
 
-
 .dropdown {
   position: relative;
   display: inline-block;

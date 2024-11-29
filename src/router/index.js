@@ -23,6 +23,8 @@ const router = createRouter({
         },
       ]
     },
+   
+ 
     {
       path: '/',
       name: 'fullLayout',

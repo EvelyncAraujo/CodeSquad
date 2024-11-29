@@ -7,14 +7,6 @@ const confirmPassword = ref("");
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 
-const toggleShowPassword = () => {
-  showPassword.value = !showPassword.value;
-};
-
-const toggleShowConfirmPassword = () => {
-  showConfirmPassword.value = !showConfirmPassword.value;
-};
-
 const isFormValid = computed(() => {
   return (
     password.value &&
@@ -28,16 +20,12 @@ const success = ref(false);
 const changePassword = () => {
   success.value = true;
 };
-
-const proceed = () => {
-  alert("Navegando para próxima etapa...");
-};
 </script>
 <template>
   <div class="container">
     <transition name="fade">
       <div v-if="!success" class="reset-password-container">
-        <h2>Digite nova senha</h2>
+        <h2>Digite sua nova senha</h2>
         <div class="input-group">
           <label for="password">Senha</label>
           <div class="password-input">
@@ -47,8 +35,8 @@ const proceed = () => {
               v-model="password"
             />
             <div>
-              <button type="button" @click="toggleShowPassword">
-                <mdicon v-if="!showPassword" name="eye-closed"></mdicon>
+              <button type="button" @click="() => showPassword = !showPassword">
+                <mdicon v-if="!showPassword" name="eye-off-outline"></mdicon>
                 <mdicon v-if="showPassword" name="eye-outline"></mdicon>
               </button>
             </div>
@@ -62,10 +50,9 @@ const proceed = () => {
               :type="showConfirmPassword ? 'text' : 'password'"
               v-model="confirmPassword"
             />
-            <button type="button" @click="toggleShowPassword">
-              <mdicon v-if="!showPassword" name="eye-closed"></mdicon>
-
-              <mdicon v-if="showPassword" name="eye-outline"></mdicon>
+            <button type="button" @click="() => showConfirmPassword = !showConfirmPassword">
+              <mdicon v-if="!showConfirmPassword" name="eye-off-outline"></mdicon>
+              <mdicon v-if="showConfirmPassword" name="eye-outline"></mdicon>
             </button>
           </div>
         </div>
@@ -87,7 +74,9 @@ const proceed = () => {
           </div>
         </div>
         <p>Senha atualizada com sucesso!</p>
-        <button class="submit-button" @click="proceed">Prosseguir</button>
+        <router-link to="/home">
+          <button class="submit-button">Prosseguir</button>
+        </router-link>
       </div>
     </transition>
   </div>
@@ -110,7 +99,6 @@ const proceed = () => {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  filter: drop-shadow(1px 20px yellow);
 }
 
 h2 {

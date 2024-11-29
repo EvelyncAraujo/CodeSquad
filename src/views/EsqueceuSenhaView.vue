@@ -1,24 +1,17 @@
 <script setup>
 function enviarCodigo() {
-  alert("Código enviado para olivercalenbard@gmail.com");
+  alert("Código enviado para");
 }
 </script>
 <template>
   <div class="container">
     <div class="card">
-      <h2>Esqueceu a senha</h2>
-      <p>
-        Selecione quais detalhes de contato devemos usar para redefinir sua
-        senha
-      </p>
-      <div class="option">
-        <div class="icon">
-          <span>📧</span>
-        </div>
-        <div class="details">
-          <p>Enviar via email</p>
-          <p class="email">olivercalenbard@gmail.com</p>
-        </div>
+      <h2>Esqueceu a senha?</h2>
+      <p>Digite o email que será enviado o código de verificação</p>
+      <div class="input-container">
+        <input class="option" placeholder="Digite seu email">
+        </input>
+        <mdicon class="email" name="email-outline"></mdicon>
       </div>
       <button @click="enviarCodigo">Enviar código</button>
     </div>
@@ -26,6 +19,10 @@ function enviarCodigo() {
 </template>
 
 <style scoped>
+.input-container{
+  position: relative;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -42,6 +39,9 @@ function enviarCodigo() {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 24px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 h2 {
@@ -64,27 +64,21 @@ p {
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 24px;
+  width: 87%;
+  padding-left: 40px;
 }
 
-.icon {
-  width: 36px;
-  height: 36px;
-  background: #f8d7da;
-  color: #d9534f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  margin-right: 12px;
+.email{
+  position: absolute;
+  font-size: 12px;
+  color: #888;
+  top: 8px;
+  left: 10px;
+  color: #f36b6b;
 }
 
 .details {
   text-align: left;
-}
-
-.email {
-  font-size: 12px;
-  color: #888;
 }
 
 button {

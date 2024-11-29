@@ -22,24 +22,29 @@ const router = createRouter({
       component: FullLayout,
       children: [
         {
-          path: '/login', // Corrigido: adicionada a barra no início
+          path: '/login', 
           name: 'Login',
           component: loginPageView,
         },
         {
-          path: '/esquecer', // Corrigido: adicionada a barra no início
+          path: '/esquecer', 
           name: 'EsqueceuSenha',
           component: EsqueceuSenhaView
         },
         {
-          path: '/verificacao', // Corrigido: adicionada a barra no início
+          path: '/verificacao', 
           name: 'CodVerificação',
           component: codigoVerificacaoView
         },
         {
-          path: '/recuperacao', // Corrigido: adicionada a barra no início
+          path: '/recuperacao', 
           name: 'Nova Senha',
           component: novaSenhaView
+        },
+        {
+          path: '/gerenciamento', 
+          name: 'Gerenciamento',
+          component: geren
         },
       ]
     },

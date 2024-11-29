@@ -1,6 +1,21 @@
 <script setup>
+import Swal from 'sweetalert2'
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
 function enviarCodigo() {
-  alert("Código enviado para");
+  Swal.fire({
+  confirmButtonColor: "#f36b6b",
+  title: "Email enviado com sucesso",
+  text: "Um código de verificação foi enviado para seu email",
+  icon: "success"
+}).then(() => {
+  router.push({
+    path: '/verificacao'
+  })
+});
 }
 </script>
 <template>

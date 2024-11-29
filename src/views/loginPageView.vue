@@ -34,15 +34,14 @@ const togglePasswordVisibility = () => {
       </div>
     </div>
 
-    <div  @click="toggleDropdown" class="dropdown">
-    <button class="dropbtn">Servidor</button>
-    <div class="dropdown-content">
+    <div @click="toggleDropdown" class="dropdown">
+      <button class="dropbtn">Servidor</button>
+      <div class="dropdown-content">
         <a href="#">Professor</a>
         <a href="#">Estudantes</a>
         <a href="#">Servidor Nupe</a>
+      </div>
     </div>
-</div>
-
 
     <div class="top-container">
       <div class="login-container">
@@ -123,7 +122,7 @@ p {
   margin-left: 8rem;
 }
 
-/* Container principal */
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -237,7 +236,6 @@ input:focus {
   right: 1rem;
 }
 
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -246,7 +244,7 @@ input:focus {
 .dropdown-content {
   display: none;
   position: absolute;
-  right: 0; 
+  right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);

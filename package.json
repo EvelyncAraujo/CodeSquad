@@ -10,8 +10,13 @@
     "test:unit": "vitest"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@mdi/js": "^7.4.47",
     "axios": "^1.7.8",
     "buefy": "npm:@ntohq/buefy-next@^0.1.4",
+    "mdi-vue": "^3.0.13",
     "pinia": "^2.2.8",
     "vite-plugin-pwa": "^0.21.0",
     "vue": "^3.5.12",

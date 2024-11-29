@@ -21,6 +21,9 @@ const validateUsername = () => {
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
+// const toggleDropdown = () => {
+//   isOpen.value = !isOpen.value;
+// };
 </script>
 
 <template>
@@ -28,6 +31,16 @@ const togglePasswordVisibility = () => {
     <div class="img">
       <img src="/tittle.png" alt="Imagem" class="img2" />
     </div>
+
+    <div @click="toggleDropdown" class="dropdown">
+      <button class="dropbtn">Servidor</button>
+      <div class="dropdown-content">
+        <a href="#">Professor</a>
+        <a href="#">Estudantes</a>
+        <a href="#">Servidor Nupe</a>
+      </div>
+    </div>
+
     <div class="top-container">
       <div class="login-container">
         <div class="card">
@@ -62,7 +75,7 @@ const togglePasswordVisibility = () => {
               👁️
             </button>
           </div>
-          <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+          <a href="/esquecer" class="forgot-password">Esqueceu sua senha?</a>
         </div>
         <button class="login-button" :disabled="!isFormValid">Login</button>
       </div>
@@ -86,9 +99,10 @@ const togglePasswordVisibility = () => {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
   color: #333;
   margin-bottom: 12px;
+  margin-left: 10rem;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -96,8 +110,10 @@ p {
   font-size: 14px;
   color: #555;
   margin-bottom: 24px;
+  margin-left: 8rem;
 }
-/* Container principal */
+
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -106,12 +122,12 @@ p {
   color: #333;
 }
 
-/* Grupo de inputs */
+
 .input-group {
   margin-bottom: 20px;
 }
 
-/* Label do input */
+
 label {
   display: block;
   margin-bottom: 8px;
@@ -119,7 +135,6 @@ label {
   font-size: 14px;
 }
 
-/* Wrapper do input com ícones */
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -139,7 +154,7 @@ input:focus {
   border-color: #ff6b6b;
 }
 
-/* Ícone de sucesso */
+
 .icon.success {
   position: absolute;
   right: 12px;
@@ -147,7 +162,7 @@ input:focus {
   font-size: 16px;
 }
 
-/* Botão para alternar visibilidade da senha */
+
 .toggle-password {
   background: none;
   border: none;
@@ -158,7 +173,6 @@ input:focus {
   color: #666;
 }
 
-/* Estilo do link "Esqueceu sua senha?" */
 .forgot-password {
   display: block;
   margin-top: 8px;
@@ -171,7 +185,7 @@ input:focus {
   text-decoration: underline;
 }
 
-/* Botão de login */
+
 .login-button {
   background-color: #ff6b6b;
   color: white;
@@ -195,13 +209,15 @@ input:focus {
 
 .dropbtn {
   background-color: #000000;
-  margin-left: 90rem;
-  margin-top: 5rem;
   color: white;
   padding: 16px;
   border-radius: 25px;
   font-size: 14px;
   border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
 }
 
 .dropdown {
@@ -210,9 +226,9 @@ input:focus {
 }
 
 .dropdown-content {
-  margin-left: 90rem;
   display: none;
   position: absolute;
+  right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -226,8 +242,12 @@ input:focus {
   display: block;
 }
 
-.dropdown-content a:click {
+.dropdown-content a:hover {
   background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .img {

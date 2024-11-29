@@ -7,6 +7,8 @@ import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
 import HomeView from '@/views/HomeView.vue';
 import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
+import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +55,11 @@ const router = createRouter({
           path: '/recuperacao', 
           name: 'Nova Senha',
           component: novaSenhaView
+        },
+        {
+          path: '/historico', 
+          name: 'Histórico Conselhos',
+          component: detalhesConselhoView
         },
       
       ]

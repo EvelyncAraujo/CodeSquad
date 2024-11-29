@@ -7,6 +7,14 @@ const confirmPassword = ref("");
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 
+const toggleShowPassword = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const toggleShowConfirmPassword = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
+};
+
 const isFormValid = computed(() => {
   return (
     password.value &&
@@ -20,12 +28,19 @@ const success = ref(false);
 const changePassword = () => {
   success.value = true;
 };
+
+
+const proceed = () => {
+  alert("Navegando para próxima etapa...");
+};
+
 </script>
 <template>
   <div class="container">
     <transition name="fade">
       <div v-if="!success" class="reset-password-container">
         <h2>Digite sua nova senha</h2>
+
         <div class="input-group">
           <label for="password">Senha</label>
           <div class="password-input">
@@ -74,9 +89,7 @@ const changePassword = () => {
           </div>
         </div>
         <p>Senha atualizada com sucesso!</p>
-        <router-link to="/home">
-          <button class="submit-button">Prosseguir</button>
-        </router-link>
+        <button class="submit-button" @click="proceed">Prosseguir</button>
       </div>
     </transition>
   </div>

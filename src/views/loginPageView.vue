@@ -24,7 +24,6 @@ const togglePasswordVisibility = () => {
 // const toggleDropdown = () => {
 //   isOpen.value = !isOpen.value;
 // };
-
 </script>
 
 <template>
@@ -35,15 +34,14 @@ const togglePasswordVisibility = () => {
       </div>
     </div>
 
-    <div  @click="toggleDropdown" class="dropdown">
-    <button class="dropbtn">Servidor</button>
-    <div class="dropdown-content">
+    <div @click="toggleDropdown" class="dropdown">
+      <button class="dropbtn">Servidor</button>
+      <div class="dropdown-content">
         <a href="#">Professor</a>
         <a href="#">Estudantes</a>
         <a href="#">Servidor Nupe</a>
+      </div>
     </div>
-</div>
-
 
     <div class="top-container">
       <div class="login-container">
@@ -124,7 +122,7 @@ p {
   margin-left: 8rem;
 }
 
-/* Container principal */
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -133,14 +131,14 @@ p {
   color: #333;
 }
 
-/* Grupo de inputs */
+
 .input-group {
   max-width: 70%;
   margin-bottom: 20px;
   border-radius: 50px;
 }
 
-/* Label do input */
+
 label {
   display: block;
   margin-bottom: 8px;
@@ -148,7 +146,6 @@ label {
   font-size: 14px;
 }
 
-/* Wrapper do input com ícones */
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -179,7 +176,7 @@ input:focus {
   cursor: pointer;
 }
 
-/* Botão para alternar visibilidade da senha */
+
 .toggle-password {
   background: none;
   border: none;
@@ -190,7 +187,6 @@ input:focus {
   color: #666;
 }
 
-/* Estilo do link "Esqueceu sua senha?" */
 .forgot-password {
   display: block;
   margin-top: 8px;
@@ -203,7 +199,7 @@ input:focus {
   text-decoration: underline;
 }
 
-/* Botão de login */
+
 .login-button {
   background-color: #ff6b6b;
   color: white;
@@ -240,7 +236,6 @@ input:focus {
     right: 20px; /* Alinhamento à direita */
 }
 
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -249,7 +244,7 @@ input:focus {
 .dropdown-content {
   display: none;
   position: absolute;
-  right: 0; 
+  right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -266,7 +261,6 @@ input:focus {
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
-
 
 .dropdown:hover .dropdown-content {
   display: block;

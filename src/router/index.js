@@ -3,6 +3,7 @@ import loginPageView from '@/views/loginPageView.vue';
 import EsqueceuSenhaView from '@/views/EsqueceuSenhaView.vue';
 import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
 import novaSenhaView from '@/views/novaSenhaView.vue';
+import HomeView from '@/views/HomeView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
 
@@ -40,6 +41,11 @@ const router = createRouter({
           path: '/recuperacao', // Corrigido: adicionada a barra no início
           name: 'Nova Senha',
           component: novaSenhaView
+        },
+        {
+          path: '/home',
+          name: 'Home',
+          component: HomeView,
         },
       ]
     },

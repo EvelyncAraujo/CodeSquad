@@ -34,13 +34,13 @@ const students = ref([
     id: 4,
     name: "Diana",
     year: "Primeiro",
-    course: "Administração",
+    course: "Química",
     grade: 6.0,
     occurrence: "Não",
   },
 ]);
 
-const courses = ref(["Agropecuária", "Informática", "Administração"]);
+const courses = ref(["Agropecuária", "Informática", "Química"]);
 const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");
@@ -261,13 +261,19 @@ const applyFilters = () => {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  border: none;
+  padding-left: 8rem;
+  padding: 25px;
 }
 
 .filters select,
 .filters input {
   padding: 5px 10px;
-  border: 1px solid #b4b0b0;
-  border-radius: 5px;
+  border: 1px solid rgba(226, 174, 210, 1);
+  border-radius: 25px;
+  
+
+  
 }
 
 .search-button {

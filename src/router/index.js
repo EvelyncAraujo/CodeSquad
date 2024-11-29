@@ -5,11 +5,8 @@ import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
 import novaSenhaView from '@/views/novaSenhaView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
-<<<<<<< HEAD
 import HomeView from '@/views/HomeView.vue';
-=======
 import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
->>>>>>> origin/front-evy
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,20 +21,13 @@ const router = createRouter({
           name: 'Gerenciamento',
           component: gerencionamentoAcademicoView
         },
+        {
+          path: '/home', // Corrigido: adicionada a barra no início
+          name: 'Página principal',
+          component: HomeView
+        },
       ] 
     },
-<<<<<<< HEAD
-
-    {
-      path: '/home', // Corrigido: adicionada a barra no início
-      name: 'Página principal',
-      component: HomeView
-    },
-
-=======
-   
- 
->>>>>>> origin/front-evy
     {
       path: '/',
       name: 'fullLayout',

@@ -1,6 +1,46 @@
+<script setup>
+
+  import { ref, computed } from "vue";
+
+  
+
+  const password = ref("");
+  const confirmPassword = ref("");
+  
+
+  const showPassword = ref(false);
+  const showConfirmPassword = ref(false);
+  
+  
+  const toggleShowPassword = () => {
+    showPassword.value = !showPassword.value;
+  };
+  
+  const toggleShowConfirmPassword = () => {
+    showConfirmPassword.value = !showConfirmPassword.value;
+  };
+  
+
+  const isFormValid = computed(() => {
+    return password.value && confirmPassword.value && password.value === confirmPassword.value;
+  });
+
+  const success = ref(false);
+  
+  const changePassword = () => {
+    success.value = true;
+  
+  };
+  
+
+  const proceed = () => {
+    alert("Navegando para próxima etapa...");
+  };
+  </script>
 <template>
-    <div class="app">
-        <div class="container"> <transition name="fade">
+
+    <div class="container">
+         <transition name="fade">
         <div v-if="!success" class="reset-password-container">
           <h2>Digite nova senha</h2>
           <div class="input-group">
@@ -11,9 +51,15 @@
                 :type="showPassword ? 'text' : 'password'"
                 v-model="password"
               />
-              <button type="button" @click="toggleShowPassword">
-                <span>{{ showPassword ? '🙈' : '👁️' }}</span>
-              </button>
+              <div>
+              
+    <button type="button" @click="toggleShowPassword">
+    
+      <mdicon v-if="!showPassword" name="eye-closed"></mdicon>
+
+      <mdicon v-if="showPassword" name="eye-outline"></mdicon>
+    </button>
+  </div>
             </div>
           </div>
           <div class="input-group">
@@ -24,9 +70,12 @@
                 :type="showConfirmPassword ? 'text' : 'password'"
                 v-model="confirmPassword"
               />
-              <button type="button" @click="toggleShowConfirmPassword">
-                <span>{{ showConfirmPassword ? '🙈' : '👁️' }}</span>
-              </button>
+              <button type="button" @click="toggleShowPassword">
+    
+    <mdicon v-if="!showPassword" name="eye-closed"></mdicon>
+
+    <mdicon v-if="showPassword" name="eye-outline"></mdicon>
+  </button>
             </div>
           </div>
           <button
@@ -50,62 +99,21 @@
           <button class="submit-button" @click="proceed">Prosseguir</button>
         </div>
       </transition></div>
-     
-    </div>
+      
+    
   </template>
   
-  <script setup>
-  import { ref, computed } from "vue";
   
-  // Campos de senha
-  const password = ref("");
-  const confirmPassword = ref("");
-  
-  // Controle de visibilidade das senhas
-  const showPassword = ref(false);
-  const showConfirmPassword = ref(false);
-  
-  // Alternar visibilidade das senhas
-  const toggleShowPassword = () => {
-    showPassword.value = !showPassword.value;
-  };
-  
-  const toggleShowConfirmPassword = () => {
-    showConfirmPassword.value = !showConfirmPassword.value;
-  };
-  
-  // Validação do formulário
-  const isFormValid = computed(() => {
-    return password.value && confirmPassword.value && password.value === confirmPassword.value;
-  });
-  
-  // Controle de tela de sucesso
-  const success = ref(false);
-  
-  // Função para mudar senha
-  const changePassword = () => {
-    success.value = true;
-    // Adicione aqui lógica para enviar a nova senha para uma API.
-  };
-  
-  // Ação para prosseguir
-  const proceed = () => {
-    alert("Navegando para próxima etapa...");
-  };
-  </script>
   
   <style scoped>
   /* Estilo geral */
+  
 
-  .app {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-    font-family: Arial, sans-serif;
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
+    min-height: 100vh;
     background-color: #f9f9f9;
   }
   
@@ -115,11 +123,13 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(1px 20px yellow,);
   }
   
   h2 {
     font-size: 18px;
     margin-bottom: 20px;
+    
   }
   
   .input-group {

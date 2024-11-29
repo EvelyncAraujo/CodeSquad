@@ -1,4 +1,50 @@
-<template>
+<script setup>
+  import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+  
+
+  const code = ref(["", "", "", ""]);
+  const resendTimer = ref(30);
+  let timerInterval = null;
+  
+  
+  const isComplete = computed(() => code.value.every((digit) => digit !== ""));
+
+  const focusNext = (index) => {
+    if (code.value[index].length === 1 && index < code.value.length - 1) {
+      const nextInput = inputs.value[index + 1];
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
+  };
+
+  const submitCode = () => {
+    alert(`Código enviado: ${code.value.join("")}`);
+  };
+  
+
+  const startResendTimer = () => {
+    resendTimer.value = 30;
+    timerInterval = setInterval(() => {
+      if (resendTimer.value > 0) {
+        resendTimer.value--;
+      } else {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+  };
+
+  onMounted(() => {
+    startResendTimer();
+  });
+  
+  onBeforeUnmount(() => {
+    clearInterval(timerInterval);
+  });
+
+  const inputs = ref([]);
+  </script>
+  <template>
     <div class="container"> <div class="verification-container">
       <h2>Digite o código de verificação</h2>
       <p>Insira o código de verificação para prosseguir com a autenticação.</p>
@@ -19,56 +65,6 @@
    
   </template>
   
-  <script setup>
-  import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-  
-  // Código de verificação
-  const code = ref(["", "", "", ""]);
-  const resendTimer = ref(30);
-  let timerInterval = null;
-  
-  // Verifica se todos os campos foram preenchidos
-  const isComplete = computed(() => code.value.every((digit) => digit !== ""));
-  
-  // Função para mover o foco para o próximo input
-  const focusNext = (index) => {
-    if (code.value[index].length === 1 && index < code.value.length - 1) {
-      const nextInput = inputs.value[index + 1];
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-  };
-  
-  // Função para enviar o código
-  const submitCode = () => {
-    alert(`Código enviado: ${code.value.join("")}`);
-  };
-  
-  // Temporizador para reenvio do código
-  const startResendTimer = () => {
-    resendTimer.value = 30;
-    timerInterval = setInterval(() => {
-      if (resendTimer.value > 0) {
-        resendTimer.value--;
-      } else {
-        clearInterval(timerInterval);
-      }
-    }, 1000);
-  };
-  
-  // Controle do ciclo de vida
-  onMounted(() => {
-    startResendTimer();
-  });
-  
-  onBeforeUnmount(() => {
-    clearInterval(timerInterval);
-  });
-  
-  // Referências aos inputs
-  const inputs = ref([]);
-  </script>
   
   <style scoped>
     .container {

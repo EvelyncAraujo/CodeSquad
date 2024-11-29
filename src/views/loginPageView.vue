@@ -5,10 +5,10 @@ const dropdownStore = useDropdownStore();
 
 const { isOpen, toggleDropdown } = dropdownStore;
 
-const username = ref("Olivercalenbard");
+const username = ref("");
 const password = ref("");
 const isPasswordVisible = ref(false);
-const isUsernameValid = ref(true);
+const isUsernameValid = ref(false);
 
 const isFormValid = computed(
   () => isUsernameValid.value && password.value.length > 0
@@ -25,14 +25,16 @@ const togglePasswordVisibility = () => {
 
 <template>
   <div class="container">
-    <div class="img">
-      <img src="/tittle.png" alt="Imagem" class="img2" />
+    <div class="image-container">
+      <div class="img">
+        <img src="/tittle.png" alt="Imagem" class="img2" />
+      </div>
     </div>
     <div class="top-container">
       <div class="login-container">
         <div class="card">
           <h2>Login</h2>
-          <p>coloque suas informações</p>
+          <p>Coloque suas informações</p>
         </div>
         <div class="input-group">
           <label for="username">Usuário</label>
@@ -43,7 +45,13 @@ const togglePasswordVisibility = () => {
               v-model="username"
               @input="validateUsername"
             />
-            <span class="icon success" v-if="isUsernameValid">✔</span>
+            <div>
+              <mdicon
+                v-if="isUsernameValid"
+                class="icon-success"
+                name="check-circle"
+              ></mdicon>
+            </div>
           </div>
         </div>
         <div class="input-group">
@@ -59,12 +67,17 @@ const togglePasswordVisibility = () => {
               class="toggle-password"
               @click="togglePasswordVisibility"
             >
-              👁️
+              <mdicon v-if="isPasswordVisible" name="eye-outline"></mdicon>
+              <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
             </button>
           </div>
-          <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+          <RouterLink to="/esquecer" class="forgot-password"
+            >Esqueceu sua senha?</RouterLink
+          >
         </div>
-        <button class="login-button" :disabled="!isFormValid">Login</button>
+        <RouterLink to="/">
+          <button class="login-button" :disabled="!isFormValid">Login</button>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -79,10 +92,7 @@ const togglePasswordVisibility = () => {
 
 .card {
   max-width: 400px;
-  /* background-color: #fff; */
-  /* border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  padding: 24px;
+  text-align: center;
 }
 
 h2 {
@@ -102,13 +112,15 @@ p {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  width: 50%;
+  width: 70%;
   color: #333;
 }
 
 /* Grupo de inputs */
 .input-group {
+  max-width: 70%;
   margin-bottom: 20px;
+  border-radius: 50px;
 }
 
 /* Label do input */
@@ -140,11 +152,14 @@ input:focus {
 }
 
 /* Ícone de sucesso */
-.icon.success {
+.icon-success {
+  color: rgb(149, 218, 116);
+  background: none;
   position: absolute;
   right: 12px;
-  color: #4caf50;
+  bottom: 8px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* Botão para alternar visibilidade da senha */
@@ -175,7 +190,9 @@ input:focus {
 .login-button {
   background-color: #ff6b6b;
   color: white;
-  padding: 12px 0;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 30px;
   border: none;
   border-radius: 25px;
   font-size: 16px;
@@ -194,14 +211,16 @@ input:focus {
 }
 
 .dropbtn {
-  background-color: #000000;
-  margin-left: 90rem;
-  margin-top: 5rem;
-  color: white;
-  padding: 16px;
-  border-radius: 25px;
-  font-size: 14px;
-  border: none;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px; /* Distância do topo */
+    right: 20px; /* Alinhamento à direita */
 }
 
 .dropdown {
@@ -231,7 +250,7 @@ input:focus {
 }
 
 .img {
-  width: 100%;
+  width: 200%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -243,7 +262,23 @@ input:focus {
 }
 
 .top-container {
-  width: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.image-container{
+  width: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

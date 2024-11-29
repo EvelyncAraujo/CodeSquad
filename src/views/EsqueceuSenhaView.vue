@@ -1,5 +1,6 @@
 <script setup>
   function enviarCodigo() {
+    
     alert("Código enviado para olivercalenbard@gmail.com");
   }
   </script>

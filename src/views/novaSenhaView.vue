@@ -117,7 +117,7 @@
     background-color: #f9f9f9;
   }
   
-  /* Página de redefinição de senha */
+  /* Página de redefinição de senha */  
   .reset-password-container {
     background: #f9f9f9;
     padding: 20px;

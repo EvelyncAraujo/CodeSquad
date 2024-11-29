@@ -121,7 +121,6 @@ function submitCode() {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: #f9f9f9;
 }
 

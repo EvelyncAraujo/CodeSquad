@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import AsideComponent from '@/components/AsideComponent.vue'
 
 const isDarkMode = ref(false);
 const toggleDarkMode = () => {
@@ -30,17 +31,10 @@ const students = ref([
     grade: 8.0,
     occurrence: "Sim",
   },
-  {
-    id: 4,
-    name: "Diana",
-    year: "Primeiro",
-    course: "Administração",
-    grade: 6.0,
-    occurrence: "Não",
-  },
+  
 ]);
 
-const courses = ref(["Agropecuária", "Informática", "Administração"]);
+const courses = ref(["Agropecuária", "Informática"]);
 const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");
@@ -88,17 +82,9 @@ const applyFilters = () => {
 
 <template>
   <div class="page">
-    <aside class="sidebar">
-      <img src="/src/assets/logo.png" alt="Logo" />
-
-      <ul class="menu">
-        <li>Explore</li>
-        <li>Conselho</li>
-        <li>Gerenciamento Acadêmico</li>
-      </ul>
-      <button class="logout">Sair</button>
-    </aside>
-
+    <div class="aside">
+      <AsideComponent/>
+    </div>
     <main class="content">
       <div class="user-info">
         <img
@@ -174,6 +160,9 @@ const applyFilters = () => {
 </template>
 
 <style scoped>
+  .aside{
+    min-width: 240px;
+  }
 .page {
   display: flex;
   transition: background 0.3s, color 0.3s;
@@ -212,14 +201,6 @@ const applyFilters = () => {
   margin-left: 2rem;
 }
 
-.logout {
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-}
-
 /* Conteúdo principal */
 .content {
   flex: 1;
@@ -239,6 +220,7 @@ const applyFilters = () => {
 }
 .info {
   margin-left: 5rem;
+ 
 }
 .search {
   float: right;
@@ -251,7 +233,16 @@ const applyFilters = () => {
   border-radius: 2rem;
   background-color: #c2bfbf1f;
   padding: 2rem;
+  width: 65rem;
 }
+option{
+  background-color: #f8f5f521;
+  color: black;
+  border: none;
+  border-radius: 20px;
+}
+
+
 .theme-toggle {
   position: fixed;
   margin-left: 85rem;
@@ -273,7 +264,7 @@ const applyFilters = () => {
   padding: 10px 20px;
   border: 1px solid rgba(226, 174, 210, 1);
   border-radius: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
   background-color: rgba(226, 174, 210, 1);
 }
 

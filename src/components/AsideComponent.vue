@@ -6,7 +6,7 @@
     <ul class="menu">
       <li>
         <button class="menu-item">
-        <mdicon class="icon-book" name="menu"></mdicon>
+        <mdicon class="icon-book" name="view-grid"></mdicon>
         Explore</button>
       </li>
       <li>

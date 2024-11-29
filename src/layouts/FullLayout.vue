@@ -12,7 +12,7 @@ import { RouterView } from 'vue-router';
 </template>
 <style>
 .container{
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 100%;
+    min-height: 91vh;
 }
 </style>

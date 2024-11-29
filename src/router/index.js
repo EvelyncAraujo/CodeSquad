@@ -8,8 +8,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/a', // Corrigido: adicionada a barra no início
-      name: 'login',
+      path: '/login', // Corrigido: adicionada a barra no início
+      name: 'Login',
       component: loginPageView,
     },
     {

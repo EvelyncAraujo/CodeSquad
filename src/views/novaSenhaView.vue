@@ -49,7 +49,6 @@ const proceed = () => {
             <div>
               <button type="button" @click="toggleShowPassword">
                 <mdicon v-if="!showPassword" name="eye-closed"></mdicon>
-
                 <mdicon v-if="showPassword" name="eye-outline"></mdicon>
               </button>
             </div>

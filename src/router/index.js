@@ -5,6 +5,7 @@ import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
 import novaSenhaView from '@/views/novaSenhaView.vue';
 import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
+import gerencionamentoAcademicoView from '@/views/gerencionamentoAcademicoView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,8 +15,15 @@ const router = createRouter({
       name: 'blankLayout',
       component: BlankLayout,
       children: [
-      ]
+        {
+          path: '/gerenciamento', 
+          name: 'Gerenciamento',
+          component: gerencionamentoAcademicoView
+        },
+      ] 
     },
+   
+ 
     {
       path: '/',
       name: 'fullLayout',
@@ -41,11 +49,7 @@ const router = createRouter({
           name: 'Nova Senha',
           component: novaSenhaView
         },
-        {
-          path: '/gerenciamento', 
-          name: 'Gerenciamento',
-          component: geren
-        },
+      
       ]
     },
   ],

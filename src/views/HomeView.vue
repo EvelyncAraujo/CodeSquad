@@ -14,10 +14,7 @@ const toggleDarkMode = () => {
 
 const colors = ["#E2AED2", "#EA8C8C", "#F2866C", "#F06A45", "#A2D5C6"];
 
-const searchQuery = ref("");
 const selectedFilter = ref("");
-const selectedDate = ref();
-
 
 const filteredCouncils = computed(() => {
   if (selectedFilter.value === "") {
@@ -38,9 +35,9 @@ onMounted(async() => {
     <main class="content">
       <!-- Recent Councils -->
       <section class="recent-councils">
-        <h2>Conselhos recentes</h2>
+        <h2>Conselhos</h2>
         <div class="filters">
-          <label for="filter">Filtrar por:</label>
+          <label for="filter" class="filter">Filtrar por:</label>
           <select v-model.number="selectedFilter">
             <option value="" disabled selected>Selecione o trimestre</option>
             <option value="" >Todos os trimestres</option>
@@ -48,7 +45,6 @@ onMounted(async() => {
             <option value=2>Segundo trimestre</option>
             <option value=3>Terceiro trimestre</option>
           </select>
-          <input class="date" type="date" v-model="selectedDate" />
         </div>
         <div class="council-cards">
           <div
@@ -82,6 +78,10 @@ onMounted(async() => {
     "aside content"
   ;
 
+}
+
+.filter{
+  margin-right: 10px
 }
 
 .aside {
@@ -248,6 +248,7 @@ body.dark-mode {
 /* Conselhos Recentes */
 .recent-councils h2 {
   margin-bottom: 1rem;
+  font-size: xx-large;
 }
 
 .council-cards {

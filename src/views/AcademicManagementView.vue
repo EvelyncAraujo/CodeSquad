@@ -90,7 +90,9 @@ onMounted(async () => {
         <div class="results">
           <div v-for="student in filteredStudents" :key="student.id" class="result-card">
             <p>{{ student.name }} - {{ student.team.name }}</p>
-            <button class="view-details">Ver</button>
+            <RouterLink to="/student">
+              <button class="view-details">Ver</button>
+            </RouterLink>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import AsideComponent from "@/components/AsideComponent.vue";
+import { onMounted } from "vue";
 
 // Controle do modo escuro
 const isDarkMode = ref(false);
@@ -78,6 +79,7 @@ const councils = ref([
 // Estado para a pesquisa e filtro
 const searchQuery = ref("");
 const selectedFilter = ref("Trimestre");
+const selectedDate = ref();
 
 // Computed para filtrar conselhos
 const filteredCouncils = computed(() => {
@@ -87,6 +89,10 @@ const filteredCouncils = computed(() => {
       (selectedFilter.value === "Trimestre" ||
         council.trimester === selectedFilter.value)
   );
+});
+
+onMounted(() => {
+  console.log(selectedFilter.value);
 });
 </script>
 
@@ -125,15 +131,13 @@ const filteredCouncils = computed(() => {
         <h2>Conselhos recentes</h2>
         <div class="filters">
           <label for="filter">Filtrar por:</label>
-          <select id="filter" v-model="selectedFilter">
-            <option value="" disabled selected>Trimestre</option>
+          <select v-model="selectedFilter">
+            <option value="Trimestre" disabled selected>Selecione o trimestre</option>
             <option value="primeiro">Primeiro trimestre</option>
             <option value="segundo">Segundo trimestre</option>
             <option value="terceiro">Terceiro trimestre</option>
           </select>
-          <select id="data" v-model="selectedFilter">
-            <option value="" disabled selected>Data</option>
-          </select>
+          <input class="date" type="date" v-model="selectedDate" />
         </div>
         <div class="council-cards">
           <div
@@ -280,6 +284,35 @@ const filteredCouncils = computed(() => {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.filters label {
+  margin-right: 1rem;
+}
+
+.filters select {
+  padding: 10px 20px;
+  border: 1px solid rgb(235, 230, 230);
+  background-color: #f9f9f9;
+  color: #000;
+  border-radius: 20px;
+  margin-right: 1rem;
+}
+
+option {
+  background-color: #f8f5f521;
+  color: black;
+  border: none;
+  border-radius: 20px;
+}
+
+.date{
+  padding: 10px 20px;
+  border: 1px solid rgb(235, 230, 230);
+  background-color: #f9f9f9;
+  color: #000;
+  border-radius: 20px;
+  margin-right: 1rem;
 }
 
 .employee-function{

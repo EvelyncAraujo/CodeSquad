@@ -32,7 +32,6 @@ const councils = ref([
   "Conselho 9",
 ]);
 </script>
-
 <template>
   <div class="dashboard">
     <!-- Header -->
@@ -153,9 +152,6 @@ const councils = ref([
   </div>
   </div>
 </template>
-
-
-
 <style scoped>
 .conselhos-container {
   text-align: center;
@@ -241,7 +237,6 @@ button span {
   padding: 20px;
 }
 
-/* Header */
 .header {
   display: flex;
   justify-content: space-between;

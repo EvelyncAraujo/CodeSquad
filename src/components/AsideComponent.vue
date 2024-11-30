@@ -20,7 +20,7 @@
         
       </li>
       <li>
-        <RouterLink to="/gerenciamento">
+        <RouterLink to="/academic-management">
           <button class="menu-item">
             <mdicon class="icon-book" name="book"></mdicon>
             Gerenciamento Acadêmico

@@ -5,17 +5,17 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter()
 
-function enviarCodigo() {
+function sendCode() {
   Swal.fire({
-  confirmButtonColor: "#f36b6b",
-  title: "Email enviado com sucesso",
-  text: "Um código de verificação foi enviado para seu email",
-  icon: "success"
-}).then(() => {
-  router.push({
-    path: '/verificacao'
-  })
-});
+    confirmButtonColor: "#f36b6b",
+    title: "Email enviado com sucesso",
+    text: "Um código de verificação foi enviado para seu email",
+    icon: "success"
+  }).then(() => {
+    router.push({
+      path: '/verificacao'
+    })
+  });
 }
 </script>
 <template>
@@ -26,25 +26,24 @@ function enviarCodigo() {
         devemos usar para redefinir sua senha </p>
       <div class="input-container">
         <input class="option" placeholder="Digite seu email"></input>
-      
+
       </div>
-      <button @click="enviarCodigo">Enviar código</button>
+      <button @click="sendCode">Enviar código</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.input-container{
+.input-container {
   position: relative;
-  
 }
 
 .container {
- margin-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
+  height: 90vh;
 }
 
 .card {
@@ -58,7 +57,7 @@ function enviarCodigo() {
   text-align: center;
   display: flex;
   flex-direction: column;
- 
+
 }
 
 h2 {
@@ -83,11 +82,11 @@ p {
   margin-bottom: 60px;
   width: 87%;
   padding-left: 18px;
-  
- 
+
+
 }
 
-.email{
+.email {
   position: absolute;
   font-size: 12px;
   color: #888;
@@ -104,7 +103,7 @@ button {
   width: 100%;
   background: #EA8983;
   color: white;
-  padding: 22px ;
+  padding: 22px;
   border: none;
   border-radius: 30px;
   font-size: 10px;

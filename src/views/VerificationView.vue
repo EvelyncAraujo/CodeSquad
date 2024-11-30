@@ -1,13 +1,13 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-// import Swal from "sweetalert2";
-
 import { useRouter } from 'vue-router';
+import Swal from "sweetalert2";
 
 const router = useRouter()
 
 const code = ref(["", "", "", ""]);
 const resendTimer = ref(30);
+const inputs = ref([]);
 let timerInterval = null;
 
 function submitCode() {
@@ -34,7 +34,6 @@ const focusNext = (index) => {
   }
 };
 
-
 const startResendTimer = () => {
   resendTimer.value = 30;
   timerInterval = setInterval(() => {
@@ -53,8 +52,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearInterval(timerInterval);
 });
-
-const inputs = ref([]);
 </script>
 <template>
   <div class="container">
@@ -62,22 +59,14 @@ const inputs = ref([]);
       <h2>Digite o código de verificação</h2>
       <p>Insira o código de verificação para prosseguir com a autenticação.</p>
       <div class="code-inputs">
-        <input
-          v-for="(digit, index) in code"
-          :key="index"
-          type="text"
-          maxlength="1"
-          v-model="code[index]"
-          @input="focusNext(index)"
-          ref="inputs"
-        />
+        <input v-for="(digit, index) in code" :key="index" type="text" maxlength="1" v-model="code[index]"
+          @input="focusNext(index)" ref="inputs" />
       </div>
       <p class="resend">Reenviar código: {{ resendTimer }}s</p>
       <button @click="submitCode" :disabled="!isComplete">Enviar</button>
     </div>
   </div>
 </template>
-
 <style scoped>
 .container {
   display: flex;
@@ -85,6 +74,7 @@ const inputs = ref([]);
   align-items: center;
   background-color: #ffffff;
 }
+
 .verification-container {
   max-width: 300px;
   margin-bottom: 150px;
@@ -103,7 +93,7 @@ h2 {
 p {
   font-size: 12px;
   color: #666;
-  margin-bottom:60px;
+  margin-bottom: 60px;
 }
 
 .code-inputs {

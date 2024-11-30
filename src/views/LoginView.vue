@@ -1,12 +1,8 @@
 <script setup>
-import { useDropdownStore } from "/src/stores/useDropdownStore";
 import Swal from 'sweetalert2'
 import { useRouter } from "vue-router";
 import { useAuthStore } from "/src/stores/auth";
 import { ref, computed } from "vue";
-const dropdownStore = useDropdownStore();
-
-const { isOpen, toggleDropdown } = dropdownStore;
 
 const authStore = useAuthStore();
 const router = useRouter()
@@ -14,7 +10,6 @@ const router = useRouter()
 const email = ref("");
 const password = ref("");
 const isPasswordVisible = ref(false);
-const isUsernameValid = ref(false);
 
 const isFormValid = computed(
   () => password.value.length > 0
@@ -46,14 +41,12 @@ const logIn = async () => {
     })
   }
 }
-document.addEventListener("keypress",async(e)=>{
- if (e.key=== 'Enter') {
-  await logIn()
- }
+document.addEventListener("keypress", async (e) => {
+  if (e.key === 'Enter') {
+    await logIn()
+  }
 })
-
 </script>
-
 <template>
   <div class="container">
     <div class="image-container">
@@ -82,7 +75,7 @@ document.addEventListener("keypress",async(e)=>{
               <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
             </button>
           </div>
-          <RouterLink to="/esquecer" class="forgot-password">Esqueceu sua senha?</RouterLink>
+          <RouterLink to="/forgot-password" class="forgot-password">Esqueceu sua senha?</RouterLink>
         </div>
         <div>
           <button class="login-button" :disabled="!isFormValid" @click="logIn()">Login</button>
@@ -91,7 +84,6 @@ document.addEventListener("keypress",async(e)=>{
     </div>
   </div>
 </template>
-
 <style scoped>
 .container {
   display: flex;
@@ -110,7 +102,7 @@ h2 {
   margin-bottom: 12px;
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 20px;
-  
+
 }
 
 p {
@@ -121,7 +113,6 @@ p {
 
 }
 
-/* Container principal */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -131,14 +122,12 @@ p {
   margin-bottom: 300px;
 }
 
-/* Grupo de inputs */
 .input-group {
   max-width: 70%;
   margin-bottom: 30px;
   border-radius: 50px;
 }
 
-/* Label do input */
 label {
   display: block;
   margin-bottom: 8px;
@@ -147,7 +136,6 @@ label {
   margin-left: 70px;
 }
 
-/* Wrapper do input com ícones */
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -168,7 +156,6 @@ input:focus {
   border-color: #ff6b6b;
 }
 
-/* Ícone de sucesso */
 .icon-success {
   color: rgb(149, 218, 116);
   background: none;
@@ -179,7 +166,6 @@ input:focus {
   cursor: pointer;
 }
 
-/* Botão para alternar visibilidade da senha */
 .toggle-password {
   background: none;
   border: none;
@@ -191,7 +177,6 @@ input:focus {
   margin-top: 3px;
 }
 
-/* Estilo do link "Esqueceu sua senha?" */
 .forgot-password {
   display: block;
   margin-top: 8px;
@@ -200,14 +185,13 @@ input:focus {
   color: #070707;
   margin-left: 245px;
   margin-bottom: 30px;
- 
+
 }
 
 .forgot-password:hover {
   text-decoration: underline;
 }
 
-/* Botão de login */
 .login-button {
   background-color: #EA8983;
   color: white;
@@ -220,7 +204,7 @@ input:focus {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left:50px;
+  margin-left: 50px;
 }
 
 .login-button:disabled {
@@ -242,9 +226,7 @@ input:focus {
   cursor: pointer;
   position: absolute;
   top: 20px;
-  /* Distância do topo */
   right: 20px;
-  /* Alinhamento à direita */
 }
 
 .dropdown {
@@ -259,7 +241,6 @@ input:focus {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  /* z-index: 1; */
 }
 
 .dropdown-content a {

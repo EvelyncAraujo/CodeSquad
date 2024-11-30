@@ -1,13 +1,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useStudentStore } from "@/stores/student";
-const isDarkMode = ref(false);
 const studentStore = useStudentStore();
 
 const students = ref([]);
 
 const courses = ref(["Todos os cursos", "Agropecuária", "Informática para Internet", "Química"]);
-const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");
 const selectedYear = ref("");
@@ -26,7 +24,7 @@ const filteredStudents = computed(() => {
     const matchesName =
       !nameFilter.value ||
       student.name.toLowerCase().includes(nameFilter.value.toLowerCase());
-      const matchesGrade =
+    const matchesGrade =
       !selectedGrade.value ||
       (selectedGrade.value === "maior" &&
         student.grades.some((grade) => parseFloat(grade.grade) >= 6)) ||
@@ -51,10 +49,9 @@ onMounted(async () => {
   students.value = studentStore.students;
 });
 </script>
-
 <template>
   <div class="page">
-    <main class="content">     
+    <main class="content">
       <section class="management">
         <h2>Gerenciamento Acadêmico</h2>
         <div class="fundo">
@@ -65,7 +62,6 @@ onMounted(async () => {
                 {{ course }}
               </option>
             </select>
-
             <select v-model.number="selectedYear">
               <option disabled value="">Ano</option>
               <option value>Todos os anos</option>
@@ -73,12 +69,7 @@ onMounted(async () => {
               <option value=2>Segundo</option>
               <option value=3>Terceiro</option>
             </select>
-            <input
-              v-model="nameFilter"
-              type="text"
-              placeholder="Nome"
-              class="name-input"
-            />
+            <input v-model="nameFilter" type="text" placeholder="Nome" class="name-input" />
 
             <select v-model="selectedGrade">
               <option disabled value="">Média</option>
@@ -97,11 +88,7 @@ onMounted(async () => {
         </div>
 
         <div class="results">
-          <div
-            v-for="student in filteredStudents"
-            :key="student.id"
-            class="result-card"
-          >
+          <div v-for="student in filteredStudents" :key="student.id" class="result-card">
             <p>{{ student.name }} - {{ student.team.name }}</p>
             <button class="view-details">Ver</button>
           </div>
@@ -110,11 +97,11 @@ onMounted(async () => {
     </main>
   </div>
 </template>
-
 <style scoped>
 .aside {
   min-width: 240px;
 }
+
 .page {
   display: flex;
   transition: background 0.3s, color 0.3s;
@@ -132,7 +119,6 @@ onMounted(async () => {
   color: #f9f9f9;
 }
 
-/* Sidebar */
 .sidebar {
   width: 250px;
   background: #c2bfbf;
@@ -153,7 +139,6 @@ onMounted(async () => {
   margin-left: 2rem;
 }
 
-/* Conteúdo principal */
 .content {
   flex: 1;
   padding: 20px;
@@ -171,9 +156,11 @@ onMounted(async () => {
   border-radius: 50%;
   width: 40px;
 }
+
 .info {
   margin-left: 5rem;
 }
+
 .search {
   float: right;
   position: fixed;
@@ -181,11 +168,13 @@ onMounted(async () => {
   border: none;
   background-color: white;
 }
+
 .fundo {
   border-radius: 2rem;
   background-color: #c2bfbf1f;
   width: 65rem;
 }
+
 option {
   background-color: #f8f5f521;
   color: black;
@@ -267,7 +256,7 @@ option {
   opacity: 0.8;
 }
 
-h2{
+h2 {
   font-size: xx-large;
 }
 </style>

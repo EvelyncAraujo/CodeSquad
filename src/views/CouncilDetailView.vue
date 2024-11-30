@@ -1,11 +1,10 @@
-<script setup>
-
-</script>
-
+<script setup></script>
 <template>
-
   <RouterLink to="/home">
-       <div class="back"> <mdicon name="arrow-left-drop-circle-outline" ></mdicon></div></RouterLink>
+    <div class="back">
+      <mdicon name="arrow-left-drop-circle-outline"></mdicon>
+    </div>
+  </RouterLink>
   <h1>Conselho 1</h1>
   <div class="content">
     <p class="data">
@@ -14,7 +13,7 @@
 
     <div class="section">
       <h2>Decisões:</h2>
-      <p >
+      <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text
         ever since the 1500s, when an unknown printer took a galley of type
@@ -60,10 +59,7 @@
       </p>
     </div>
   </div>
-
 </template>
-
-
 <style scoped>
 .container {
   font-family: Arial, sans-serif;
@@ -123,42 +119,34 @@ h2 {
 }
 
 h1 {
-   text-align: center;
-   margin: 0;
-   font-size: 2rem; /* Ajuste do tamanho da fonte */
+  text-align: center;
+  margin: 0;
+  font-size: 2rem;
 }
 
-/* Ajustar o contêiner da barra de título */
 .title {
-   display: flex;
-   align-items: center;
-   justify-content:space-between; /* Coloca o botão e o título em extremos */
-   padding: 10px 20px; /* Ajusta o espaçamento */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
-
-/* Estilizar o botão */
 .back {
-   
-   font-size: 2rem; /* Ajusta o tamanho do ícone */
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 48px; /* Largura do botão */
-   height: 48px; /* Altura do botão */
-   background-color: #f0f0f0; /* Cor de fundo */
-   border-radius: 50%; /* Faz um botão circular */
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
-   margin-left: 50px;
-
-   cursor: pointer; /* Define o cursor para um "pontinho de interrogação" */
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-left: 50px;
+  cursor: pointer;
   margin-top: 2px;
 }
 
-
-/* Adiciona um efeito ao passar o mouse */
 .back:hover {
-   background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 </style>
-

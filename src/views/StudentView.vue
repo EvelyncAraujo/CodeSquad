@@ -3,8 +3,41 @@ import { useRoute } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useStudentStore } from "@/stores/student";
 
-const studentStore = useStudentStore();
-const route = useRoute();
+const showForm = ref(false);
+
+const formData = ref({
+  subject: "",
+  term: "",
+  grade: "",
+});
+
+const records = ref([]);
+
+function addRecord() {
+  records.value.push({ ...formData.value });
+  formData.value = { subject: "", term: "", grade: "" };
+  showForm.value = false;
+}
+// Estados reativos
+const showModal = ref(false);
+const occurrence = ref("");
+const date = ref(new Date().toISOString().substring(0, 10));
+
+// Função para submissão do formulário
+const submitOccurrence = () => {
+  console.log("Ocorrência registrada:", occurrence.value, date.value);
+  alert(`Ocorrência: ${occurrence.value}\nData: ${date.value}`);
+  occurrence.value = "";
+  date.value = new Date().toISOString().substring(0, 10);
+  showModal.value = false; // Fecha o modal após o envio
+};
+// Dados simulados
+const latestRecords = ref([
+  { type: "Ausência De Uniforme", date: "23/06" },
+  { type: "Ausência De Uniforme", date: "23/06" },
+  { type: "Ausência De Uniforme", date: "23/06" },
+  { type: "Ausência De Uniforme", date: "23/06" },
+]);
 
 const studentId = route.params.id
 const data = ref({})
@@ -50,6 +83,44 @@ onMounted(async() => {
           <mdicon name="arrow-left-drop-circle-outline"></mdicon>
         </div>
       </RouterLink>
+      <div class="prof-title">
+        <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar" />
+        <div class="profile-info">
+          <h2>Oliver Calenbard</h2>
+          <p>202345487</p>
+        </div>
+      </div>
+      <div class="app-container">
+    <!-- Botão para abrir o modal -->
+    <button class="open-modal-button" @click="showModal = true">+</button>
+
+    <!-- Modal de Registrar Ocorrência -->
+    <div v-if="showModal" class="modal-container">
+      <div class="modal-content">
+        <h2>Registrar Ocorrência</h2>
+        <form @submit.prevent="submitOccurrence">
+          <div class="form-group">
+            <label for="occurrence">Ocorrência</label>
+            <input
+              type="text"
+              id="occurrence"
+              v-model="occurrence"
+              placeholder="Descreva a ocorrência"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Data</label>
+            <input type="date" id="date" v-model="date" required />
+          </div>
+
+          <button type="submit" class="submit-button">Registrar</button>
+        </form>
+        <button class="close-button" @click="showModal = false">Fechar</button>
+      </div>
+    </div>
+  </div>
     </header>
     <div class="profile">
       <img :src="data?.photo?.file" alt="Avatar" class="avatar" />
@@ -140,7 +211,213 @@ onMounted(async() => {
   </div>
 </template>
 <style scoped>
-/* Dashboard */       
+/* Estilização geral */
+.container {
+  font-family: Arial, sans-serif;
+}
+
+/* Botão "+" */
+.add-button {
+  background-color: #ff6b6b;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Botão Registrar */
+.submit-button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Lista de registros */
+.records {
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.records ul {
+  list-style: none;
+  padding: 0;
+}
+
+.records li {
+  background: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Botão de abrir o modal */
+.open-modal-button {
+  background-color: #f3a5b8;
+  color: white;
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.open-modal-button:hover {
+  background-color: #e28798;
+}
+
+/* Container do modal */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 320px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Estilo dos campos de entrada */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+/* Botão de fechar modal */
+.close-button {
+  margin-top: 10px;
+  background-color: #ccc;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 70px;
+  height: 50px;
+
+  font-size: 0.9rem;
+  
+}
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #f3a5b8;
+}
+
+/* Botão de registrar */
+.submit-button {
+  background-color: #f3a5b8;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #e28798;
+}
+
+
+
+.close-button:hover {
+  background-color: #999;
+}
 .prof-title {
   display: flex;
   flex-direction: column;

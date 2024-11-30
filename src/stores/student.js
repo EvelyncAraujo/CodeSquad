@@ -11,5 +11,16 @@ export const useStudentStore = defineStore("student", () => {
     const data = await studentService.fetchStudents();
     students.value = data;
   };
-  return { fetchStudents, students };
+
+  const fetchStudent = async (id) => {
+    const data = await studentService.fetchStudent(id);
+    return data;
+  }
+
+  const postGrade = async (grade) => {
+    const data = await studentService.postGrade(grade);
+    return data;
+  }
+
+  return { postGrade, fetchStudents, fetchStudent, students };
 });

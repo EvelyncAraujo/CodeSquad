@@ -1,9 +1,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { useStudentStore } from "@/stores/student";
 const studentStore = useStudentStore();
 
 const students = ref([]);
+const router = useRouter();
 
 const courses = ref(["Todos os cursos", "Agropecuária", "Informática para Internet", "Química"]);
 
@@ -44,6 +46,16 @@ const filteredStudents = computed(() => {
     );
   });
 });
+
+const goToStudent = (id) => {
+  router.push({
+    name: "student",
+    params: {
+      id: id,
+    },
+  });
+};
+
 onMounted(async () => {
   await studentStore.fetchStudents();
   students.value = studentStore.students;
@@ -90,9 +102,9 @@ onMounted(async () => {
         <div class="results">
           <div v-for="student in filteredStudents" :key="student.id" class="result-card">
             <p>{{ student.name }} - {{ student.team.name }}</p>
-            <RouterLink to="/student">
-              <button class="view-details" > <mdicon name="arrow-top-right"></mdicon></button>
-            </RouterLink>
+            <div @click="goToStudent(student.id)">
+              <button class="view-details">Ver</button>
+            </div>
           </div>
         </div>
       </section>

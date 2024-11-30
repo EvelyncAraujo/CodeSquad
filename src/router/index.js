@@ -13,8 +13,9 @@ const router = createRouter({
       },
       children: [
         {
-          path: '/council-detail', 
+          path: '/council-detail/:id', 
           name: 'councilDetail',
+          props: true,
           component: () => import('@/views/CouncilDetailView.vue'),
         },    
         {
@@ -50,7 +51,8 @@ const router = createRouter({
           component: () => import('@/views/RecoveryView.vue'),
         },
         {
-          path: '/student', 
+          path: '/student/:id',
+          props: true, 
           name: 'student',
           component: () => import('@/views/StudentView.vue'),
         },

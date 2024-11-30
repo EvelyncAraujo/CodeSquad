@@ -9,8 +9,12 @@ export const useCouncilStore = defineStore("council", () => {
 
   const fetchCouncils = async () => {
     const data = await councilService.fetchCouncils();
-    
     councils.value = data;
   };
-  return { fetchCouncils, councils };
+
+  const fetchCouncil = async (id) => {
+    const data = await councilService.fetchCouncil(id);
+    return data;
+  }
+  return { fetchCouncil, fetchCouncils, councils };
 });

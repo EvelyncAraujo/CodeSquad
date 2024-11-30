@@ -1,8 +1,10 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useCouncilStore } from "@/stores/council";
 import { onMounted } from "vue";
 
+const router = useRouter();
 const isDarkMode = ref(false);
 const councilStore = useCouncilStore();
 const toggleDarkMode = () => {
@@ -20,6 +22,15 @@ const filteredCouncils = computed(() => {
     (council) => council.trimester === selectedFilter.value
   );
 });
+
+const goToCouncil = (id) => {
+  router.push({
+    name: "councilDetail",
+    params: {
+      id: id,
+    },
+  })
+};
 
 onMounted(async () => {
   await councilStore.fetchCouncils();
@@ -51,9 +62,9 @@ onMounted(async () => {
               {{ council.trimester }}
             </div>
           </div>
-          <RouterLink to="/council-detail" class="card-action">
+          <div @click="goToCouncil(council.id)" class="card-action">
             <mdicon name="arrow-top-right"></mdicon>
-          </RouterLink>
+          </div>
         </div>
       </div>
     </section>
@@ -307,7 +318,6 @@ body.dark-mode {
   justify-content: center;
   border-radius: 28px;
 }
-
 /* Conteúdo do card */
 .council-card .card-content {
   padding: 16px;
@@ -344,7 +354,6 @@ body.dark-mode {
 
 .council-card .card-action {
   align-self: flex-end;
-  background-color: #e2aed2;
   width: 50px;
   height: 50px;
   border-radius: 50%; 
@@ -358,7 +367,6 @@ body.dark-mode {
 .card-action{
   position: fixed;
   margin-top: 170px;
-  
   align-self: flex-end;
   background-color: #e2aed2;
   width: 50px;

@@ -4,4 +4,13 @@ export default class StudentService {
     const { data } = await axios.get('api/students')
     return data
   }
+  async fetchStudent(id) {
+    const { data } = await axios.get(`api/students/${id}`)
+    
+    return data
+  }
+  async postGrade(grade){
+    const { data } = await axios.post('api/grade/', grade)
+    return data
+  }
 }

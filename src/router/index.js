@@ -32,7 +32,11 @@ const router = createRouter({
           name: 'Página principal',
           component: HomeView
         },
-      
+        {
+          path: '/conselhoNupe', 
+          name: 'nupeconselho',
+          component: nupeConselhoView
+        },      
       ] 
     },
     {
@@ -83,11 +87,6 @@ const router = createRouter({
           path: '/home', 
           name: 'Página principal',
           component: HomeView
-        },
-        {
-          path: '/conselhoNupe', 
-          name: 'nupeconselho',
-          component: nupeConselhoView
         },
         {
           path: '/conselho', 

@@ -32,11 +32,7 @@ const router = createRouter({
           name: 'Página principal',
           component: HomeView
         },
-        {
-          path: '/conselhoNupe', 
-          name: 'nupeconselho',
-          component: nupeConselhoView
-        },
+      
       ] 
     },
     {
@@ -75,7 +71,11 @@ const router = createRouter({
           name: 'Histórico Conselhos',
           component: detalhesConselhoView
         },
-      
+        {
+          path: '/conselhoNupe', 
+          name: 'nupeconselho',
+          component: nupeConselhoView
+        },
       ]
     },
   ],

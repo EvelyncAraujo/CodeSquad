@@ -5,7 +5,7 @@ import { onMounted } from "vue";
 
 
 // Controle do modo escuro
-const isDarkMode = ref(true);
+const isDarkMode = ref(false);
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };

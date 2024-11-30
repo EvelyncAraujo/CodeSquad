@@ -26,6 +26,7 @@ onMounted(async() => {
   data.value = await studentStore.fetchStudent(studentId);
 });
 </script>
+
 <template>
   <div class="dashboard">
     <header class="header">
@@ -76,7 +77,9 @@ onMounted(async() => {
         </table>
       </div>
     </section>
-
+    <div class="profile">
+        <button class="add-btn">+</button>
+      </div>
     <!-- Notas Parciais -->
 
     <section class="partial-grades">
@@ -94,10 +97,7 @@ onMounted(async() => {
           <tbody>
             <tr v-for="(grade, index) in data.grades" :key="index">
               <td>
-              <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-
-              </td>
               </td>
               <td>{{ grade.discipline.name }}</td>
               <td>{{ grade.grade }}</td>
@@ -105,11 +105,27 @@ onMounted(async() => {
             </tr>
           </tbody>
         </table>
+        <div class="approved">
+          
+          
+        </div>
       </div>
     </section>
   </div>
 </template>
 <style scoped>
+/* Dashboard */       
+.prof-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.conselhos-container {
+  text-align: center;
+  padding: 20px;
+}
 
 h2 {
   font-size: 1.5em;
@@ -136,7 +152,7 @@ button span {
   font-weight: bold;
 }
 
-.arrow-back{
+.arrow-back {
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -177,23 +193,16 @@ button span {
 .back2 {
 
   font-size: 2rem;
-  /* Ajusta o tamanho do ícone */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 48px;
-  /* Largura do botão */
   height: 48px;
-  /* Altura do botão */
   background-color: #E2AED2;
   border-radius: 50%;
-  /* Faz um botão circular */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Adiciona uma sombra */
   margin-left: 50px;
-
   cursor: pointer;
-  /* Define o cursor para um "pontinho de interrogação" */
   margin-top: 2px;
 }
 
@@ -326,7 +335,6 @@ tr {
   margin-right: 8px;
 }
 
-/* Conselhos */
 .council-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -344,4 +352,34 @@ tr {
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.approval-status {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.approval-status p {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+.approval-status strong {
+  font-size: 18px;
+  color: #f16c87;
+}
+
+.approval-status span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
 </style>

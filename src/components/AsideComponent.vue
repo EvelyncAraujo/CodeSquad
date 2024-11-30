@@ -5,9 +5,11 @@
     <img alt="Logo" src="/src/assets/logo.png" class="logo"/>
     <ul class="menu">
       <li>
+      <RouterLink to="/home">
         <button class="menu-item">
         <mdicon class="icon-book" name="view-grid"></mdicon>
         Explore</button>
+      </RouterLink>
       </li>
       <li>
         <button class="menu-item">

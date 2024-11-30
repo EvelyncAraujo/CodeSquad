@@ -11,7 +11,7 @@ const students = ref([
     id: 1,
     name: "Alice",
     year: "Primeiro",
-    course: "Agropecuária",
+    course: "Química",
     grade: 7.5,
     occurrence: "Sim",
   },

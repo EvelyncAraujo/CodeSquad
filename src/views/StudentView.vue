@@ -92,13 +92,10 @@ isApproved.value = calculateAverage() >= 7.0;
         </table>
       </div>
     </section>
-<<<<<<< HEAD
-=======
     <div class="profile">
         <button class="add-btn">+</button>
       </div>
     <!-- Notas Parciais -->
->>>>>>> 882766af20f075b4cf3f31624223f55674715bb7
 
     <section class="partial-grades">
       <div class="section-title">Notas parciais</div>

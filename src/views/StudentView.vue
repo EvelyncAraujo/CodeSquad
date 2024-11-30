@@ -1,57 +1,59 @@
 <script setup>
-import { ref } from "vue";
+import { useRoute } from "vue-router";
+import { onMounted, ref } from "vue";
+import { useStudentStore } from "@/stores/student";
 
-// Dados simulados
-const latestRecords = ref([
-  { type: "Ausência De Uniforme", date: "23/06" },
-  { type: "Ausência De Uniforme", date: "23/06" },
-  { type: "Ausência De Uniforme", date: "23/06" },
-  { type: "Ausência De Uniforme", date: "23/06" },
-]);
+const studentStore = useStudentStore();
+const route = useRoute();
 
-const grades = ref([
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-]);
+const studentId = route.params.id
+const data = ref({})
 
-const councils = ref([
-  "Conselho 1",
-  "Conselho 2",
-  "Conselho 3",
-  "Conselho 4",
-  "Conselho 5",
-  "Conselho 6",
-  "Conselho 7",
-  "Conselho 8",
-  "Conselho 9",
-]);
+const showGradeSender = ref(false);
+const choosenDiscipline = ref();
+const choosenGrade = ref();
+const choosenTrimester = ref();
+
+const postGrade = () => {
+  studentStore.postGrade({
+    "discipline": choosenDiscipline.value,
+    "grade": choosenGrade.value,
+    "trimester": choosenTrimester.value,
+    "student": parseInt(studentId)} 
+  )};
+
+onMounted(async() => {
+  data.value = await studentStore.fetchStudent(studentId);
+});
 </script>
 <template>
   <div class="dashboard">
-    <!-- Header -->
     <header class="header">
       <RouterLink to="/academic-management">
         <div class="arrow-back">
           <mdicon name="arrow-left-drop-circle-outline"></mdicon>
         </div>
       </RouterLink>
-      <div class="profile">
-        <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar" />
-        <div class="profile-info">
-          <h2>Oliver Calenbard</h2>
-          <p>202345487</p>
-        </div>
-        <button class="add-btn">+</button>
-      </div>
     </header>
+    <div class="profile">
+      <img :src="data?.photo?.file" alt="Avatar" class="avatar" />
+      <div class="profile-info">
+        <h2>{{ data.name }}</h2>
+        <p>{{data.registration}}</p>
+      </div>
+      <button class="add-btn" @click="showGradeSender = !showGradeSender">+</button>
+      <div class="grade-sender" v-if="showGradeSender">
+            <select name="discipline" v-model.number="choosenDiscipline">
+              <option value=1>Matemática</option>
+              <option value=2>Português</option>
+              <option value=3>Física</option>
+            </select>
+            <input type="number" placeholder="Trimestre" v-model.number="choosenTrimester">
+            <input type="number" placeholder="Nota" v-model.number="choosenGrade">
+            <button class="send-grade-btn" @click="postGrade">Enviar</button>
+      </div>
+    </div>
 
-    <!-- Últimos Registros -->
     <section class="latest-records">
       <div class="section-title"></div>
       <div class="records-grid">
@@ -63,28 +65,10 @@ const councils = ref([
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(record, index) in latestRecords" :key="index">
+            <tr v-for="(record, index) in data.occurrences" :key="index">
               <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-                {{ record.type }}
-              </td>
-              <td>{{ record.date }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="records-table">
-          <thead>
-            <tr>
-
-              <th>Últimos registros</th>
-              <th>Data</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(record, index) in latestRecords" :key="`right-${index}`">
-              <td>
-                <mdicon class="back" name="notebook-outline" style="color:white"></mdicon>
-                {{ record.type }}
+                {{ record.type_status }}
               </td>
               <td>{{ record.date }}</td>
             </tr>
@@ -104,56 +88,25 @@ const councils = ref([
               <th></th>
               <th>Matéria</th>
               <th>Nota</th>
+              <th>Trimestre</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(grade, index) in grades" :key="index">
+            <tr v-for="(grade, index) in data.grades" :key="index">
               <td>
               <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
 
               </td>
               </td>
-              <td>{{ grade.subject }}</td>
-              <td>{{ grade.score }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="grades-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Matéria</th>
-              <th>Nota</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(grade, index) in grades" :key="`right-${index}`">
-              <td>
-                <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-
-              </td>
-              <td>{{ grade.subject }}</td>
-              <td>{{ grade.score }}</td>
+              <td>{{ grade.discipline.name }}</td>
+              <td>{{ grade.grade }}</td>
+              <td>{{ grade.trimester }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </section>
-
-    <!-- Conselhos -->
-    <div class="conselhos-container">
-      <h2>Conselhos</h2>
-      <div class="conselhos-grid">
-        <div v-for="n in 9" :key="n" class="conselho-item">
-          <span>Conselho {{ n }}</span>
-
-          <mdicon class="back2" name="arrow-top-right" style="color: white;"></mdicon>
-
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <style scoped>
@@ -244,6 +197,17 @@ button span {
   margin-top: 2px;
 }
 
+.send-grade-btn {
+  background: #f16c87;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Layout principal */
 .dashboard {
   font-family: "Arial", sans-serif;
@@ -266,9 +230,12 @@ button span {
 }
 
 .profile {
+  width: 100%;
   display: inline-flex;
   align-items: center;
   gap: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .avatar {
@@ -305,6 +272,14 @@ button span {
   margin-bottom: 20px;
   font-weight: bold;
   padding-top: 50px;
+}
+
+.grade-sender {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .records-grid,

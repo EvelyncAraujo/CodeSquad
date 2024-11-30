@@ -51,7 +51,8 @@ const router = createRouter({
           component: () => import('@/views/RecoveryView.vue'),
         },
         {
-          path: '/student', 
+          path: '/student/:id',
+          props: true, 
           name: 'student',
           component: () => import('@/views/StudentView.vue'),
         },

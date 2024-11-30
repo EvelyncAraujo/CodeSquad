@@ -35,14 +35,17 @@ const userStore = useUserStore();
   margin-top: 20px;
 }
 .avatar {
-  width: 40px;
-  height: 40px;
+  margin-top:30px;
+  margin-left: 30px;
+  width: 80px;
+  height: 85px;
 }
 .name {
-  margin: 0%;
+  margin-top: 30px;
   padding: 0%;
 }
 .name-user {
+  margin-top: 30px;
   text-align: right;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -54,7 +57,6 @@ const userStore = useUserStore();
   margin: 0%;
   padding: 0%;
   font-size: 14px;
-  font-style: italic;
   margin-top: 5px;
 }
 </style>

@@ -46,13 +46,66 @@ onMounted(async () => {
           <p>{{ council.trimester }}° Trimestre</p>
           <RouterLink to="/council-detail"><button class="view-details">Ver</button></RouterLink>
         </div>
-      </div>
-    </section>
-  </main>
+        <div class="council-cards">
+          <div v-for="(council, index) in filteredCouncils"
+  :key="council.id"
+  class="council-card"
+>
+  <!-- Cabeçalho do card -->
+  <div
+    class="card-header"
+    :style="{ backgroundColor: colors[index % colors.length] }"
+  >
+  <mdicon class="icon" name="notebook-outline"></mdicon>
+  </div>
+
+  <!-- Conteúdo do card -->
+  <div class="card-content">
+    <h3 class="council-title">{{ council.team.name }}</h3>
+    <div class="council-details">  
+       {{ council.date }} Trimestre   
+     {{ council.trimester }}
+    </div>
+  </div>
+
+  
+     <RouterLink to="/historico" class="card-action">  <mdicon  name="arrow-top-right"></mdicon> </RouterLink>
+</div>
+        </div>
+      </section>
+    </main>
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.icon1{
+ width:5px;
+ 
+  
+}
+.council-details{
+  margin-left: 10px;
+  margin-bottom: 15px;
+}
 
+.icon{
+margin-bottom: 50px;
+margin-right: 200px;
+color: white;
+}
+h2{
+  margin-left: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.filters{
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+ 
+}
 .container {
   min-height: 100vh;
   background-color: #ffffff;
@@ -240,14 +293,18 @@ body.dark-mode {
 }
 
 .council-card {
-  width: calc(30.3% - 10px);
-  padding: 15px;
-  border-radius: 10px;
-  color: white;
+  margin-left: 5px;
+  width: 300px; 
+  border-radius: 16px; 
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-radius: 28px;
+  margin-right: 20px;
 }
 
 .council-card:nth-child(6n+1) {
@@ -275,7 +332,88 @@ body.dark-mode {
 }
 
 .council-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho colorido */
+.council-card .card-header {
+  height: 140px; 
+  background-color: #e2aed2; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+}
+
+/* Conteúdo do card */
+.council-card .card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.council-title{
+  margin-left: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.council-card .card-content .council-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  
+  color: #333333;
+}
+
+.council-card .card-content .council-details {
+  font-size: 14px;
+  color: #555555;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.council-card .card-content .council-details span {
+  margin-right: 4px;
+}
+
+
+.council-card .card-action {
+  align-self: flex-end;
+  background-color: #e2aed2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+.card-action{
+  position: fixed;
+  margin-top: 170px;
+  
+  align-self: flex-end;
+  background-color: #e2aed2;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.council-card .card-action:hover {
+  background-color: #d48bbf; 
 }
 
 .view-details {
@@ -294,12 +432,30 @@ body.dark-mode {
 }
 */
 .filters select {
-  padding: 10px 20px;
+  margin-left: 20px;
+  padding: 10px 40px 10px 20px;
   border: 1px solid rgb(235, 230, 230);
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   color: #000;
   border-radius: 20px;
   margin-right: 1rem;
+  appearance: none; 
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E"); /* Ícone de seta */
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center; 
+  background-size: 16px;
+}
+
+.filters select:focus {
+  outline: none; /* Remove a borda de foco padrão */
+  border-color: #007bff; /* Cor de destaque ao focar */
+}
+
+.filters {
+  display: flex;
+  align-items: center; /* Centraliza os itens verticalmente */
 }
 
 option {
@@ -307,12 +463,13 @@ option {
   color: black;
   border: none;
   border-radius: 20px;
+ 
 }
 
 .date {
   padding: 10px 20px;
   border: 1px solid rgb(235, 230, 230);
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   color: #000;
   border-radius: 20px;
   margin-right: 1rem;

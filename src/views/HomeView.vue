@@ -51,7 +51,7 @@ onMounted(async () => {
               {{ council.trimester }}
             </div>
           </div>
-          <RouterLink to="/historico" class="card-action">
+          <RouterLink to="/council-detail" class="card-action">
             <mdicon name="arrow-top-right"></mdicon>
           </RouterLink>
         </div>

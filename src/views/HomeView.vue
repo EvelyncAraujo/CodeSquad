@@ -1,100 +1,36 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useUserStore } from "@/stores/user";
-import AsideComponent from "@/components/AsideComponent.vue";
+import { useCouncilStore } from "@/stores/council";
 import { onMounted } from "vue";
 
 // Controle do modo escuro
 const isDarkMode = ref(false);
-const userStore = useUserStore();
+const councilStore = useCouncilStore();
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };
 
-// Dados fictícios dos conselhos
-const councils = ref([
-  {
-    id: 1,
-    name: "Conselho 1",
-    date: "25 de junho de 2023",
-    trimester: "Trimestre 1",
-    color: "#E2AED2",
-  },
-  {
-    id: 2,
-    name: "Conselho 2",
-    date: "26 de junho de 2023",
-    trimester: "Trimestre 1",
-    color: "#EA8C8C",
-  },
-  {
-    id: 3,
-    name: "Conselho 3",
-    date: "27 de junho de 2023",
-    trimester: "Trimestre 1",
-    color: "#F2866C",
-  },
-  {
-    id: 4,
-    name: "Conselho 4",
-    date: "28 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#F06A45",
-  },
-  {
-    id: 5,
-    name: "Conselho 5",
-    date: "29 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#E2AED2",
-  },
-  {
-    id: 6,
-    name: "Conselho 6",
-    date: "30 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#EA8C8C",
-  },
-  {
-    id: 7,
-    name: "Conselho 7",
-    date: "28 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#F2866C",
-  },
-  {
-    id: 8,
-    name: "Conselho 8",
-    date: "29 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#F06A45",
-  },
-  {
-    id: 9,
-    name: "Conselho 9",
-    date: "30 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#E2AED2",
-  },
-]);
+const colors = ["#E2AED2", "#EA8C8C", "#F2866C", "#F06A45", "#A2D5C6"];
 
 // Estado para a pesquisa e filtro
 const searchQuery = ref("");
-const selectedFilter = ref("Trimestre");
+const selectedFilter = ref("");
 const selectedDate = ref();
 
 // Computed para filtrar conselhos
 const filteredCouncils = computed(() => {
-  return councils.value.filter(
-    (council) =>
-      council.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
-      (selectedFilter.value === "Trimestre" ||
-        council.trimester === selectedFilter.value)
+  if (!selectedFilter.value) {
+    return councilStore.councils;
+  }  
+  console.log(selectedFilter.value);
+  return councilStore.councils.filter(
+    (council) => council.trimester === selectedFilter.value
   );
 });
 
-onMounted(() => {
-  console.log(selectedFilter.value);
+onMounted(async() => {
+  await councilStore.fetchCouncils();
 });
 </script>
 
@@ -105,24 +41,24 @@ onMounted(() => {
         <h2>Conselhos recentes</h2>
         <div class="filters">
           <label for="filter">Filtrar por:</label>
-          <select v-model="selectedFilter">
-            <option value="Trimestre" disabled selected>Selecione o trimestre</option>
-            <option value="primeiro">Primeiro trimestre</option>
-            <option value="segundo">Segundo trimestre</option>
-            <option value="terceiro">Terceiro trimestre</option>
+          <select v-model.number="selectedFilter">
+            <option value="" disabled selected>Selecione o trimestre</option>
+            <option value=1>Primeiro trimestre</option>
+            <option value=2>Segundo trimestre</option>
+            <option value=3>Terceiro trimestre</option>
           </select>
           <input class="date" type="date" v-model="selectedDate" />
         </div>
         <div class="council-cards">
           <div
-            v-for="council in filteredCouncils"
+            v-for="(council, index) in filteredCouncils"
             :key="council.id"
             class="council-card"
-            :style="{ backgroundColor: council.color }"
-          >
-            <h4>{{ council.name }}</h4>
-            <p>{{ council.date }}</p>
-            <p>{{ council.trimester }}</p>
+            :style="{ backgroundColor: colors[index % colors.length] }"
+            >
+            <h1>{{ council.team.name }}</h1>
+            <p>Ocorreu em: {{ council.date }}</p>
+            <p>{{ council.trimester }}° Trimestre</p>
             <RouterLink to="/historico"><button class="view-details">Ver</button></RouterLink>
           </div>
         </div>

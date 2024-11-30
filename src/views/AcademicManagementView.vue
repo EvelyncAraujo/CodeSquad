@@ -205,10 +205,10 @@ option {
 .filters select,
 .filters input {
   padding: 10px 20px;
-  border: 1px solid #e2aed2;
+  border: 1px solid #dfa5cd;
   border-radius: 20px;
-  background-color: #ffffff;
-  color: #333;
+  background-color: #e2aed2;
+  color: #ffffff;
   transition: border-color 0.3s, background-color 0.3s;
 }
 

@@ -8,7 +8,7 @@ const userStore = useUserStore();
         <div class="user-info">
           <div>
             <img
-              :src="userStore.user.photo.file"
+              :src="userStore?.user?.photo?.file"
               alt="User Avatar"
               class="avatar"
             />

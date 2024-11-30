@@ -3,6 +3,7 @@ import AsideComponent from "@/components/AsideComponent.vue";
 </script>
 
 <template>
+  <div class="containercomp">
   <div class="dropdownContainer">
     <div class="dropdown">
       <button class="dropbtn">
@@ -27,42 +28,16 @@ import AsideComponent from "@/components/AsideComponent.vue";
     </div>
 
     <button @click="applyFilters" class="search-button">Buscar</button>
-  </div>
-  <div class="conselhos-container">
-    <h2>Conselhos</h2>
-    <div class="conselhos-grid">
-      <div v-for="n in 9" :key="n" class="conselho-item">
-        <span>Conselho {{ n }}</span>
-
-          <mdicon class="back2" name="arrow-top-right" style="color: white;"></mdicon>
-        
-      </div>
-    </div>
-  </div>
-
+ </div> 
+</div>
 </template>
 
 <style scoped>
-.conselhos-container {
-  text-align: center;
-  padding: 20px;
-}
-
-.conselhos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.conselho-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 1rem;
-  color: #333;
+.containercomp{
+   border-radius: 10rem;
+  padding: 2px;
+  margin-top: 10rem;
+  margin-left: 5rem;
 }
 .dropdownContainer {
   width: 100%;
@@ -70,7 +45,7 @@ import AsideComponent from "@/components/AsideComponent.vue";
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  height: 75vh;
+  height: 50vh;
 }
 
 .dropbtn {

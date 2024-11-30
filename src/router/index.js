@@ -16,7 +16,15 @@ const router = createRouter({
           path: '/council-detail', 
           name: 'councilDetail',
           component: () => import('@/views/CouncilDetailView.vue'),
-        },
+        },      
+      ] 
+    },
+    {
+      path: '/',
+      name: 'fullLayout',
+      component: () => import('@/layouts/FullLayout.vue'),
+      meta: { requiresAuth: true },
+      children: [
         {
           path: '/login', 
           name: 'login',
@@ -49,16 +57,6 @@ const router = createRouter({
           },
           component: () => import('@/views/RecoveryView.vue'),
         },
-      ] 
-    },
-    {
-      path: '/',
-      name: 'fullLayout',
-      component: () => import('@/layouts/FullLayout.vue'),
-      meta: { 
-        requiresAuth: true 
-      },
-      children: [
         {
           path: '/academic-management', 
           name: 'academicManagement',

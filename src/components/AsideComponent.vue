@@ -12,12 +12,12 @@
       </RouterLink>
       </li>
       <li>
-        <RouterLink>
-          <button class="menu-item">
-            <mdicon class="icon-book" name="notebook-outline"></mdicon>
-            Conselho
-          </button>
-        </RouterLink>
+      <Router-link to="/conselhoNupe" >
+      <button class="menu-item">
+          <mdicon class="icon-book" name="notebook-outline"></mdicon>
+          Conselho
+        </button></Router-link>
+        
       </li>
       <li>
         <RouterLink to="/academic-management">

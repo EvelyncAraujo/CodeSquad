@@ -13,5 +13,7 @@
   width: 100%;
   height: 7vh;
   z-index: 10;
+  margin-top: 40px ;
+  margin-left: 40px;
 }
 </style>

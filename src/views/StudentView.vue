@@ -36,7 +36,11 @@ const councils = ref([
   <div class="dashboard">
     <!-- Header -->
     <header class="header">
-     
+      <RouterLink to="/academic-management">
+        <div class="arrow-back">
+          <mdicon name="arrow-left-drop-circle-outline"></mdicon>
+        </div>
+      </RouterLink>
       <div class="profile">
         <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar" />
         <div class="profile-info">
@@ -71,7 +75,7 @@ const councils = ref([
         <table class="records-table">
           <thead>
             <tr>
-            
+
               <th>Últimos registros</th>
               <th>Data</th>
             </tr>
@@ -90,7 +94,7 @@ const councils = ref([
     </section>
 
     <!-- Notas Parciais -->
-   
+
     <section class="partial-grades">
       <div class="section-title">Notas parciais</div>
       <div class="grades-grid">
@@ -104,12 +108,12 @@ const councils = ref([
           </thead>
           <tbody>
             <tr v-for="(grade, index) in grades" :key="index">
-            <td>
+              <td>
               <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-              
+
               </td>
-            </td>
+              </td>
               <td>{{ grade.subject }}</td>
               <td>{{ grade.score }}</td>
             </tr>
@@ -127,7 +131,7 @@ const councils = ref([
             <tr v-for="(grade, index) in grades" :key="`right-${index}`">
               <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-              
+
               </td>
               <td>{{ grade.subject }}</td>
               <td>{{ grade.score }}</td>
@@ -135,50 +139,31 @@ const councils = ref([
           </tbody>
         </table>
       </div>
-      
+
     </section>
- 
+
     <!-- Conselhos -->
     <div class="conselhos-container">
-    <h2>Conselhos</h2>
-    <div class="conselhos-grid">
-      <div v-for="n in 9" :key="n" class="conselho-item">
-        <span>Conselho {{ n }}</span>
+      <h2>Conselhos</h2>
+      <div class="conselhos-grid">
+        <div v-for="n in 9" :key="n" class="conselho-item">
+          <span>Conselho {{ n }}</span>
 
           <mdicon class="back2" name="arrow-top-right" style="color: white;"></mdicon>
-        
+
+        </div>
       </div>
     </div>
   </div>
-  </div>
 </template>
 <style scoped>
-.conselhos-container {
-  text-align: center;
-  padding: 20px;
-}
 
 h2 {
   font-size: 1.5em;
   margin-bottom: 20px;
 }
 
-.conselhos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
 
-.conselho-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 1rem;
-  color: #333;
-}
 
 button {
   background-color: #f3d0e6;
@@ -197,38 +182,68 @@ button span {
   font-size: 1rem;
   font-weight: bold;
 }
+
+.arrow-back{
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-left: 50px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
 .back {
-   
-   font-size: 2rem; /* Ajusta o tamanho do ícone */
-   display:inline-flex;
-   align-items: center;
-   justify-content: center;
-   width: 48px; /* Largura do botão */
-   height: 48px; /* Altura do botão */
-   background-image: linear-gradient(#E2AED2, #EA8983 , #F06A45);
-   border-radius: 50%; /* Faz um botão circular */
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
-   margin-left: 50px;
 
-   cursor: pointer; /* Define o cursor para um "pontinho de interrogação" */
+  font-size: 2rem;
+  /* Ajusta o tamanho do ícone */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  /* Largura do botão */
+  height: 48px;
+  /* Altura do botão */
+  background-image: linear-gradient(#E2AED2, #EA8983, #F06A45);
+  border-radius: 50%;
+  /* Faz um botão circular */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Adiciona uma sombra */
+  margin-left: 50px;
+
+  cursor: pointer;
+  /* Define o cursor para um "pontinho de interrogação" */
   margin-top: 2px;
 }
-.back2{
-   
-   font-size: 2rem; /* Ajusta o tamanho do ícone */
-   display:inline-flex;
-   align-items: center;
-   justify-content: center;
-   width: 48px; /* Largura do botão */
-   height: 48px; /* Altura do botão */
-   background-color: #E2AED2;
-   border-radius: 50%; /* Faz um botão circular */
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
-   margin-left: 50px;
 
-   cursor: pointer; /* Define o cursor para um "pontinho de interrogação" */
+.back2 {
+
+  font-size: 2rem;
+  /* Ajusta o tamanho do ícone */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  /* Largura do botão */
+  height: 48px;
+  /* Altura do botão */
+  background-color: #E2AED2;
+  border-radius: 50%;
+  /* Faz um botão circular */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Adiciona uma sombra */
+  margin-left: 50px;
+
+  cursor: pointer;
+  /* Define o cursor para um "pontinho de interrogação" */
   margin-top: 2px;
 }
+
 /* Layout principal */
 .dashboard {
   font-family: "Arial", sans-serif;
@@ -251,7 +266,7 @@ button span {
 }
 
 .profile {
-  display:inline-flex;
+  display: inline-flex;
   align-items: center;
   gap: 15px;
 }
@@ -284,7 +299,6 @@ button span {
   cursor: pointer;
 }
 
-/* Seções */
 .section-title {
   text-align: center;
   font-size: 18px;
@@ -292,6 +306,7 @@ button span {
   font-weight: bold;
   padding-top: 50px;
 }
+
 .records-grid,
 .grades-grid {
   display: flex;

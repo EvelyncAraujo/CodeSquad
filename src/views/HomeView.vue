@@ -52,10 +52,19 @@ onMounted(async () => {
       </div>
       <div class="council-cards">
         <div v-for="council in filteredCouncils" :key="council.id" class="council-card">
-          <h1>{{ council.team.name }}</h1>
-          <p>Ocorreu em: {{ council.date }}</p>
-          <p>{{ council.trimester }}° Trimestre</p>
-          <button class="view-details" @click="goToCouncil(council.id)">Ver</button>
+          <div class="card-header">
+            <mdicon class="icon" name="notebook-outline"></mdicon>
+          </div>
+          <div class="card-content">
+            <h3 class="council-title">{{ council.team.name }}</h3>
+            <div class="council-details">
+              {{ council.date }} Trimestre
+              {{ council.trimester }}
+            </div>
+          </div>
+          <RouterLink to="/council-detail" class="card-action">
+            <mdicon name="arrow-top-right"></mdicon>
+          </RouterLink>
         </div>
       </div>
     </section>
@@ -63,7 +72,35 @@ onMounted(async () => {
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.icon1{
+ width:5px;
+ 
+  
+}
+.council-details{
+  margin-left: 10px;
+  margin-bottom: 15px;
+}
 
+.icon{
+margin-bottom: 50px;
+margin-right: 200px;
+color: white;
+}
+h2{
+  margin-left: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.filters{
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+ 
+}
 .container {
   min-height: 100vh;
   background-color: #ffffff;
@@ -74,11 +111,9 @@ onMounted(async () => {
   grid-template-rows: 200px auto;
   grid-template-areas:
     "aside header"
-    "aside content";
-}
+    "aside content"
+  ;
 
-.filter {
-  margin-right: 10px
 }
 
 .aside {
@@ -99,6 +134,7 @@ onMounted(async () => {
   color: #ffffff;
 }
 
+/* Posicionamento no canto */
 .switch-container {
   position: fixed;
   top: 20px;
@@ -107,6 +143,7 @@ onMounted(async () => {
   align-items: center;
 }
 
+/* Estilo do switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -161,6 +198,7 @@ input:checked+.slider:before {
   transform: translateX(26px);
 }
 
+/* Modo escuro para o body */
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
@@ -170,11 +208,13 @@ body.dark-mode {
   min-width: 240px;
 }
 
+/* Estilos principais */
 .dashboard {
   display: flex;
   transition: background 0.3s, color 0.3s;
 }
 
+/* Modos claro e escuro */
 .light {
   background: #faf9f9;
   color: #333;
@@ -201,12 +241,12 @@ body.dark-mode {
   line-height: 35px;
 }
 
+/* Conteúdo principal */
 .content {
   flex: 1;
   padding: 20px;
   margin-left: 250px;
 }
-
 .search-input {
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -237,10 +277,9 @@ body.dark-mode {
 .toggle-button:hover {
   opacity: 0.8;
 }
-
+/* Conselhos Recentes */
 .recent-councils h2 {
   margin-bottom: 1rem;
-  font-size: xx-large;
 }
 
 .council-cards {
@@ -251,42 +290,103 @@ body.dark-mode {
 }
 
 .council-card {
-  width: calc(30.3% - 10px);
-  padding: 15px;
-  border-radius: 10px;
-  color: white;
+  margin-left: 5px;
+  width: 300px; 
+  border-radius: 16px; 
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s;
-}
-
-.council-card:nth-child(6n+1) {
-  background-color: #E2AED2;
-}
-
-.council-card:nth-child(6n+2) {
-  background-color: #EA8C8C;
-}
-
-.council-card:nth-child(6n+3) {
-  background-color: #F2866C;
-}
-
-.council-card:nth-child(6n+4) {
-  background-color: #F06A45;
-}
-
-.council-card:nth-child(6n+5) {
-  background-color: #A2D5C6;
-}
-
-.council-card:nth-child(6n+6) {
-  background-color: #F4A261;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-radius: 28px;
+  margin-right: 20px;
 }
 
 .council-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho colorido */
+.council-card .card-header {
+  height: 140px; 
+  background-color: #e2aed2; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+}
+
+/* Conteúdo do card */
+.council-card .card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.council-title{
+  margin-left: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.council-card .card-content .council-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  
+  color: #333333;
+}
+
+.council-card .card-content .council-details {
+  font-size: 14px;
+  color: #555555;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.council-card .card-content .council-details span {
+  margin-right: 4px;
+}
+
+
+.council-card .card-action {
+  align-self: flex-end;
+  background-color: #e2aed2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+.card-action{
+  position: fixed;
+  margin-top: 170px;
+  
+  align-self: flex-end;
+  background-color: #e2aed2;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.council-card .card-action:hover {
+  background-color: #d48bbf; 
 }
 
 .view-details {
@@ -305,27 +405,46 @@ body.dark-mode {
 }
 */
 .filters select {
-  padding: 10px 20px;
+  margin-left: 20px;
+  padding: 10px 40px 10px 20px; /* Espaço interno ajustado */
   border: 1px solid rgb(235, 230, 230);
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   color: #000;
   border-radius: 20px;
   margin-right: 1rem;
+  appearance: none; /* Remove o estilo padrão do dropdown */
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E"); /* Ícone de seta */
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center; /* Posiciona o ícone */
+  background-size: 16px;
 }
 
+.filters select:focus {
+  outline: none; /* Remove a borda de foco padrão */
+  border-color: #007bff; /* Cor de destaque ao focar */
+}
+
+.filters {
+  display: flex;
+  align-items: center; /* Centraliza os itens verticalmente */
+}
 option {
   background-color: #f8f5f521;
   color: black;
   border: none;
   border-radius: 20px;
+ 
 }
 
-.date {
+.date{
   padding: 10px 20px;
   border: 1px solid rgb(235, 230, 230);
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   color: #000;
   border-radius: 20px;
   margin-right: 1rem;
 }
+
 </style>

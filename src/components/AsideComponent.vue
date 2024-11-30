@@ -12,7 +12,7 @@
       </RouterLink>
       </li>
       <li>
-      <Router-link to="/conselhoNupe" >
+      <Router-link to="/Council" >
       <button class="menu-item">
           <mdicon class="icon-book" name="notebook-outline"></mdicon>
           Conselho
@@ -68,8 +68,9 @@
 }
 
 .menu-item {
+  margin-bottom: 10px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   color: #333333;
   text-align: left;
   padding: 10px 20px;
@@ -84,7 +85,7 @@
 
 .menu-item:hover {
   background-color: #f9f9f9;
-  color: #ff6b6b;
+  color: #000000;
 }
 
 /* Botão de sair */
@@ -100,6 +101,7 @@
   text-align: left;
   border-radius: 8px;
   transition: background-color 0.3s, color 0.3s;
+  margin-bottom: 40px;
 }
 
 .logout:hover {
@@ -109,11 +111,13 @@
   width: 80rem;
 }
 .icon-book {
-  color: #ff6b6b;
+  color: #505050;
+  margin-right: 10px;
+  margin-bottom: 300px;
 }
 .logo{
-    width: 10rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
+    width: 8rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
 }
 </style>

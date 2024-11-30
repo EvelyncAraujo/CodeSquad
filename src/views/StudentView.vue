@@ -41,12 +41,14 @@ const councils = ref([
           <mdicon name="arrow-left-drop-circle-outline"></mdicon>
         </div>
       </RouterLink>
-      <div class="profile">
+      <div class="prof-title">
         <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar" />
         <div class="profile-info">
           <h2>Oliver Calenbard</h2>
           <p>202345487</p>
         </div>
+      </div>
+      <div class="profile">
         <button class="add-btn">+</button>
       </div>
     </header>
@@ -92,7 +94,9 @@ const councils = ref([
         </table>
       </div>
     </section>
-
+    <div class="profile">
+        <button class="add-btn">+</button>
+      </div>
     <!-- Notas Parciais -->
 
     <section class="partial-grades">
@@ -109,10 +113,7 @@ const councils = ref([
           <tbody>
             <tr v-for="(grade, index) in grades" :key="index">
               <td>
-              <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-
-              </td>
               </td>
               <td>{{ grade.subject }}</td>
               <td>{{ grade.score }}</td>
@@ -157,6 +158,14 @@ const councils = ref([
   </div>
 </template>
 <style scoped>
+
+.prof-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .conselhos-container {
   text-align: center;
   padding: 20px;
@@ -202,7 +211,7 @@ button span {
   font-weight: bold;
 }
 
-.arrow-back{
+.arrow-back {
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -285,9 +294,9 @@ button span {
 }
 
 .profile {
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
+display: inline-flex;
+align-items: center;
+gap: 15px;
 }
 
 .avatar {

@@ -46,6 +46,12 @@ const logIn = async () => {
     })
   }
 }
+document.addEventListener("keypress",async(e)=>{
+ if (e.key=== 'Enter') {
+  await logIn()
+ }
+})
+
 </script>
 
 <template>

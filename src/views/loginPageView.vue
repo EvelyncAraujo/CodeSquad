@@ -1,91 +1,89 @@
 <script setup>
 import { useDropdownStore } from "/src/stores/useDropdownStore";
+import Swal from 'sweetalert2'
+import { useRouter } from "vue-router";
+import { useAuthStore } from "/src/stores/auth";
 import { ref, computed } from "vue";
 const dropdownStore = useDropdownStore();
 
 const { isOpen, toggleDropdown } = dropdownStore;
 
-const username = ref("");
+const authStore = useAuthStore();
+const router = useRouter()
+
+const email = ref("");
 const password = ref("");
 const isPasswordVisible = ref(false);
 const isUsernameValid = ref(false);
 
 const isFormValid = computed(
-  () => isUsernameValid.value && password.value.length > 0
+  () => password.value.length > 0
 );
-
-const validateUsername = () => {
-  isUsernameValid.value = username.value.trim().length >= 3;
-};
 
 const togglePasswordVisibility = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
+
+const logIn = async () => {
+  const credentials = {
+    email: email.value,
+    password: password.value,
+  };
+  const response = await authStore.setToken(credentials);
+  if (response === 200) {
+    router.push({ path: '/home' });
+  } else if (response === 401) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Usuário ou senha inválidos!',
+    })
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Erro interno do servidor ao tentar logar! Tente novamente mais tarde.',
+    })
+  }
+}
 </script>
 
 <template>
-    <div class="container">
-      <div class="image-container">
-        <div class="img">
-          <img src="/tittle.png" alt="Imagem" class="img2" />
-        </div>
+  <div class="container">
+    <div class="image-container">
+      <div class="img">
+        <img src="/tittle.png" alt="Imagem" class="img2" />
       </div>
-      <div class="top-container">
-        <div class="login-container">
-          <div class="card">
-            <h2>Login</h2>
-            <p>Coloque suas informações</p>
+    </div>
+    <div class="top-container">
+      <div class="login-container">
+        <div class="card">
+          <h2>Login</h2>
+          <p>Coloque suas informações</p>
+        </div>
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <div class="input-wrapper">
+            <input id="email" type="email" v-model="email" class="input" />
           </div>
-          <div class="input-group">
-            <label for="username">Usuário</label>
-            <div class="input-wrapper">
-              <input
-                id="username"
-                type="text"
-                v-model="username"
-                @input="validateUsername"
-                class="input"
-              />
-              <div>
-                <mdicon
-                  v-if="isUsernameValid"
-                  class="icon-success"
-                  name="check-circle"
-                ></mdicon>
-              </div>
-            </div>
+        </div>
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <div class="input-wrapper">
+            <input id="password" :type="isPasswordVisible ? 'text' : 'password'" v-model="password" class="input" />
+            <button type="button" class="toggle-password" @click="togglePasswordVisibility">
+              <mdicon v-if="isPasswordVisible" name="eye-outline"></mdicon>
+              <mdicon v-if="!isPasswordVisible" name="eye-off-outline"></mdicon>
+            </button>
           </div>
-          <div class="input-group">
-            <label for="password">Senha</label>
-            <div class="input-wrapper">
-              <input
-                id="password"
-                :type="isPasswordVisible ? 'text' : 'password'"
-                v-model="password"
-                class="input"
-              />
-              <button
-                type="button"
-                class="toggle-password"
-                @click="togglePasswordVisibility"
-              >
-                <mdicon v-if="isPasswordVisible" name="eye-outline"></mdicon>
-                <mdicon
-                  v-if="!isPasswordVisible"
-                  name="eye-off-outline"
-                ></mdicon>
-              </button>
-            </div>
-            <RouterLink to="/esquecer" class="forgot-password"
-              >Esqueceu sua senha?</RouterLink
-            >
-          </div>
-          <RouterLink to="/home">
-            <button class="login-button" :disabled="!isFormValid">Login</button>
-          </RouterLink>
+          <RouterLink to="/esquecer" class="forgot-password">Esqueceu sua senha?</RouterLink>
+        </div>
+        <div>
+          <button class="login-button" :disabled="!isFormValid" @click="logIn()">Login</button>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -112,6 +110,7 @@ p {
   color: #555;
   margin-bottom: 24px;
 }
+
 /* Container principal */
 .login-container {
   display: flex;
@@ -224,8 +223,10 @@ input:focus {
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 20px; /* Distância do topo */
-  right: 20px; /* Alinhamento à direita */
+  top: 20px;
+  /* Distância do topo */
+  right: 20px;
+  /* Alinhamento à direita */
 }
 
 .dropdown {

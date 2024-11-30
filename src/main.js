@@ -5,6 +5,7 @@ import mdiVue from 'mdi-vue/v3'
 import * as mdijs from '@mdi/js'
 import { createPinia } from 'pinia';
 
+import '@/plugins/axios'
 
 createApp(App)
   .use(router)

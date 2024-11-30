@@ -1,4 +1,3 @@
-// store/useDropdownStore.js
 import { defineStore } from 'pinia';
 
 export const useDropdownStore = defineStore('dropdown', {

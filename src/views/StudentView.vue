@@ -2,8 +2,12 @@
 import { useRoute } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useStudentStore } from "@/stores/student";
+import { useUserStore } from "@/stores/user";
 
 const showForm = ref(false);
+const userStore = useUserStore();
+const studentStore = useStudentStore();
+const route = useRoute();
 
 const formData = ref({
   subject: "",
@@ -51,7 +55,6 @@ const choosenTrimester = ref();
 const choosenType = ref();
 const choosenTrimesterOccurrence = ref();
 const choosenComment = ref()
-const choosenDate = ref()
 
 const postGrade = () => {
   studentStore.postGrade({
@@ -83,13 +86,6 @@ onMounted(async() => {
           <mdicon name="arrow-left-drop-circle-outline"></mdicon>
         </div>
       </RouterLink>
-      <div class="prof-title">
-        <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar" />
-        <div class="profile-info">
-          <h2>Oliver Calenbard</h2>
-          <p>202345487</p>
-        </div>
-      </div>
       <div class="app-container">
     <!-- Botão para abrir o modal -->
     <button class="open-modal-button" @click="showModal = true">+</button>
@@ -127,8 +123,10 @@ onMounted(async() => {
       <div class="profile-info">
         <h2>{{ data.name }}</h2>
         <p>{{data.registration}}</p>
+        {{ userStore.user.groups[0].name  }}
+        <p>Comorbidade: {{ data.comorbidity }}</p>
       </div>
-      <button class="add-btn" @click="showGradeSender = !showGradeSender">+</button>
+      <button class="add-btn" @click="showGradeSender = !showGradeSender" v-if="userStore.user.groups[0].name == 'Teacher'">+</button>
       <div class="grade-sender" v-if="showGradeSender">
             <select name="discipline" v-model.number="choosenDiscipline">
               <option value=1>Matemática</option>

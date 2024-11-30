@@ -113,7 +113,7 @@ onMounted(async () => {
 }
 
 .page.light {
-  background: #f9f9f9;
+  background: #ffffff;
   color: #333;
 }
 
@@ -204,12 +204,11 @@ option {
 
 .filters select,
 .filters input {
-  padding: 10px 20px;
-  border: 1px solid #dfa5cd;
+  padding: 10px 30px;
+  border: 1px solid rgba(226, 174, 210, 1);
   border-radius: 20px;
-  background-color: #e2aed2;
-  color: #ffffff;
-  transition: border-color 0.3s, background-color 0.3s;
+  color: rgb(255, 255, 255);
+  background-color: rgba(226, 174, 210, 1);
 }
 
 .filters select:focus,
@@ -217,6 +216,7 @@ option {
   outline: none;
   border-color: #d291bc;
   background-color: #fff;
+  color: #b06a9e;
 }
 
 /* Adiciona estilos responsivos */

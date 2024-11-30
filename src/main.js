@@ -11,4 +11,4 @@ createApp(App)
   .use(router)
   .use(createPinia())
   .use(mdiVue, {icons: mdijs})
-  .mount('#app');
+  .mount('#app')

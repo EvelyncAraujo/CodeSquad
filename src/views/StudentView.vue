@@ -38,28 +38,27 @@ const latestRecords = ref([
 ]);
 
 const grades = ref([
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
-  { subject: "Artes", score: "8,0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
+  { subject: "Artes", score: "8.0" },
 ]);
 
-const councils = ref([
-  "Conselho 1",
-  "Conselho 2",
-  "Conselho 3",
-  "Conselho 4",
-  "Conselho 5",
-  "Conselho 6",
-  "Conselho 7",
-  "Conselho 8",
-  "Conselho 9",
-]);
+// Função para calcular a média das notas
+const calculateAverage = () => {
+  const total = grades.value.reduce((sum, grade) => sum + parseFloat(grade.score.replace(",", ".")), 0);
+  return (total / grades.value.length).toFixed(2);
+};
+
+// Determina se o aluno está aprovado
+const isApproved = ref(false);
+isApproved.value = calculateAverage() >= 6.0;
 </script>
+
 <template>
   <div class="dashboard">
     <!-- Header -->
@@ -109,7 +108,6 @@ const councils = ref([
   </div>
     </header>
 
-    <!-- Últimos Registros -->
     <section class="latest-records">
       <div class="section-title"></div>
       <div class="records-grid">
@@ -245,18 +243,30 @@ const councils = ref([
             <tr v-for="(grade, index) in grades" :key="`right-${index}`">
               <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-
               </td>
               <td>{{ grade.subject }}</td>
               <td>{{ grade.score }}</td>
             </tr>
           </tbody>
         </table>
+        <div class="approved">
+          
+          
+        </div>
       </div>
 
     </section>
 
-    <!-- Conselhos -->
+    <div class="approval-status">
+      <p>
+        Média: <strong>{{ calculateAverage() }}</strong><br />
+        Status: 
+        <span :style="{ color: isApproved ? 'green' : 'red' }">
+          {{ isApproved ? 'Aprovado' : 'Reprovado' }}
+        </span>
+      </p>
+    </div>
+
     <div class="conselhos-container">
       <h2>Conselhos</h2>
       <div class="conselhos-grid">
@@ -556,27 +566,19 @@ button span {
 .back2 {
 
   font-size: 2rem;
-  /* Ajusta o tamanho do ícone */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 48px;
-  /* Largura do botão */
   height: 48px;
-  /* Altura do botão */
   background-color: #E2AED2;
   border-radius: 50%;
-  /* Faz um botão circular */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Adiciona uma sombra */
   margin-left: 50px;
-
   cursor: pointer;
-  /* Define o cursor para um "pontinho de interrogação" */
   margin-top: 2px;
 }
 
-/* Layout principal */
 .dashboard {
   font-family: "Arial", sans-serif;
   background: #f9f9f9;
@@ -683,7 +685,6 @@ tr {
   margin-right: 8px;
 }
 
-/* Conselhos */
 .council-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -701,4 +702,34 @@ tr {
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.approval-status {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.approval-status p {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+.approval-status strong {
+  font-size: 18px;
+  color: #f16c87;
+}
+
+.approval-status span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
 </style>

@@ -12,7 +12,7 @@
       </RouterLink>
       </li>
       <li>
-      <Router-link to="/conselhoNupe" >
+      <Router-link to="/council-detail" >
       <button class="menu-item">
           <mdicon class="icon-book" name="notebook-outline"></mdicon>
           Conselho

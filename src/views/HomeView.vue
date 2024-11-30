@@ -1,8 +1,10 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useCouncilStore } from "@/stores/council";
 import { onMounted } from "vue";
 
+const router = useRouter();
 const isDarkMode = ref(false);
 const councilStore = useCouncilStore();
 const toggleDarkMode = () => {
@@ -20,6 +22,15 @@ const filteredCouncils = computed(() => {
     (council) => council.trimester === selectedFilter.value
   );
 });
+
+const goToCouncil = (id) => {
+  router.push({
+    name: "councilDetail",
+    params: {
+      id: id,
+    },
+  })
+};
 
 onMounted(async () => {
   await councilStore.fetchCouncils();
@@ -44,7 +55,7 @@ onMounted(async () => {
           <h1>{{ council.team.name }}</h1>
           <p>Ocorreu em: {{ council.date }}</p>
           <p>{{ council.trimester }}° Trimestre</p>
-          <RouterLink to="/council-detail"><button class="view-details">Ver</button></RouterLink>
+          <button class="view-details" @click="goToCouncil(council.id)">Ver</button>
         </div>
       </div>
     </section>

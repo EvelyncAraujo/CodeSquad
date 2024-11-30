@@ -13,8 +13,9 @@ const router = createRouter({
       },
       children: [
         {
-          path: '/council-detail', 
+          path: '/council-detail/:id', 
           name: 'councilDetail',
+          props: true,
           component: () => import('@/views/CouncilDetailView.vue'),
         },
         {

@@ -301,23 +301,6 @@ option{
   border-radius: 20px;
   padding: 5px 10px;
 }
-/* .app {
-  transition: background-color 0.5s, color 0.5s;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-/* .app.dark {
-  background-color: #121212;
-  color: white;
-} */
-
-.app:not(.dark) {
-  background-color: white;
-  color: black;
-}
 
 .toggle-button {
   margin-left: 80rem;
@@ -328,11 +311,6 @@ option{
   background: #f0f0f0;
   border-radius: 20px;
   transition: background 0.3s, color 0.3s;
-}
-
-.app.dark .toggle-button {
-  background: #333;
-  color: white;
 }
 
 .toggle-button:hover {

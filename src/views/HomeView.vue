@@ -152,7 +152,7 @@ onMounted(() => {
             <h4>{{ council.name }}</h4>
             <p>{{ council.date }}</p>
             <p>{{ council.trimester }}</p>
-            <button class="view-details">Ver</button>
+            <RouterLink to="/historico"><button class="view-details">Ver</button></RouterLink>
           </div>
         </div>
       </section>

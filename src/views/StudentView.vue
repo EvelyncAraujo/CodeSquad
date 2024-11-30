@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 
-// Dados simulados
 const latestRecords = ref([
   { type: "Ausência De Uniforme", date: "23/06" },
   { type: "Ausência De Uniforme", date: "23/06" },
@@ -28,7 +27,7 @@ const calculateAverage = () => {
 
 // Determina se o aluno está aprovado
 const isApproved = ref(false);
-isApproved.value = calculateAverage() >= 7.0;
+isApproved.value = calculateAverage() >= 6.0;
 </script>
 
 <template>

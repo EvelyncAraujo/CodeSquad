@@ -20,9 +20,14 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const setRefreshToken = async refreshToken => {
-    const data = await authService.fetchRefreshToken(refreshToken)
-    localStorage.setItem('auth_token', data.access)
-    loggedIn.value = true
+    const response = await authService.fetchRefreshToken(refreshToken)    
+    if(response.status === 200){
+        localStorage.setItem('auth_token', response.data.access)
+        loggedIn.value = true
+        return response.status
+    } else {
+        return response.status
+    }
   }
 
   const unsetToken = () => {

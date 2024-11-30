@@ -11,8 +11,8 @@ export default class AuthService {
   }
   async fetchRefreshToken(refreshToken) {
     try{
-      const { data, status } = await axios.post('/token/refresh/', refreshToken)
-      return data, status
+      const { data, status } = await axios.post('/token/refresh/', refreshToken)      
+      return { data, status }
     } catch (error){
       return error
     }

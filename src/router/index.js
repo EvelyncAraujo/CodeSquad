@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 import loginPageView from '@/views/loginPageView.vue';
 import EsqueceuSenhaView from '@/views/EsqueceuSenhaView.vue';
 import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
@@ -17,6 +18,7 @@ const router = createRouter({
       path: '/',
       name: 'blankLayout',
       component: BlankLayout,
+      meta: { requiresAuth: true },
       children: [
         {
           path: '/home', // Corrigido: adicionada a barra no início
@@ -39,26 +41,31 @@ const router = createRouter({
       path: '/',
       name: 'fullLayout',
       component: FullLayout,
+      meta: { requiresAuth: true },
       children: [
       
         {
           path: '/login', 
           name: 'Login',
+          meta: { requiresAuth: false },
           component: loginPageView,
         },
         {
           path: '/esquecer', 
           name: 'EsqueceuSenha',
+          meta: { requiresAuth: false },
           component: EsqueceuSenhaView
         },
         {
           path: '/verificacao', 
           name: 'CodVerificação',
+          meta: { requiresAuth: false },
           component: codigoVerificacaoView
         },
         {
           path: '/recuperacao', 
           name: 'Nova Senha',
+          meta: { requiresAuth: false },
           component: novaSenhaView
         },
         {
@@ -71,5 +78,14 @@ const router = createRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  if (to.meta.requiresAuth && !authStore.loggedIn) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+})
 
 export default router;

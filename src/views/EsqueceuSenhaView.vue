@@ -40,7 +40,7 @@ function enviarCodigo() {
 }
 
 .container {
- 
+ margin-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,13 +62,13 @@ function enviarCodigo() {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 28px;
   color: #333;
   margin-bottom: 0px;
 }
 
 p {
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
   margin-bottom: 60px;
 }
@@ -76,13 +76,13 @@ p {
 .option {
   display: flex;
   align-items: center;
-  background: #fdf5f5;
-  border: 1px solid #f8d7da;
+  background: #ffffff;
+  border: 1px solid #000000;
   border-radius: 8px;
-  padding: 12px;
+  padding: 20px;
   margin-bottom: 60px;
   width: 87%;
-  padding-left: 40px;
+  padding-left: 18px;
   
  
 }
@@ -111,7 +111,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   font-style: normal;
 }
 

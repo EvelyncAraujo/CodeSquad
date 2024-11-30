@@ -46,6 +46,12 @@ const logIn = async () => {
     })
   }
 }
+document.addEventListener("keypress",async(e)=>{
+ if (e.key=== 'Enter') {
+  await logIn()
+ }
+})
+
 </script>
 
 <template>
@@ -110,7 +116,7 @@ h2 {
 p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   margin-left: 20px;
 
 }
@@ -138,7 +144,7 @@ label {
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 14px;
-  margin-left: 15px;
+  margin-left: 70px;
 }
 
 /* Wrapper do input com ícones */
@@ -149,12 +155,13 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 60%;
   padding: 20px;
   border: 2px solid #000;
   border-radius: 10px;
   font-size: 14px;
   outline: none;
+  margin-left: 60px;
 }
 
 input:focus {
@@ -166,7 +173,7 @@ input:focus {
   color: rgb(149, 218, 116);
   background: none;
   position: absolute;
-  right: 18px;
+  right: 30px;
   bottom: 16px;
   font-size: 16px;
   cursor: pointer;
@@ -177,10 +184,11 @@ input:focus {
   background: none;
   border: none;
   position: absolute;
-  right: 12px;
+  right: 90px;
   font-size: 16px;
   cursor: pointer;
   color: #000000;
+  margin-top: 3px;
 }
 
 /* Estilo do link "Esqueceu sua senha?" */
@@ -190,7 +198,7 @@ input:focus {
   font-size: 12px;
   text-decoration: none;
   color: #070707;
-  margin-left: 316px;
+  margin-left: 245px;
   margin-bottom: 30px;
  
 }
@@ -205,13 +213,14 @@ input:focus {
   color: white;
   justify-content: center;
   align-items: center;
-  padding: 20px 205px;
+  padding: 20px 145px;
   border: none;
   border-radius: 30px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left:50px;
 }
 
 .login-button:disabled {

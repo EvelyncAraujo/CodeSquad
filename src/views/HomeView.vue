@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { useUserStore } from "@/stores/user";
 import AsideComponent from "@/components/AsideComponent.vue";
+import { onMounted } from "vue";
 
 // Controle do modo escuro
 const isDarkMode = ref(false);
@@ -80,6 +81,7 @@ const councils = ref([
 // Estado para a pesquisa e filtro
 const searchQuery = ref("");
 const selectedFilter = ref("Trimestre");
+const selectedDate = ref();
 
 // Computed para filtrar conselhos
 const filteredCouncils = computed(() => {
@@ -89,6 +91,10 @@ const filteredCouncils = computed(() => {
       (selectedFilter.value === "Trimestre" ||
         council.trimester === selectedFilter.value)
   );
+});
+
+onMounted(() => {
+  console.log(selectedFilter.value);
 });
 </script>
 
@@ -117,9 +123,12 @@ const filteredCouncils = computed(() => {
             placeholder="Pesquisar conselhos"
             class="search-input"
           />
-          <button @click="toggleDarkMode" class="theme-toggle">
-            {{ isDarkMode ? "Light" : "Dark" }}
-          </button>
+          <div :class="{ dark: isDarkMode }" class="app">
+    <button @click="toggleDarkMode" class="toggle-button">
+      <span v-if="isDarkMode">🌙 Dark</span>
+      <span v-else>☀️ Light</span>
+    </button>
+  </div>
         </div>
       </header>
       <!-- Recent Councils -->
@@ -127,15 +136,13 @@ const filteredCouncils = computed(() => {
         <h2>Conselhos recentes</h2>
         <div class="filters">
           <label for="filter">Filtrar por:</label>
-          <select id="filter" v-model="selectedFilter">
-            <option value="" disabled selected>Trimestre</option>
+          <select v-model="selectedFilter">
+            <option value="Trimestre" disabled selected>Selecione o trimestre</option>
             <option value="primeiro">Primeiro trimestre</option>
             <option value="segundo">Segundo trimestre</option>
             <option value="terceiro">Terceiro trimestre</option>
           </select>
-          <select id="data" v-model="selectedFilter">
-            <option value="" disabled selected>Data</option>
-          </select>
+          <input class="date" type="date" v-model="selectedDate" />
         </div>
         <div class="council-cards">
           <div
@@ -147,7 +154,7 @@ const filteredCouncils = computed(() => {
             <h4>{{ council.name }}</h4>
             <p>{{ council.date }}</p>
             <p>{{ council.trimester }}</p>
-            <button class="view-details">Ver</button>
+            <RouterLink to="/historico"><button class="view-details">Ver</button></RouterLink>
           </div>
         </div>
       </section>
@@ -239,14 +246,29 @@ const filteredCouncils = computed(() => {
 }
 
 .theme-toggle {
+  position: fixed;
+  margin-left: 85rem;
   background: #007bff;
   color: white;
   border: none;
   border-radius: 20px;
   padding: 5px 15px;
-  cursor: pointer;
 }
 
+/* .toggle-button {
+  margin-left: 80rem;
+  padding: 5px 15px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background: #f0f0f0;
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
+} */
+
+.toggle-button:hover {
+  opacity: 0.8;
+}
 /* Conselhos Recentes */
 .recent-councils h2 {
   margin-bottom: 1rem;
@@ -282,6 +304,35 @@ const filteredCouncils = computed(() => {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.filters label {
+  margin-right: 1rem;
+}
+
+.filters select {
+  padding: 10px 20px;
+  border: 1px solid rgb(235, 230, 230);
+  background-color: #f9f9f9;
+  color: #000;
+  border-radius: 20px;
+  margin-right: 1rem;
+}
+
+option {
+  background-color: #f8f5f521;
+  color: black;
+  border: none;
+  border-radius: 20px;
+}
+
+.date{
+  padding: 10px 20px;
+  border: 1px solid rgb(235, 230, 230);
+  background-color: #f9f9f9;
+  color: #000;
+  border-radius: 20px;
+  margin-right: 1rem;
 }
 
 .employee-function{

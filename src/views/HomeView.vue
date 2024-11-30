@@ -77,12 +77,11 @@ const councils = ref([
   },
 ]);
 
-// Estado para a pesquisa e filtro
 const searchQuery = ref("");
 const selectedFilter = ref("Trimestre");
 const selectedDate = ref();
 
-// Computed para filtrar conselhos
+
 const filteredCouncils = computed(() => {
   return councils.value.filter(
     (council) =>

@@ -10,6 +10,7 @@ import FullLayout from '@/layouts/FullLayout.vue';
 import gerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
 import nupeConselhoView from '@/views/nupeConselhoView.vue';
+import conselhoView from '@/views/conselhoView.vue';
 
 
 const router = createRouter({
@@ -37,6 +38,12 @@ const router = createRouter({
           name: 'nupeconselho',
           component: nupeConselhoView
         },
+        {
+          path: '/conselho', 
+          name: 'conselho',
+          component: conselhoView
+        },
+      
       ] 
     },
     {
@@ -75,7 +82,7 @@ const router = createRouter({
           name: 'Histórico Conselhos',
           component: detalhesConselhoView
         },
-      
+    
       ]
     },
   ],

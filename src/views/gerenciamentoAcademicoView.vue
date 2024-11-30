@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import AsideComponent from '@/components/AsideComponent.vue'
+import AsideComponent from "@/components/AsideComponent.vue";
 
 const isDarkMode = ref(false);
 const toggleDarkMode = () => {
@@ -31,7 +31,6 @@ const students = ref([
     grade: 8.0,
     occurrence: "Sim",
   },
-  
 ]);
 
 const courses = ref(["Agropecuária", "Informática", "Química"]);
@@ -83,27 +82,15 @@ const applyFilters = () => {
 <template>
   <div class="page">
     <div class="aside">
-      <AsideComponent/>
+      <AsideComponent />
     </div>
     <main class="content">
-      <div class="user-info">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="User Avatar"
-          class="avatar"
-        />
-        <div class="info">
-          <h2>Oliver Calenbard</h2>
-          <p>Nupe</p>
-        </div>
+       <div :class="{ dark: isDarkMode }" class="app">
+        <button @click="toggleDarkMode" class="toggle-button">
+          <span v-if="isDarkMode">🌙 Dark</span>
+          <span v-else>☀️ Light</span>
+        </button>
       </div>
-     
-        <div :class="{ dark: isDarkMode }" class="app">
-    <button @click="toggleDarkMode" class="toggle-button">
-      <span v-if="isDarkMode">🌙 Dark</span>
-      <span v-else>☀️ Light</span>
-    </button>
-  </div>
       <section class="management">
         <h3>Gerenciamento Acadêmico</h3>
         <div class="fundo">
@@ -149,7 +136,8 @@ const applyFilters = () => {
           <div
             v-for="student in filteredStudents"
             :key="student.id"
-            class="result-card" >
+            class="result-card"
+          >
             <p>{{ student.name }}</p>
             <button class="view-details">Ver</button>
           </div>
@@ -160,9 +148,9 @@ const applyFilters = () => {
 </template>
 
 <style scoped>
-  .aside{
-    min-width: 240px;
-  }
+.aside {
+  min-width: 240px;
+}
 .page {
   display: flex;
   transition: background 0.3s, color 0.3s;
@@ -220,7 +208,6 @@ const applyFilters = () => {
 }
 .info {
   margin-left: 5rem;
- 
 }
 .search {
   float: right;
@@ -235,13 +222,12 @@ const applyFilters = () => {
   padding: 2rem;
   width: 65rem;
 }
-option{
+option {
   background-color: #f8f5f521;
   color: black;
   border: none;
   border-radius: 20px;
 }
-
 
 .theme-toggle {
   position: fixed;

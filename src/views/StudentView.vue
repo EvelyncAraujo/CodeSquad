@@ -40,12 +40,14 @@ isApproved.value = calculateAverage() >= 7.0;
           <mdicon name="arrow-left-drop-circle-outline"></mdicon>
         </div>
       </RouterLink>
-      <div class="profile">
+      <div class="prof-title">
         <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar" />
         <div class="profile-info">
           <h2>Oliver Calenbard</h2>
           <p>202345487</p>
         </div>
+      </div>
+      <div class="profile">
         <button class="add-btn">+</button>
       </div>
     </header>
@@ -90,6 +92,13 @@ isApproved.value = calculateAverage() >= 7.0;
         </table>
       </div>
     </section>
+<<<<<<< HEAD
+=======
+    <div class="profile">
+        <button class="add-btn">+</button>
+      </div>
+    <!-- Notas Parciais -->
+>>>>>>> 882766af20f075b4cf3f31624223f55674715bb7
 
     <section class="partial-grades">
       <div class="section-title">Notas parciais</div>
@@ -105,10 +114,7 @@ isApproved.value = calculateAverage() >= 7.0;
           <tbody>
             <tr v-for="(grade, index) in grades" :key="index">
               <td>
-              <td>
                 <mdicon class="back" name="notebook-outline" style="color: white;"></mdicon>
-
-              </td>
               </td>
               <td>{{ grade.subject }}</td>
               <td>{{ grade.score }}</td>
@@ -164,8 +170,20 @@ isApproved.value = calculateAverage() >= 7.0;
     </div>
   </div>
 </template>
-
 <style scoped>
+/* Dashboard */       
+.prof-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.conselhos-container {
+  text-align: center;
+  padding: 20px;
+}
+
 h2 {
   font-size: 1.5em;
   margin-bottom: 20px;
@@ -191,7 +209,7 @@ button span {
   font-weight: bold;
 }
 
-.arrow-back{
+.arrow-back {
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -266,9 +284,9 @@ button span {
 }
 
 .profile {
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
+display: inline-flex;
+align-items: center;
+gap: 15px;
 }
 
 .avatar {

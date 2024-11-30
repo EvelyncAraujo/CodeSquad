@@ -1,11 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
-const isMenuOpen = ref(false);
+const isMenuOpen = ref(true);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
+
+const width = computed(() => window.innerWidth)
+
 </script>
 
 <template>
@@ -16,7 +19,7 @@ const toggleMenu = () => {
       <span></span>
       <span></span>
     </button>
-    <ul class="menu" v-if="isMenuOpen || window.innerWidth > 600">
+    <ul class="menu" v-if="isMenuOpen || width > 600">
       <li>
       <RouterLink to="/home">
         <button class="menu-item">
@@ -41,7 +44,7 @@ const toggleMenu = () => {
         </RouterLink>
       </li>
     </ul>
-    <div class="exit" v-if="isMenuOpen || window.innerWidth > 600">
+    <div class="exit" v-if="isMenuOpen || width > 600">
 
     <RouterLink to="/login">
         <button class="logout">

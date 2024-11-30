@@ -3,6 +3,7 @@ import TimerComponent from "@/components/TimerComponent.vue"
 </script>
 
 <template>
+   
   <div class="containercomp">
     <div class="dropdownContainer">
       <div class="dropdown">
@@ -42,12 +43,14 @@ import TimerComponent from "@/components/TimerComponent.vue"
   margin-left: 5rem;
 }
 .dropdownContainer {
-  width: 100%;
+  position: relative;
+  margin-bottom: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
   height: 50vh;
+  margin-right: 900px;
 }
 
 .dropbtn {

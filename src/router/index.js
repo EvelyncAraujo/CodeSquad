@@ -16,6 +16,14 @@ const router = createRouter({
           path: '/council-detail', 
           name: 'councilDetail',
           component: () => import('@/views/CouncilDetailView.vue'),
+        },
+        {
+          path: '/login', 
+          name: 'login',
+          meta: { 
+            requiresAuth: false 
+          },
+          component: () => import('@/views/LoginView.vue'),
         },      
         {
           path: '/login', 

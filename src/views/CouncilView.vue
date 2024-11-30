@@ -1,46 +1,67 @@
 <script setup>
+import { ref } from "vue";
+import { useCouncilStore } from "@/stores/council";
 import TimerComponent from "@/components/TimerComponent.vue"
+
+const councilStore = useCouncilStore();
+
+const councils = ref();
+
+const choosenCourse = ref();
+const choosenYear = ref();
+
+const search = async() => {
+  councils.value = await councilStore.fetchCouncilByCourse(choosenCourse.value, choosenYear.value);
+};
+
 </script>
 
 <template>
    
   <div class="containercomp">
-    <div class="dropdownContainer">
-      <div class="dropdown">
-        <button class="dropbtn">
-          Agropecuária <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#">Agropecuária</a>
-          <a href="#">Informática</a>
-          <a href="#">Química</a>
+    <div>
+        <div class="dropdown">
+          <select v-model.number="choosenCourse">
+            <option value=2>Agropecuária</option>
+            <option value=1>Informática</option>
+            <option value=3>Química</option>
+          </select>
         </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="dropbtn">
-          Primeiro <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#">1 ano</a>
-          <a href="#">2 ano</a>
-          <a href="#">3 ano</a>
+        <div class="dropdown">
+          <select v-model.number="choosenYear">
+            <option value=1>1° Ano</option>
+            <option value=2>2° Ano</option>
+            <option value=3>3° Ano</option>
+          </select>
         </div>
+        <button @click="search" class="search-button">Buscar</button>
+      <div>
+        <div v-for="council in councils">
+          <div class="card">
+            <p>{{ council.team }}</p>
+            Iniciar conselho
+          </div>
+        </div>
+        <TimerComponent />
       </div>
-
-      <button @click="applyFilters" class="search-button">Buscar</button>
-
-      <TimerComponent />
     </div>
   </div>
 </template>
 
 <style scoped>
+.card{
+  background-color: gray;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .containercomp {
   border-radius: 10rem;
   padding: 2px;
-  margin-top: 10rem;
-  margin-left: 5rem;
+  margin-left: 300px;
+  display: flex;
+  flex-direction: column;
 }
 .dropdownContainer {
   position: relative;

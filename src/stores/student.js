@@ -22,5 +22,10 @@ export const useStudentStore = defineStore("student", () => {
     return data;
   }
 
-  return { postGrade, fetchStudents, fetchStudent, students };
+  const postOccurrence = async (occurrence) => {
+    const data = await studentService.postOccurrence(occurrence);
+    return data;
+  }
+
+  return { postOccurrence, postGrade, fetchStudents, fetchStudent, students };
 });

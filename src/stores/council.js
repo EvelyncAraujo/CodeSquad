@@ -16,5 +16,10 @@ export const useCouncilStore = defineStore("council", () => {
     const data = await councilService.fetchCouncil(id);
     return data;
   }
-  return { fetchCouncil, fetchCouncils, councils };
+
+  const fetchCouncilByCourse = async (courseId, year) => {
+    const data = await councilService.fetchCouncilByCourse(courseId, year);
+    return data;
+  }
+  return { fetchCouncilByCourse, fetchCouncil, fetchCouncils, councils };
 });

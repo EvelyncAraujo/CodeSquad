@@ -13,4 +13,8 @@ export default class StudentService {
     const { data } = await axios.post('api/grade/', grade)
     return data
   }
+  async postOccurrence(occurrence){
+    const { data } = await axios.post('api/occurrences/', occurrence)
+    return data
+  }
 }

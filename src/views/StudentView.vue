@@ -10,17 +10,32 @@ const studentId = route.params.id
 const data = ref({})
 
 const showGradeSender = ref(false);
+const showOccurrenceSender = ref(false);
 const choosenDiscipline = ref();
 const choosenGrade = ref();
 const choosenTrimester = ref();
+
+const choosenType = ref();
+const choosenTrimesterOccurrence = ref();
+const choosenComment = ref()
+const choosenDate = ref()
 
 const postGrade = () => {
   studentStore.postGrade({
     "discipline": choosenDiscipline.value,
     "grade": choosenGrade.value,
     "trimester": choosenTrimester.value,
-    "student": parseInt(studentId)} 
+    "student": parseInt(studentId)}
   )};
+
+const postOccurrence = () => {
+  studentStore.postOccurrence({
+    "student": parseInt(studentId),
+    "type_status": choosenType.value,
+    "trimester": choosenTrimesterOccurrence.value,
+    "comment": choosenComment.value,
+  } 
+)};
 
 onMounted(async() => {
   data.value = await studentStore.fetchStudent(studentId);
@@ -78,7 +93,18 @@ onMounted(async() => {
       </div>
     </section>
     <div class="profile">
-        <button class="add-btn">+</button>
+        <button class="add-btn" @click="showOccurrenceSender = !showOccurrenceSender">+</button>
+        <div v-if="showOccurrenceSender">
+          <select v-model.number="choosenType">
+            <option value=1>Atraso</option>
+            <option value=2>Sem Uniforme</option>
+            <option value=3>Reunião Nupe</option>
+            <option value=4>Outro</option>
+          </select>
+          <input type="number" placeholder="Trimestre" v-model.number="choosenTrimesterOccurrence">
+          <input type="text" placeholder="Comentário" v-model="choosenComment">
+          <button class="send-grade-btn" @click="postOccurrence">Enviar</button>
+        </div>
       </div>
     <!-- Notas Parciais -->
 

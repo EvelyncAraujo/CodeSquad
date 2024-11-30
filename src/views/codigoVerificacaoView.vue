@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 import { useRouter } from 'vue-router';
 

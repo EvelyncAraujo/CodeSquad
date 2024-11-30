@@ -24,9 +24,8 @@ function enviarCodigo() {
       <h2>Esqueceu a senha?</h2>
       <p>Digite o email que será enviado o código de verificação</p>
       <div class="input-container">
-        <input class="option" placeholder="Digite seu email">
-        </input>
-        <mdicon class="email" name="email-outline"></mdicon>
+        <input class="option" placeholder="Digite seu email"></input>
+      
       </div>
       <button @click="enviarCodigo">Enviar código</button>
     </div>
@@ -36,9 +35,11 @@ function enviarCodigo() {
 <style scoped>
 .input-container{
   position: relative;
+  
 }
 
 .container {
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,8 +47,9 @@ function enviarCodigo() {
 }
 
 .card {
+  margin-bottom: 300px;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -55,7 +57,7 @@ function enviarCodigo() {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+ 
 }
 
 h2 {
@@ -80,6 +82,8 @@ p {
   margin-bottom: 24px;
   width: 87%;
   padding-left: 40px;
+  
+ 
 }
 
 .email{
@@ -97,17 +101,20 @@ p {
 
 button {
   width: 100%;
-  background: #f36b6b;
+  background: #EA8983;
   color: white;
-  padding: 12px;
+  padding: 22px ;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 30px;
+  font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
 button:hover {
-  background: #e55959;
+  background: #e6908b;
 }
 </style>

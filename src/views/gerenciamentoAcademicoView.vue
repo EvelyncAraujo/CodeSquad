@@ -1,8 +1,10 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useUserStore } from "@/stores/user";
 import AsideComponent from '@/components/AsideComponent.vue'
 
 const isDarkMode = ref(false);
+const userStore = useUserStore();
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };

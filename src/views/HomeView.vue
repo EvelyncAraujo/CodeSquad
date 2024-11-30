@@ -1,9 +1,11 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useUserStore } from "@/stores/user";
 import AsideComponent from "@/components/AsideComponent.vue";
 
 // Controle do modo escuro
 const isDarkMode = ref(false);
+const userStore = useUserStore();
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };
@@ -99,13 +101,13 @@ const filteredCouncils = computed(() => {
       <header class="header">
         <div class="user-info">
           <img
-            src="https://via.placeholder.com/40"
+            :src="userStore.user.photo.file"
             alt="User Avatar"
             class="avatar"
           />
           <div class="name">
-            <h2 class="name-user">Oliver Calenbard</h2>
-            <p class="employee-function">Nupe</p>
+            <h2 class="name-user">{{ userStore.user.name }}</h2>
+            <p class="employee-function">{{ userStore.user.groups[0].name }}</p>
           </div>
         </div>
         <div class="actions">

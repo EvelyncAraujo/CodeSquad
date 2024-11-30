@@ -1,50 +1,43 @@
 <script setup>
-import AsideComponent from "@/components/AsideComponent.vue";
+import TimerComponent from "@/components/TimerComponent.vue"
 </script>
 
 <template>
    
   <div class="containercomp">
-  <div class="dropdownContainer">
-    <h2>Conselhos</h2>
-    <div class="dropdown">
-      <button class="dropbtn">
-        Agropecuária <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="#">Agropecuária</a>
-        <a href="#">Informática</a>
-        <a href="#">Química</a>
+    <div class="dropdownContainer">
+      <div class="dropdown">
+        <button class="dropbtn">
+          Agropecuária <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">Agropecuária</a>
+          <a href="#">Informática</a>
+          <a href="#">Química</a>
+        </div>
       </div>
-    </div>
-   
-    <div class="dropdown">
-      <button class="dropbtn">
-        Primeiro <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="#">1 ano</a>
-        <a href="#">2 ano</a>
-        <a href="#">3 ano</a>
-      </div>
-    </div>
 
-    <button @click="applyFilters" class="search-button">Buscar</button>
- </div> 
-</div>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Primeiro <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">1 ano</a>
+          <a href="#">2 ano</a>
+          <a href="#">3 ano</a>
+        </div>
+      </div>
+
+      <button @click="applyFilters" class="search-button">Buscar</button>
+
+      <TimerComponent />
+    </div>
+  </div>
 </template>
 
 <style scoped>
-h2{
-  margin-bottom: 900px;
-  margin-right: 780px;
-  margin-top: 200px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-.containercomp{
-   border-radius: 10rem;
+.containercomp {
+  border-radius: 10rem;
   padding: 2px;
   margin-top: 10rem;
   margin-left: 5rem;

@@ -44,4 +44,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    exclude: ['vue3-flip-countdown'] // Exclui a dependência da otimização
+  }
 });

@@ -25,14 +25,6 @@ const router = createRouter({
           },
           component: () => import('@/views/LoginView.vue'),
         },
-      ] 
-    },
-    {
-      path: '/',
-      name: 'fullLayout',
-      component: () => import('@/layouts/FullLayout.vue'),
-      meta: { requiresAuth: true },
-      children: [
         {
           path: '/forgot-password', 
           name: 'forgotPassword',
@@ -58,6 +50,20 @@ const router = createRouter({
           component: () => import('@/views/RecoveryView.vue'),
         },
         {
+          path: '/student', 
+          name: 'student',
+          component: () => import('@/views/StudentView.vue'),
+        },
+      ] 
+    },
+    {
+      path: '/',
+      name: 'fullLayout',
+      component: () => import('@/layouts/FullLayout.vue'),
+      meta: { requiresAuth: true },
+      children: [
+        
+        {
           path: '/academic-management', 
           name: 'academicManagement',
           component: () => import('@/views/AcademicManagementView.vue'),
@@ -66,11 +72,6 @@ const router = createRouter({
           path: '/home', 
           name: 'home',
           component: () => import('@/views/HomeView.vue'),
-        },
-        {
-          path: '/student', 
-          name: 'student',
-          component: () => import('@/views/StudentView.vue'),
         },
         {
           path: '/council', 

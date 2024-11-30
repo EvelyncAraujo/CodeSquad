@@ -18,7 +18,7 @@ function submitCode() {
     icon: "success",
   }).then(() => {
     router.push({
-      path: "/recuperacao",
+      path: "/recovery",
     });
   });
 }

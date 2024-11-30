@@ -13,7 +13,7 @@ function sendCode() {
     icon: "success"
   }).then(() => {
     router.push({
-      path: '/verificacao'
+      path: '/verification'
     })
   });
 }

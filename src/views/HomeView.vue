@@ -1,163 +1,66 @@
 <script setup>
 import { ref, computed } from "vue";
-import AsideComponent from "@/components/AsideComponent.vue";
+import { useUserStore } from "@/stores/user";
+import { useCouncilStore } from "@/stores/council";
 import { onMounted } from "vue";
 
 
 // Controle do modo escuro
 const isDarkMode = ref(false);
+const councilStore = useCouncilStore();
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };
 
-// Dados fictícios dos conselhos
-const councils = ref([
-  {
-    id: 1,
-    name: "Conselho 1",
-    date: "25 de junho de 2023",
-    trimester: "Trimestre 1",
-    color: "#E2AED2",
-  },
-  {
-    id: 2,
-    name: "Conselho 2",
-    date: "26 de junho de 2023",
-    trimester: "Trimestre 1",
-    color: "#EA8C8C",
-  },
-  {
-    id: 3,
-    name: "Conselho 3",
-    date: "27 de junho de 2023",
-    trimester: "Trimestre 1",
-    color: "#F2866C",
-  },
-  {
-    id: 4,
-    name: "Conselho 4",
-    date: "28 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#F06A45",
-  },
-  {
-    id: 5,
-    name: "Conselho 5",
-    date: "29 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#E2AED2",
-  },
-  {
-    id: 6,
-    name: "Conselho 6",
-    date: "30 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#EA8C8C",
-  },
-  {
-    id: 7,
-    name: "Conselho 7",
-    date: "28 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#F2866C",
-  },
-  {
-    id: 8,
-    name: "Conselho 8",
-    date: "29 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#F06A45",
-  },
-  {
-    id: 9,
-    name: "Conselho 9",
-    date: "30 de junho de 2023",
-    trimester: "Trimestre 2",
-    color: "#E2AED2",
-  },
-]);
+const colors = ["#E2AED2", "#EA8C8C", "#F2866C", "#F06A45", "#A2D5C6"];
 
-// Estado para a pesquisa e filtro
-const searchQuery = ref("");
-const selectedFilter = ref("Trimestre");
-const selectedDate = ref();
+const selectedFilter = ref("");
 
-// Computed para filtrar conselhos
 const filteredCouncils = computed(() => {
-  return councils.value.filter(
-    (council) =>
-      council.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
-      (selectedFilter.value === "Trimestre" ||
-        council.trimester === selectedFilter.value)
+  if (selectedFilter.value === "") {
+    return councilStore.councils;
+  }  
+  console.log(selectedFilter.value);
+  return councilStore.councils.filter(
+    (council) => council.trimester === selectedFilter.value
   );
 });
 
-onMounted(() => {
-  console.log(selectedFilter.value);
+onMounted(async() => {
+  await councilStore.fetchCouncils();
 });
 </script>
 
 <template>
-  <div class="container" :class="{ dark: isDarkMode }">
-    <div class="aside">
-      <AsideComponent />
-    </div>
-
-    <header class="header">
-      <div class="user-info">
-        <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar" />
-        <div class="name">
-          <h2 class="name-user">Oliver Calenbard</h2>
-          <p class="employee-function">Nupe</p>
-        </div>
-      </div>
-      <div>
-        <div class="actions">
-          <input type="text" v-model="searchQuery" placeholder="Pesquisar conselhos" class="search-input" />
-        </div>
-        <div :class="{ dark: isDarkMode }">
-          <div class="switch-container">
-            <label class="switch">
-              <input type="checkbox" v-model="isDarkMode" />
-              <span class="slider">
-                <span class="icon">
-                  <span v-if="!isDarkMode">☀️</span>
-                  <span v-else>🌙</span>
-                </span>
-              </span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- </div> -->
     <main class="content">
-
       <!-- Recent Councils -->
       <section class="recent-councils">
-        <h2>Conselhos recentes</h2>
+        <h2>Conselhos</h2>
         <div class="filters">
-          <label for="filter">Filtrar por:</label>
-          <select v-model="selectedFilter">
-            <option value="Trimestre" disabled selected>Selecione o trimestre</option>
-            <option value="primeiro">Primeiro trimestre</option>
-            <option value="segundo">Segundo trimestre</option>
-            <option value="terceiro">Terceiro trimestre</option>
+          <label for="filter" class="filter">Filtrar por:</label>
+          <select v-model.number="selectedFilter">
+            <option value="" disabled selected>Selecione o trimestre</option>
+            <option value="" >Todos os trimestres</option>
+            <option value=1>Primeiro trimestre</option>
+            <option value=2>Segundo trimestre</option>
+            <option value=3>Terceiro trimestre</option>
           </select>
-          <input class="date" type="date" v-model="selectedDate" />
         </div>
         <div class="council-cards">
-          <div v-for="council in filteredCouncils" :key="council.id" class="council-card"
-            :style="{ backgroundColor: council.color }">
-            <h4>{{ council.name }}</h4>
-            <p>{{ council.date }}</p>
-            <p>{{ council.trimester }}</p>
+          <div
+            v-for="(council, index) in filteredCouncils"
+            :key="council.id"
+            class="council-card"
+            :style="{ backgroundColor: colors[index % colors.length] }"
+            >
+            <h1>{{ council.team.name }}</h1>
+            <p>Ocorreu em: {{ council.date }}</p>
+            <p>{{ council.trimester }}° Trimestre</p>
             <RouterLink to="/historico"><button class="view-details">Ver</button></RouterLink>
           </div>
         </div>
       </section>
     </main>
-  </div>
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -175,6 +78,10 @@ onMounted(() => {
     "aside content"
   ;
 
+}
+
+.filter{
+  margin-right: 10px
 }
 
 .aside {
@@ -269,10 +176,6 @@ body.dark-mode {
   min-width: 240px;
 }
 
-.main-container {
-  display: flex;
-}
-
 /* Estilos principais */
 .dashboard {
   display: flex;
@@ -310,32 +213,8 @@ body.dark-mode {
 .content {
   flex: 1;
   padding: 20px;
+  margin-left: 250px;
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.name-user {
-  text-align: right;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  margin: 0;
-  padding: 0%;
-  margin-left: 50px;
-}
-
-.avatar {
-  position: fixed;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
-
 .search-input {
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -369,6 +248,7 @@ body.dark-mode {
 /* Conselhos Recentes */
 .recent-councils h2 {
   margin-bottom: 1rem;
+  font-size: xx-large;
 }
 
 .council-cards {
@@ -433,12 +313,4 @@ option {
   margin-right: 1rem;
 }
 
-.employee-function{
-  margin: 0%;
-  padding: 0%;
-  font-size: 14px;
-  font-style: italic;
-  margin-top: 5px;
-  margin-left: 50px;
-}
 </style>

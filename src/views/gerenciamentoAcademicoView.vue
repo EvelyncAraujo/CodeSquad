@@ -1,40 +1,12 @@
 <script setup>
-import { ref, computed } from "vue";
-import AsideComponent from '@/components/AsideComponent.vue'
-
+import { ref, computed, onMounted } from "vue";
+import { useStudentStore } from "@/stores/student";
 const isDarkMode = ref(false);
-const toggleDarkMode = () => {
-  isDarkMode.value = !isDarkMode.value;
-};
-const students = ref([
-  {
-    id: 1,
-    name: "Alice",
-    year: "Primeiro",
-    course: "Química",
-    grade: 7.5,
-    occurrence: "Sim",
-  },
-  {
-    id: 2,
-    name: "Bruno",
-    year: "Segundo",
-    course: "Informática",
-    grade: 5.2,
-    occurrence: "Não",
-  },
-  {
-    id: 3,
-    name: "Carlos",
-    year: "Terceiro",
-    course: "Agropecuária",
-    grade: 8.0,
-    occurrence: "Sim",
-  },
-  
-]);
+const studentStore = useStudentStore();
 
-const courses = ref(["Agropecuária", "Informática", "Química"]);
+const students = ref([]);
+
+const courses = ref(["Todos os cursos", "Agropecuária", "Informática para Internet", "Química"]);
 const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");
@@ -46,18 +18,24 @@ const hasOccurrence = ref("");
 const filteredStudents = computed(() => {
   return students.value.filter((student) => {
     const matchesCourse =
-      !selectedCourse.value || student.course === selectedCourse.value;
+      selectedCourse.value === "Todos os cursos" || !selectedCourse.value ||
+      student.team.course.name === selectedCourse.value;
     const matchesYear =
-      !selectedYear.value || student.year === selectedYear.value;
+      !selectedYear.value ||
+      student.team.year === selectedYear.value;
     const matchesName =
       !nameFilter.value ||
       student.name.toLowerCase().includes(nameFilter.value.toLowerCase());
-    const matchesGrade =
+      const matchesGrade =
       !selectedGrade.value ||
-      (selectedGrade.value === "maior" && student.grade > 6) ||
-      (selectedGrade.value === "menor" && student.grade <= 6);
+      (selectedGrade.value === "maior" &&
+        student.grades.some((grade) => parseFloat(grade.grade) >= 6)) ||
+      (selectedGrade.value === "menor" &&
+        student.grades.every((grade) => parseFloat(grade.grade) < 6));
     const matchesOccurrence =
-      !hasOccurrence.value || student.occurrence === hasOccurrence.value;
+      !hasOccurrence.value ||
+      (hasOccurrence.value === "Sim" && student.occurrences.length > 0) ||
+      (hasOccurrence.value === "Não" && student.occurrences.length === 0);
 
     return (
       matchesCourse &&
@@ -68,44 +46,17 @@ const filteredStudents = computed(() => {
     );
   });
 });
-
-const applyFilters = () => {
-  console.log("Filtros aplicados", {
-    selectedCourse: selectedCourse.value,
-    selectedYear: selectedYear.value,
-    nameFilter: nameFilter.value,
-    selectedGrade: selectedGrade.value,
-    hasOccurrence: hasOccurrence.value,
-  });
-};
+onMounted(async () => {
+  await studentStore.fetchStudents();
+  students.value = studentStore.students;
+});
 </script>
 
 <template>
   <div class="page">
-    <div class="aside">
-      <AsideComponent/>
-    </div>
-    <main class="content">
-      <div class="user-info">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="User Avatar"
-          class="avatar"
-        />
-        <div class="info">
-          <h2>Oliver Calenbard</h2>
-          <p>Nupe</p>
-        </div>
-      </div>
-     
-        <div :class="{ dark: isDarkMode }" class="app">
-    <button @click="toggleDarkMode" class="toggle-button">
-      <span v-if="isDarkMode">🌙 Dark</span>
-      <span v-else>☀️ Light</span>
-    </button>
-  </div>
+    <main class="content">     
       <section class="management">
-        <h3>Gerenciamento Acadêmico</h3>
+        <h2>Gerenciamento Acadêmico</h2>
         <div class="fundo">
           <div class="filters">
             <select v-model="selectedCourse">
@@ -115,13 +66,13 @@ const applyFilters = () => {
               </option>
             </select>
 
-            <select v-model="selectedYear">
+            <select v-model.number="selectedYear">
               <option disabled value="">Ano</option>
-              <option v-for="year in years" :key="year" :value="year">
-                {{ year }}
-              </option>
+              <option value>Todos os anos</option>
+              <option value=1>Primeiro</option>
+              <option value=2>Segundo</option>
+              <option value=3>Terceiro</option>
             </select>
-
             <input
               v-model="nameFilter"
               type="text"
@@ -130,18 +81,18 @@ const applyFilters = () => {
             />
 
             <select v-model="selectedGrade">
-              <option disabled value="">Nota</option>
+              <option disabled value="">Média</option>
+              <option value="">Qualquer média</option>
               <option value="maior">Média maior que 6</option>
               <option value="menor">Média menor que 6</option>
             </select>
 
             <select v-model="hasOccurrence">
-              <option disabled value="">Ocorrência</option>
+              <option disabled value="">Ocorrências</option>
+              <option value="">Qualquer</option>
               <option value="Sim">Sim</option>
               <option value="Não">Não</option>
             </select>
-
-            <button @click="applyFilters" class="search-button">Buscar</button>
           </div>
         </div>
 
@@ -149,8 +100,9 @@ const applyFilters = () => {
           <div
             v-for="student in filteredStudents"
             :key="student.id"
-            class="result-card" >
-            <p>{{ student.name }}</p>
+            class="result-card"
+          >
+            <p>{{ student.name }} - {{ student.team.name }}</p>
             <button class="view-details">Ver</button>
           </div>
         </div>
@@ -160,9 +112,9 @@ const applyFilters = () => {
 </template>
 
 <style scoped>
-  .aside{
-    min-width: 240px;
-  }
+.aside {
+  min-width: 240px;
+}
 .page {
   display: flex;
   transition: background 0.3s, color 0.3s;
@@ -205,6 +157,7 @@ const applyFilters = () => {
 .content {
   flex: 1;
   padding: 20px;
+  margin-left: 250px;
 }
 
 .header {
@@ -220,7 +173,6 @@ const applyFilters = () => {
 }
 .info {
   margin-left: 5rem;
- 
 }
 .search {
   float: right;
@@ -232,16 +184,14 @@ const applyFilters = () => {
 .fundo {
   border-radius: 2rem;
   background-color: #c2bfbf1f;
-  padding: 2rem;
   width: 65rem;
 }
-option{
+option {
   background-color: #f8f5f521;
   color: black;
   border: none;
   border-radius: 20px;
 }
-
 
 .theme-toggle {
   position: fixed;
@@ -315,5 +265,9 @@ option{
 
 .toggle-button:hover {
   opacity: 0.8;
+}
+
+h2{
+  font-size: xx-large;
 }
 </style>

@@ -21,7 +21,19 @@ const router = createRouter({
       component: BlankLayout,
       meta: { requiresAuth: true },
       children: [
-     
+        {
+          path: '/historico', 
+          name: 'Histórico Conselhos',
+          component: detalhesConselhoView
+        },
+      ] 
+    },
+    {
+      path: '/',
+      name: 'fullLayout',
+      component: FullLayout,
+      meta: { requiresAuth: true },
+      children: [
         {
           path: '/gerenciamento', 
           name: 'Gerenciamento',
@@ -37,14 +49,6 @@ const router = createRouter({
           name: 'nupeconselho',
           component: nupeConselhoView
         },
-      ] 
-    },
-    {
-      path: '/',
-      name: 'fullLayout',
-      component: FullLayout,
-      meta: { requiresAuth: true },
-      children: [
       
         {
           path: '/login', 
@@ -69,11 +73,6 @@ const router = createRouter({
           name: 'Nova Senha',
           meta: { requiresAuth: false },
           component: novaSenhaView
-        },
-        {
-          path: '/historico', 
-          name: 'Histórico Conselhos',
-          component: detalhesConselhoView
         },
       
       ]

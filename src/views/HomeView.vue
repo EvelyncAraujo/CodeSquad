@@ -99,38 +99,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="main-container">
-    <div class="aside">
-      <AsideComponent />
-    </div>
     <main class="content">
-      <header class="header">
-        <div class="user-info">
-          <img
-            :src="userStore.user.photo.file"
-            alt="User Avatar"
-            class="avatar"
-          />
-          <div class="name">
-            <h2 class="name-user">{{ userStore.user.name }}</h2>
-            <p class="employee-function">{{ userStore.user.groups[0].name }}</p>
-          </div>
-        </div>
-        <div class="actions">
-          <input
-            type="text"
-            v-model="searchQuery"
-            placeholder="Pesquisar conselhos"
-            class="search-input"
-          />
-          <div :class="{ dark: isDarkMode }" class="app">
-    <button @click="toggleDarkMode" class="toggle-button">
-      <span v-if="isDarkMode">🌙 Dark</span>
-      <span v-else>☀️ Light</span>
-    </button>
-  </div>
-        </div>
-      </header>
       <!-- Recent Councils -->
       <section class="recent-councils">
         <h2>Conselhos recentes</h2>
@@ -159,7 +128,6 @@ onMounted(() => {
         </div>
       </section>
     </main>
-  </div>
 </template>
 <style scoped>
 
@@ -171,9 +139,6 @@ onMounted(() => {
 
 .aside {
   min-width: 240px;
-}
-.main-container {
-  display: flex;
 }
 
 /* Estilos principais */
@@ -213,32 +178,8 @@ onMounted(() => {
 .content {
   flex: 1;
   padding: 20px;
+  margin-left: 250px;
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.name-user {
-  text-align: right;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  margin: 0;
-  padding: 0%;
-  margin-left: 50px;
-}
-
-.avatar {
-  position: fixed;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
-
 .search-input {
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -335,12 +276,4 @@ option {
   margin-right: 1rem;
 }
 
-.employee-function{
-  margin: 0%;
-  padding: 0%;
-  font-size: 14px;
-  font-style: italic;
-  margin-top: 5px;
-  margin-left: 50px;
-}
 </style>

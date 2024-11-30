@@ -5,17 +5,8 @@
 <template>
 
   <RouterLink to="/home">
-       <div  class="back"> <mdicon name="arrow-left-drop-circle-outline" ></mdicon>
-            </div>
-           
-         
-        </RouterLink>
+       <div class="back"> <mdicon name="arrow-left-drop-circle-outline" ></mdicon></div></RouterLink>
   <h1>Conselho 1</h1>
-  <div class="header">
-
-
-  </div>
-
   <div class="content">
     <p class="data">
       <strong>Data:</strong> 26 de Junho de 2022

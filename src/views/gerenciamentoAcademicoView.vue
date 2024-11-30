@@ -84,28 +84,7 @@ const applyFilters = () => {
 
 <template>
   <div class="page">
-    <div class="aside">
-      <AsideComponent/>
-    </div>
-    <main class="content">
-      <div class="user-info">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="User Avatar"
-          class="avatar"
-        />
-        <div class="info">
-          <h2>Oliver Calenbard</h2>
-          <p>Nupe</p>
-        </div>
-      </div>
-     
-        <div :class="{ dark: isDarkMode }" class="app">
-    <button @click="toggleDarkMode" class="toggle-button">
-      <span v-if="isDarkMode">🌙 Dark</span>
-      <span v-else>☀️ Light</span>
-    </button>
-  </div>
+    <main class="content">     
       <section class="management">
         <h3>Gerenciamento Acadêmico</h3>
         <div class="fundo">
@@ -207,6 +186,7 @@ const applyFilters = () => {
 .content {
   flex: 1;
   padding: 20px;
+  margin-left: 250px;
 }
 
 .header {

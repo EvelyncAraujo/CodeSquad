@@ -1,10 +1,16 @@
 <script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue';
+import AsideComponent from '@/components/AsideComponent.vue';
 import { RouterView } from 'vue-router';
 </script>
 <template>
     <div class="container">
-        <HeaderComponent />
+        <div class="flex">
+            <div class="aside">
+                <AsideComponent />
+            </div>
+            <HeaderComponent />
+        </div>
         <div>
             <RouterView />
         </div>
@@ -14,5 +20,13 @@ import { RouterView } from 'vue-router';
 .container{
     min-width: 100%;
     min-height: 91vh;
+}
+
+.flex{
+    display: flex;
+}
+
+.aside{
+    min-width: 240px;
 }
 </style>

@@ -83,26 +83,27 @@ const inputs = ref([]);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 .verification-container {
   max-width: 300px;
-  margin: 0 auto;
+  margin-bottom: 150px;
   text-align: center;
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
+  background: #ffffff;
+  padding: 60px;
+  border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
 p {
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
+  margin-bottom:60px;
 }
 
 .code-inputs {
@@ -114,20 +115,20 @@ p {
 
 .code-inputs input {
   width: 40px;
-  height: 40px;
+  height: 50px;
   text-align: center;
   font-size: 18px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #000000;
+  border-radius: 6px;
 }
 
 button {
   width: 100%;
-  padding: 10px;
-  background-color: #ff6b6b;
+  padding: 18px;
+  background-color: #EA8983;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
@@ -140,7 +141,7 @@ button:disabled {
 
 .resend {
   font-size: 12px;
-  color: #999;
-  margin-bottom: 10px;
+  color: #000000;
+  margin-bottom: 50px;
 }
 </style>

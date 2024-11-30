@@ -1,17 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
-import loginPageView from '@/views/loginPageView.vue';
-import EsqueceuSenhaView from '@/views/EsqueceuSenhaView.vue';
-import codigoVerificacaoView from '@/views/codigoVerificacaoView.vue';
-import novaSenhaView from '@/views/novaSenhaView.vue';
-import HomeView from '@/views/HomeView.vue';
-import BlankLayout from '@/layouts/BlankLayout.vue';
-import FullLayout from '@/layouts/FullLayout.vue';
-import gerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
-import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
-import nupeConselhoView from '@/views/nupeConselhoView.vue';
-import conselhoView from '@/views/conselhoView.vue';
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,65 +7,77 @@ const router = createRouter({
     {
       path: '/',
       name: 'blankLayout',
-      component: BlankLayout,
-      meta: { requiresAuth: true },
+      component: () => import('@/layouts/BlankLayout.vue'),
+      meta: { 
+        requiresAuth: true 
+      },
       children: [
         {
-          path: '/historico', 
-          name: 'Histórico Conselhos',
-          component: detalhesConselhoView
+          path: '/council-detail', 
+          name: 'councilDetail',
+          component: () => import('@/views/CouncilDetailView.vue'),
         },
         {
           path: '/login', 
-          name: 'Login',
-          meta: { requiresAuth: false },
-          component: loginPageView,
+          name: 'login',
+          meta: { 
+            requiresAuth: false 
+          },
+          component: () => import('@/views/LoginView.vue'),
         },
         {
-          path: '/esquecer', 
-          name: 'EsqueceuSenha',
-          meta: { requiresAuth: false },
-          component: EsqueceuSenhaView
+          path: '/forgot-password', 
+          name: 'forgotPassword',
+          meta: { 
+            requiresAuth: false 
+          },
+          component: () => import('@/views/ForgotPasswordView.vue'),
         },
         {
-          path: '/verificacao', 
-          name: 'CodVerificação',
-          meta: { requiresAuth: false },
-          component: codigoVerificacaoView
+          path: '/verification', 
+          name: 'verification',
+          meta: { 
+            requiresAuth: false 
+          },
+          component: () => import('@/views/VerificationView.vue'),
         },
         {
-          path: '/recuperacao', 
-          name: 'Nova Senha',
-          meta: { requiresAuth: false },
-          component: novaSenhaView
+          path: '/recovery', 
+          name: 'recovery',
+          meta: { 
+            requiresAuth: false 
+          },
+          component: () => import('@/views/RecoveryView.vue'),
         },
       ] 
     },
     {
       path: '/',
       name: 'fullLayout',
-      component: FullLayout,
-      meta: { requiresAuth: true },
+      component: () => import('@/layouts/FullLayout.vue'),
+      meta: { 
+        requiresAuth: true 
+      },
       children: [
         {
-          path: '/gerenciamento', 
-          name: 'Gerenciamento',
-          component: gerenciamentoAcademicoView
+          path: '/academic-management', 
+          name: 'academicManagement',
+          component: () => import('@/views/AcademicManagementView.vue'),
         },
         {
           path: '/home', 
-          name: 'Página principal',
-          component: HomeView
+          name: 'home',
+          component: () => import('@/views/HomeView.vue'),
         },
         {
-          path: '/conselhoNupe', 
-          name: 'nupeconselho',
-          component: nupeConselhoView
+          path: '/student', 
+          name: 'student',
+          component: () => import('@/views/StudentView.vue'),
         },
         {
-          path: '/conselho', 
-          name: 'conselho',
-          component: conselhoView
+          path: '/council', 
+          name: 'council',
+          component: () => import('@/views/CouncilView.vue'),
         },
       ] 
     },

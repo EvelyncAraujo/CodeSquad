@@ -21,7 +21,6 @@ const advices = ref([
   "Conselho 5",
 ]);
 </script>
-
 <template>
   <div class="dashboard">
     <header class="header">
@@ -32,11 +31,7 @@ const advices = ref([
     </header>
 
     <section class="user-profile">
-      <img
-        class="avatar"
-        src="https://via.placeholder.com/80"
-        alt="User Avatar"
-      />
+      <img class="avatar" src="https://via.placeholder.com/80" alt="User Avatar" />
       <h2>Oliver Calenbard</h2>
       <p>2023443567</p>
       <button class="add-button">+</button>
@@ -46,14 +41,15 @@ const advices = ref([
       <h3>Últimos registros</h3>
       <div class="records-table">
         <div class="record" v-for="record in lastRecords" :key="record.date">
-          <div class="back"><mdicon name="notebook-outline" style="color: white;"></mdicon></div>
+          <div class="back">
+            <mdicon name="notebook-outline" style="color: white;"></mdicon>
+          </div>
           <span class="text">{{ record.title }}</span>
           <span class="date">{{ record.date }}</span>
         </div>
       </div>
     </section>
 
-    <!-- Notas Parciais -->
     <section class="partial-grades">
       <h3>Notas parciais</h3>
       <div class="grades-table">
@@ -64,7 +60,6 @@ const advices = ref([
       </div>
     </section>
 
-    <!-- Conselhos -->
     <section class="advice-section">
       <h3>Conselhos</h3>
       <div class="advice-buttons">
@@ -77,7 +72,6 @@ const advices = ref([
 </template>
 
 <style scoped>
-
 .back {
   font-size: 2rem;
   display: flex;
@@ -91,14 +85,12 @@ const advices = ref([
   margin-top: 2px;
 }
 
-/* Global Dashboard Styling */
 .dashboard {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #f9f9f9;
 }
 
-/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -118,7 +110,6 @@ const advices = ref([
   cursor: pointer;
 }
 
-/* User Profile */
 .user-profile {
   text-align: center;
   margin-bottom: 30px;
@@ -142,7 +133,6 @@ const advices = ref([
   cursor: pointer;
 }
 
-/* Sections Styling */
 section {
   margin-bottom: 30px;
 }
@@ -152,7 +142,6 @@ h3 {
   margin-bottom: 10px;
 }
 
-/* Últimos Registros */
 .records-table {
   display: flex;
   flex-wrap: wrap;
@@ -176,7 +165,6 @@ h3 {
   margin-left: auto;
 }
 
-/* Notas Parciais */
 .grades-table {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -191,7 +179,6 @@ h3 {
   border-radius: 10px;
 }
 
-/* Conselhos */
 .advice-buttons {
   display: flex;
   flex-wrap: wrap;

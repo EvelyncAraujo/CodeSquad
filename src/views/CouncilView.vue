@@ -1,7 +1,6 @@
 <script setup>
 import AsideComponent from "@/components/AsideComponent.vue";
 </script>
-
 <template>
   <div class="page">
     <div class="aside">
@@ -19,16 +18,16 @@ import AsideComponent from "@/components/AsideComponent.vue";
       </div>
     </div>
 
-      <div class="dropdown2">
-        <button class="dropbtn">
-          Dropdown <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content2">
-          <a href="#">1 ano</a>
-          <a href="#">2 ano</a>
-          <a href="#">3 ano</a>
-        </div>
+    <div class="dropdown2">
+      <button class="dropbtn">
+        Dropdown <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content2">
+        <a href="#">1 ano</a>
+        <a href="#">2 ano</a>
+        <a href="#">3 ano</a>
       </div>
+    </div>
     <button @click="applyFilters" class="search-button">Buscar</button>
   </div>
 
@@ -49,6 +48,7 @@ h3 {
   /* margin-left: 50rem;
   margin-top: 15rem; */
 }
+
 .dropdownContainer {
   width: 100%;
   display: flex;
@@ -58,7 +58,8 @@ h3 {
   /* border: 1px solid black; */
   gap: 2rem;
 }
-.dropdown1 .dropdown2{
+
+.dropdown1 .dropdown2 {
   position: relative;
   display: flex;
   gap: 2rem;

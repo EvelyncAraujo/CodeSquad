@@ -1,7 +1,5 @@
 <script setup>
 import { ref, computed } from "vue";
-
-
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -11,15 +9,6 @@ const confirmPassword = ref("");
 
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
-
-
-const toggleShowPassword = () => {
-  showPassword.value = !showPassword.value;
-};
-
-const toggleShowConfirmPassword = () => {
-  showConfirmPassword.value = !showConfirmPassword.value;
-};
 
 const isFormValid = computed(() => {
   return (
@@ -59,11 +48,7 @@ function submitCode() {
         <div class="input-group">
           <label for="password">Senha</label>
           <div class="password-input">
-            <input
-              id="password"
-              :type="showPassword ? 'text' : 'password'"
-              v-model="password"
-            />
+            <input id="password" :type="showPassword ? 'text' : 'password'" v-model="password" />
             <div>
               <button type="button" @click="() => showPassword = !showPassword">
                 <mdicon v-if="!showPassword" name="eye-off-outline"></mdicon>
@@ -75,22 +60,14 @@ function submitCode() {
         <div class="input-group">
           <label for="confirm-password">Confirme a senha</label>
           <div class="password-input">
-            <input
-              id="confirm-password"
-              :type="showConfirmPassword ? 'text' : 'password'"
-              v-model="confirmPassword"
-            />
+            <input id="confirm-password" :type="showConfirmPassword ? 'text' : 'password'" v-model="confirmPassword" />
             <button type="button" @click="() => showConfirmPassword = !showConfirmPassword">
               <mdicon v-if="!showConfirmPassword" name="eye-off-outline"></mdicon>
               <mdicon v-if="showConfirmPassword" name="eye-outline"></mdicon>
             </button>
           </div>
         </div>
-        <button
-          :disabled="!isFormValid"
-          @click="changePassword"
-          class="submit-button"
-        >
+        <button :disabled="!isFormValid" @click="changePassword" class="submit-button">
           Mudar senha
         </button>
       </div>
@@ -103,20 +80,13 @@ function submitCode() {
             <div class="checkmark"></div>
           </div>
         </div>
-        <p class="p">Senha atualizada <br>  com sucesso!</p>
+        <p class="p">Senha atualizada <br> com sucesso!</p>
         <button class="submit-button" @click="submitCode">Prosseguir</button>
       </div>
     </transition>
   </div>
 </template>
-
-           
-
-  
-          
 <style scoped>
-/* Estilo geral */
-
 .container {
   display: flex;
   justify-content: center;
@@ -124,25 +94,25 @@ function submitCode() {
   background-color: #ffffff;
 }
 
-/* Página de redefinição de senha */
 .reset-password-container {
   background: #ffffff;
   padding: 80px;
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 150px;
- 
+
 }
 
 h2 {
   font-size: 24px;
   margin-bottom: 40px;
-  margin-left:40px;
+  margin-left: 40px;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
-.p{
+
+.p {
   margin-top: 80px;
   margin-bottom: 40px;
   margin-left: 60px;
@@ -150,6 +120,7 @@ h2 {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
 }
+
 .input-group {
   margin-bottom: 25px;
   text-align: left;
@@ -203,7 +174,6 @@ label {
   cursor: not-allowed;
 }
 
-/* Página de sucesso */
 .success-container {
   background: #ffffff;
   padding: 40px;
@@ -228,8 +198,8 @@ label {
   justify-content: center;
   align-items: center;
   position: relative;
- 
- 
+
+
 }
 
 .checkmark {
@@ -241,11 +211,11 @@ label {
   position: absolute;
 }
 
-/* Animação */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

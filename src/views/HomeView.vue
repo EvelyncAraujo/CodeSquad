@@ -1,66 +1,54 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useUserStore } from "@/stores/user";
 import { useCouncilStore } from "@/stores/council";
 import { onMounted } from "vue";
 
-
-// Controle do modo escuro
 const isDarkMode = ref(false);
 const councilStore = useCouncilStore();
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };
 
-const colors = ["#E2AED2", "#EA8C8C", "#F2866C", "#F06A45", "#A2D5C6"];
-
 const selectedFilter = ref("");
 
 const filteredCouncils = computed(() => {
   if (selectedFilter.value === "") {
     return councilStore.councils;
-  }  
+  }
   console.log(selectedFilter.value);
   return councilStore.councils.filter(
     (council) => council.trimester === selectedFilter.value
   );
 });
 
-onMounted(async() => {
+onMounted(async () => {
   await councilStore.fetchCouncils();
 });
 </script>
-
 <template>
-    <main class="content">
-      <!-- Recent Councils -->
-      <section class="recent-councils">
-        <h2>Conselhos</h2>
-        <div class="filters">
-          <label for="filter" class="filter">Filtrar por:</label>
-          <select v-model.number="selectedFilter">
-            <option value="" disabled selected>Selecione o trimestre</option>
-            <option value="" >Todos os trimestres</option>
-            <option value=1>Primeiro trimestre</option>
-            <option value=2>Segundo trimestre</option>
-            <option value=3>Terceiro trimestre</option>
-          </select>
+  <main class="content">
+    <section class="recent-councils">
+      <h2>Conselhos</h2>
+      <div class="filters">
+        <label for="filter" class="filter">Filtrar por:</label>
+        <select v-model.number="selectedFilter">
+          <option value="" disabled selected>Selecione o trimestre</option>
+          <option value="">Todos os trimestres</option>
+          <option value=1>Primeiro trimestre</option>
+          <option value=2>Segundo trimestre</option>
+          <option value=3>Terceiro trimestre</option>
+        </select>
+      </div>
+      <div class="council-cards">
+        <div v-for="council in filteredCouncils" :key="council.id" class="council-card">
+          <h1>{{ council.team.name }}</h1>
+          <p>Ocorreu em: {{ council.date }}</p>
+          <p>{{ council.trimester }}° Trimestre</p>
+          <RouterLink to="/council-detail"><button class="view-details">Ver</button></RouterLink>
         </div>
-        <div class="council-cards">
-          <div
-            v-for="(council, index) in filteredCouncils"
-            :key="council.id"
-            class="council-card"
-            :style="{ backgroundColor: colors[index % colors.length] }"
-            >
-            <h1>{{ council.team.name }}</h1>
-            <p>Ocorreu em: {{ council.date }}</p>
-            <p>{{ council.trimester }}° Trimestre</p>
-            <RouterLink to="/historico"><button class="view-details">Ver</button></RouterLink>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -75,12 +63,10 @@ onMounted(async() => {
   grid-template-rows: 200px auto;
   grid-template-areas:
     "aside header"
-    "aside content"
-  ;
-
+    "aside content";
 }
 
-.filter{
+.filter {
   margin-right: 10px
 }
 
@@ -102,7 +88,6 @@ onMounted(async() => {
   color: #ffffff;
 }
 
-/* Posicionamento no canto */
 .switch-container {
   position: fixed;
   top: 20px;
@@ -111,7 +96,6 @@ onMounted(async() => {
   align-items: center;
 }
 
-/* Estilo do switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -166,7 +150,6 @@ input:checked+.slider:before {
   transform: translateX(26px);
 }
 
-/* Modo escuro para o body */
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
@@ -176,13 +159,11 @@ body.dark-mode {
   min-width: 240px;
 }
 
-/* Estilos principais */
 .dashboard {
   display: flex;
   transition: background 0.3s, color 0.3s;
 }
 
-/* Modos claro e escuro */
 .light {
   background: #faf9f9;
   color: #333;
@@ -209,12 +190,12 @@ body.dark-mode {
   line-height: 35px;
 }
 
-/* Conteúdo principal */
 .content {
   flex: 1;
   padding: 20px;
   margin-left: 250px;
 }
+
 .search-input {
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -245,7 +226,7 @@ body.dark-mode {
 .toggle-button:hover {
   opacity: 0.8;
 }
-/* Conselhos Recentes */
+
 .recent-councils h2 {
   margin-bottom: 1rem;
   font-size: xx-large;
@@ -267,6 +248,30 @@ body.dark-mode {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s;
+}
+
+.council-card:nth-child(6n+1) {
+  background-color: #E2AED2;
+}
+
+.council-card:nth-child(6n+2) {
+  background-color: #EA8C8C;
+}
+
+.council-card:nth-child(6n+3) {
+  background-color: #F2866C;
+}
+
+.council-card:nth-child(6n+4) {
+  background-color: #F06A45;
+}
+
+.council-card:nth-child(6n+5) {
+  background-color: #A2D5C6;
+}
+
+.council-card:nth-child(6n+6) {
+  background-color: #F4A261;
 }
 
 .council-card:hover {
@@ -304,7 +309,7 @@ option {
   border-radius: 20px;
 }
 
-.date{
+.date {
   padding: 10px 20px;
   border: 1px solid rgb(235, 230, 230);
   background-color: #f9f9f9;
@@ -312,5 +317,4 @@ option {
   border-radius: 20px;
   margin-right: 1rem;
 }
-
 </style>

@@ -4,6 +4,7 @@ import { useUserStore } from "@/stores/user";
 import { useCouncilStore } from "@/stores/council";
 import { onMounted } from "vue";
 
+
 // Controle do modo escuro
 const isDarkMode = ref(false);
 const councilStore = useCouncilStore();
@@ -13,14 +14,13 @@ const toggleDarkMode = () => {
 
 const colors = ["#E2AED2", "#EA8C8C", "#F2866C", "#F06A45", "#A2D5C6"];
 
-// Estado para a pesquisa e filtro
 const searchQuery = ref("");
 const selectedFilter = ref("");
 const selectedDate = ref();
 
-// Computed para filtrar conselhos
+
 const filteredCouncils = computed(() => {
-  if (!selectedFilter.value) {
+  if (selectedFilter.value === "") {
     return councilStore.councils;
   }  
   console.log(selectedFilter.value);
@@ -43,6 +43,7 @@ onMounted(async() => {
           <label for="filter">Filtrar por:</label>
           <select v-model.number="selectedFilter">
             <option value="" disabled selected>Selecione o trimestre</option>
+            <option value="" >Todos os trimestres</option>
             <option value=1>Primeiro trimestre</option>
             <option value=2>Segundo trimestre</option>
             <option value=3>Terceiro trimestre</option>
@@ -66,11 +67,109 @@ onMounted(async() => {
     </main>
 </template>
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
-  font-family: 'Poppins', sans-serif;
+.container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 200px auto;
+  grid-template-areas:
+    "aside header"
+    "aside content"
+  ;
+
+}
+
+.aside {
+  grid-area: aside;
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: content;
+}
+
+
+.container.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Posicionamento no canto */
+.switch-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo do switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.slider .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+input:checked+.slider {
+  background-color: #2196f3;
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+/* Modo escuro para o body */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
 }
 
 .aside {
@@ -183,10 +282,11 @@ onMounted(async() => {
   cursor: pointer;
 }
 
+/*.employee-function {
 .filters label {
   margin-right: 1rem;
 }
-
+*/
 .filters select {
   padding: 10px 20px;
   border: 1px solid rgb(235, 230, 230);

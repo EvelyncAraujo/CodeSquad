@@ -103,7 +103,7 @@ function submitCode() {
             <div class="checkmark"></div>
           </div>
         </div>
-        <p>Senha atualizada com sucesso!</p>
+        <p class="p">Senha atualizada <br>  com sucesso!</p>
         <button class="submit-button" @click="submitCode">Prosseguir</button>
       </div>
     </transition>
@@ -121,24 +121,37 @@ function submitCode() {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 /* Página de redefinição de senha */
 .reset-password-container {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
+  background: #ffffff;
+  padding: 80px;
+  border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 150px;
+ 
 }
 
 h2 {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 40px;
+  margin-left:5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
-
+.p{
+  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-left: 60px;
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   text-align: left;
 }
 
@@ -146,16 +159,16 @@ label {
   display: block;
   font-size: 14px;
   margin-bottom: 5px;
-  color: #666;
+  color: #000000;
 }
 
 .password-input {
   display: flex;
   align-items: center;
   gap: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px 10px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 12px 10px;
 }
 
 .password-input input {
@@ -173,15 +186,16 @@ label {
 }
 
 .submit-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #ff6b6b;
+  width: 350px;
+  padding: 18px;
+  background-color: #EA8983;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .submit-button:disabled {
@@ -191,10 +205,11 @@ label {
 
 /* Página de sucesso */
 .success-container {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 200px;
 }
 
 .success-icon {
@@ -205,19 +220,21 @@ label {
 }
 
 .circle {
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   background: #a0d995;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+ 
+ 
 }
 
 .checkmark {
-  width: 20px;
-  height: 10px;
+  width: 40px;
+  height: 15px;
   border-left: 3px solid white;
   border-bottom: 3px solid white;
   transform: rotate(-45deg);

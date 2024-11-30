@@ -107,7 +107,7 @@ button {
   padding: 22px ;
   border: none;
   border-radius: 30px;
-  font-size: 12px;
+  font-size: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: "Poppins", sans-serif;

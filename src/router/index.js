@@ -10,6 +10,7 @@ import FullLayout from '@/layouts/FullLayout.vue';
 import gerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
 import nupeConselhoView from '@/views/nupeConselhoView.vue';
+import conselhoView from '@/views/conselhoView.vue';
 
 
 const router = createRouter({
@@ -26,30 +27,6 @@ const router = createRouter({
           name: 'Histórico Conselhos',
           component: detalhesConselhoView
         },
-      ] 
-    },
-    {
-      path: '/',
-      name: 'fullLayout',
-      component: FullLayout,
-      meta: { requiresAuth: true },
-      children: [
-        {
-          path: '/gerenciamento', 
-          name: 'Gerenciamento',
-          component: gerenciamentoAcademicoView
-        },
-        {
-          path: '/home', 
-          name: 'Página principal',
-          component: HomeView
-        },
-        {
-          path: '/conselhoNupe', 
-          name: 'nupeconselho',
-          component: nupeConselhoView
-        },
-      
         {
           path: '/login', 
           name: 'Login',
@@ -74,8 +51,35 @@ const router = createRouter({
           meta: { requiresAuth: false },
           component: novaSenhaView
         },
-      
-      ]
+      ] 
+    },
+    {
+      path: '/',
+      name: 'fullLayout',
+      component: FullLayout,
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: '/gerenciamento', 
+          name: 'Gerenciamento',
+          component: gerenciamentoAcademicoView
+        },
+        {
+          path: '/home', 
+          name: 'Página principal',
+          component: HomeView
+        },
+        {
+          path: '/conselhoNupe', 
+          name: 'nupeconselho',
+          component: nupeConselhoView
+        },
+        {
+          path: '/conselho', 
+          name: 'conselho',
+          component: conselhoView
+        },
+      ] 
     },
   ],
 });

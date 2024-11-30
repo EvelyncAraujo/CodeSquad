@@ -1,10 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useUserStore } from "@/stores/user";
-import AsideComponent from '@/components/AsideComponent.vue'
-
 const isDarkMode = ref(false);
-const userStore = useUserStore();
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
 };
@@ -33,7 +29,6 @@ const students = ref([
     grade: 8.0,
     occurrence: "Sim",
   },
-  
 ]);
 
 const courses = ref(["Agropecuária", "Informática", "Química"]);
@@ -130,7 +125,8 @@ const applyFilters = () => {
           <div
             v-for="student in filteredStudents"
             :key="student.id"
-            class="result-card" >
+            class="result-card"
+          >
             <p>{{ student.name }}</p>
             <button class="view-details">Ver</button>
           </div>
@@ -141,9 +137,9 @@ const applyFilters = () => {
 </template>
 
 <style scoped>
-  .aside{
-    min-width: 240px;
-  }
+.aside {
+  min-width: 240px;
+}
 .page {
   display: flex;
   transition: background 0.3s, color 0.3s;
@@ -202,7 +198,6 @@ const applyFilters = () => {
 }
 .info {
   margin-left: 5rem;
- 
 }
 .search {
   float: right;
@@ -217,13 +212,12 @@ const applyFilters = () => {
   padding: 2rem;
   width: 65rem;
 }
-option{
+option {
   background-color: #f8f5f521;
   color: black;
   border: none;
   border-radius: 20px;
 }
-
 
 .theme-toggle {
   position: fixed;

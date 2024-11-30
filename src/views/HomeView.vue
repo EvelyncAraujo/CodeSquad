@@ -121,9 +121,12 @@ onMounted(() => {
             placeholder="Pesquisar conselhos"
             class="search-input"
           />
-          <button @click="toggleDarkMode" class="theme-toggle">
-            {{ isDarkMode ? "Light" : "Dark" }}
-          </button>
+          <div :class="{ dark: isDarkMode }" class="app">
+    <button @click="toggleDarkMode" class="toggle-button">
+      <span v-if="isDarkMode">🌙 Dark</span>
+      <span v-else>☀️ Light</span>
+    </button>
+  </div>
         </div>
       </header>
       <!-- Recent Councils -->
@@ -241,14 +244,29 @@ onMounted(() => {
 }
 
 .theme-toggle {
+  position: fixed;
+  margin-left: 85rem;
   background: #007bff;
   color: white;
   border: none;
   border-radius: 20px;
   padding: 5px 15px;
-  cursor: pointer;
 }
 
+/* .toggle-button {
+  margin-left: 80rem;
+  padding: 5px 15px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background: #f0f0f0;
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
+} */
+
+.toggle-button:hover {
+  opacity: 0.8;
+}
 /* Conselhos Recentes */
 .recent-councils h2 {
   margin-bottom: 1rem;

@@ -81,10 +81,19 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   const authStore = useAuthStore()
   if (to.meta.requiresAuth && !authStore.loggedIn) {
-    next({ path: '/login' })
+    if(localStorage.getItem('refresh_auth_token') !== null){
+        const response = await authStore.setRefreshToken({ "refresh": localStorage.getItem('refresh_auth_token')})        
+        if(response === 200){
+            next()
+      } else{
+        next({ path: '/login' })
+      }
+    } else {
+      next({ path: '/login' })
+    }
   } else {
     next()
   }

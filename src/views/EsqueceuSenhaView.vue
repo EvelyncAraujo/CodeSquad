@@ -21,8 +21,9 @@ function enviarCodigo() {
 <template>
   <div class="container">
     <div class="card">
-      <h2>Esqueceu a senha?</h2>
-      <p>Digite o email que será enviado o código de verificação</p>
+      <h2>Esqueceu a senha</h2>
+      <p>Selecione quais detalhes de contato <br>
+        devemos usar para redefinir sua senha </p>
       <div class="input-container">
         <input class="option" placeholder="Digite seu email"></input>
       
@@ -39,11 +40,11 @@ function enviarCodigo() {
 }
 
 .container {
- 
+ margin-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 .card {
@@ -51,9 +52,9 @@ function enviarCodigo() {
   width: 100%;
   max-width: 360px;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  padding: 50px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -61,27 +62,27 @@ function enviarCodigo() {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 28px;
   color: #333;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
 }
 
 p {
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
-  margin-bottom: 24px;
+  margin-bottom: 60px;
 }
 
 .option {
   display: flex;
   align-items: center;
-  background: #fdf5f5;
-  border: 1px solid #f8d7da;
+  background: #ffffff;
+  border: 1px solid #000000;
   border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 24px;
+  padding: 20px;
+  margin-bottom: 60px;
   width: 87%;
-  padding-left: 40px;
+  padding-left: 18px;
   
  
 }
@@ -106,11 +107,11 @@ button {
   padding: 22px ;
   border: none;
   border-radius: 30px;
-  font-size: 12px;
+  font-size: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   font-style: normal;
 }
 

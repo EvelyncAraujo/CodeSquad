@@ -46,6 +46,12 @@ const logIn = async () => {
     })
   }
 }
+document.addEventListener("keypress",async(e)=>{
+ if (e.key=== 'Enter') {
+  await logIn()
+ }
+})
+
 </script>
 
 <template>
@@ -103,12 +109,16 @@ h2 {
   color: #333;
   margin-bottom: 12px;
   font-family: Arial, Helvetica, sans-serif;
+  margin-left: 20px;
+  
 }
 
 p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 24px;
+  margin-bottom: 60px;
+  margin-left: 20px;
+
 }
 
 /* Container principal */
@@ -118,12 +128,13 @@ p {
   font-family: Arial, sans-serif;
   width: 70%;
   color: #333;
+  margin-bottom: 300px;
 }
 
 /* Grupo de inputs */
 .input-group {
   max-width: 70%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 50px;
 }
 
@@ -133,6 +144,7 @@ label {
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 14px;
+  margin-left: 70px;
 }
 
 /* Wrapper do input com ícones */
@@ -143,12 +155,13 @@ label {
 }
 
 input {
-  width: 100%;
-  padding: 10px;
+  width: 60%;
+  padding: 20px;
   border: 2px solid #000;
   border-radius: 10px;
   font-size: 14px;
   outline: none;
+  margin-left: 60px;
 }
 
 input:focus {
@@ -160,8 +173,8 @@ input:focus {
   color: rgb(149, 218, 116);
   background: none;
   position: absolute;
-  right: 12px;
-  bottom: 8px;
+  right: 30px;
+  bottom: 16px;
   font-size: 16px;
   cursor: pointer;
 }
@@ -171,10 +184,11 @@ input:focus {
   background: none;
   border: none;
   position: absolute;
-  right: 12px;
+  right: 90px;
   font-size: 16px;
   cursor: pointer;
-  color: #666;
+  color: #000000;
+  margin-top: 3px;
 }
 
 /* Estilo do link "Esqueceu sua senha?" */
@@ -183,7 +197,10 @@ input:focus {
   margin-top: 8px;
   font-size: 12px;
   text-decoration: none;
-  color: #007bff;
+  color: #070707;
+  margin-left: 245px;
+  margin-bottom: 30px;
+ 
 }
 
 .forgot-password:hover {
@@ -192,17 +209,18 @@ input:focus {
 
 /* Botão de login */
 .login-button {
-  background-color: #ff6b6b;
+  background-color: #EA8983;
   color: white;
   justify-content: center;
   align-items: center;
-  padding: 15px 30px;
+  padding: 20px 145px;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left:50px;
 }
 
 .login-button:disabled {
@@ -261,6 +279,7 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 200px;
 }
 
 .img2 {

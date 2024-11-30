@@ -3,8 +3,10 @@ import AsideComponent from "@/components/AsideComponent.vue";
 </script>
 
 <template>
+   
   <div class="containercomp">
   <div class="dropdownContainer">
+    <h2>Conselhos</h2>
     <div class="dropdown">
       <button class="dropbtn">
         Agropecuária <i class="fa fa-caret-down"></i>
@@ -15,7 +17,7 @@ import AsideComponent from "@/components/AsideComponent.vue";
         <a href="#">Química</a>
       </div>
     </div>
-
+   
     <div class="dropdown">
       <button class="dropbtn">
         Primeiro <i class="fa fa-caret-down"></i>
@@ -33,6 +35,14 @@ import AsideComponent from "@/components/AsideComponent.vue";
 </template>
 
 <style scoped>
+h2{
+  margin-bottom: 900px;
+  margin-right: 780px;
+  margin-top: 200px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
 .containercomp{
    border-radius: 10rem;
   padding: 2px;
@@ -40,12 +50,14 @@ import AsideComponent from "@/components/AsideComponent.vue";
   margin-left: 5rem;
 }
 .dropdownContainer {
-  width: 100%;
+  position: relative;
+  margin-bottom: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
   height: 50vh;
+  margin-right: 900px;
 }
 
 .dropbtn {

@@ -9,6 +9,7 @@ import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
 import gerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
+import nupeConselhoView from '@/views/nupeConselhoView.vue';
 
 
 const router = createRouter({
@@ -27,9 +28,14 @@ const router = createRouter({
           component: gerenciamentoAcademicoView
         },
         {
-          path: '/home', // Corrigido: adicionada a barra no início
+          path: '/home', 
           name: 'Página principal',
           component: HomeView
+        },
+        {
+          path: '/conselhoNupe', 
+          name: 'nupeconselho',
+          component: nupeConselhoView
         },
       ] 
     },

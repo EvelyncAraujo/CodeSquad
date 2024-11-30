@@ -104,8 +104,8 @@ const filteredCouncils = computed(() => {
             class="avatar"
           />
           <div class="name">
-            <h2>Oliver Calenbard</h2>
-            <p>Nupe</p>
+            <h2 class="name-user">Oliver Calenbard</h2>
+            <p class="employee-function">Nupe</p>
           </div>
         </div>
         <div class="actions">
@@ -153,6 +153,13 @@ const filteredCouncils = computed(() => {
   </div>
 </template>
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
 .aside {
   min-width: 240px;
 }
@@ -178,7 +185,8 @@ const filteredCouncils = computed(() => {
 }
 
 .name {
-  margin-left: 5rem;
+  margin: 0%;
+  padding: 0%;
 }
 
 .menu {
@@ -204,8 +212,15 @@ const filteredCouncils = computed(() => {
   align-items: center;
   margin-bottom: 20px;
 }
-.h2 {
+
+.name-user {
   text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  padding: 0%;
+  margin-left: 50px;
 }
 
 .avatar {
@@ -218,7 +233,6 @@ const filteredCouncils = computed(() => {
 .search-input {
   border: 1px solid #ccc;
   border-radius: 20px;
-
   width: 250px;
 }
 
@@ -266,5 +280,14 @@ const filteredCouncils = computed(() => {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.employee-function{
+  margin: 0%;
+  padding: 0%;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 5px;
+  margin-left: 50px;
 }
 </style>

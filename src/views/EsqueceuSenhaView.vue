@@ -21,13 +21,11 @@ function enviarCodigo() {
 <template>
   <div class="container">
     <div class="card">
-      <h2>Esqueceu a senha</h2>
-      <p>Selecione quais detalhes de contato <br>
- devemos usar para redefinir sua senha</p>
+      <h2>Esqueceu a senha?</h2>
+      <p>Digite o email que será enviado o código de verificação</p>
       <div class="input-container">
-        <input class="option" placeholder="Digite seu email">
-        </input>
-        <mdicon class="email" name="email-outline"></mdicon>
+        <input class="option" placeholder="Digite seu email"></input>
+      
       </div>
       <button @click="enviarCodigo">Enviar código</button>
     </div>
@@ -37,60 +35,64 @@ function enviarCodigo() {
 <style scoped>
 .input-container{
   position: relative;
+  
 }
 
 .container {
+ 
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: #f9f9f9;
 }
 
 .card {
+  margin-bottom: 300px;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding:50px;
+  padding: 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+ 
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 24px;
   color: #333;
-  margin-bottom: 2px;
+  margin-bottom: 12px;
 }
 
 p {
-  font-size: 20px;
+  font-size: 14px;
   color: #555;
-  margin-bottom: 60px;
+  margin-bottom: 24px;
 }
 
 .option {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #000000;
+  background: #fdf5f5;
+  border: 1px solid #f8d7da;
   border-radius: 8px;
-  padding: 30px 12px;
-  margin-bottom:50px;
+  padding: 12px;
+  margin-bottom: 24px;
   width: 87%;
   padding-left: 40px;
+  
+ 
 }
 
 .email{
   position: absolute;
-  font-size: 8px;
+  font-size: 12px;
   color: #888;
   top: 8px;
   left: 10px;
-  color: #000000;
+  color: #f36b6b;
 }
 
 .details {
@@ -99,17 +101,20 @@ p {
 
 button {
   width: 100%;
-  background: #f36b6b;
+  background: #EA8983;
   color: white;
-  padding: 12px;
+  padding: 22px ;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 30px;
+  font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
 button:hover {
-  background: #e55959;
+  background: #e6908b;
 }
 </style>

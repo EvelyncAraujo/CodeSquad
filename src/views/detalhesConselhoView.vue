@@ -1,11 +1,15 @@
 <script setup>
-// Nenhuma lógica é necessária neste exemplo, apenas a estrutura da página.
+
 </script>
 
 <template>
-  <div class="back">
-    <mdicon name="arrow-left-drop-circle-outline"></mdicon>
-  </div>
+
+  <RouterLink to="/home">
+       <div  class="back"> <mdicon name="arrow-left-drop-circle-outline" ></mdicon>
+            </div>
+           
+         
+        </RouterLink>
   <h1>Conselho 1</h1>
   <div class="header">
 
@@ -19,7 +23,16 @@
 
     <div class="section">
       <h2>Decisões:</h2>
-      <p>
+      <p >
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text
+        ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text
         ever since the 1500s, when an unknown printer took a galley of type
@@ -35,6 +48,15 @@
     <div class="section">
       <h2>Observações:</h2>
       <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text
+        ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text
         ever since the 1500s, when an unknown printer took a galley of type
@@ -85,6 +107,7 @@
 .data {
   font-size: 16px;
   margin-bottom: 20px;
+
 }
 
 .section {
@@ -94,7 +117,7 @@
 .section h2 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #444;
+  color: #fd7c31;
 }
 
 .section p {
@@ -105,8 +128,46 @@
 
 p,
 h2 {
-  padding: 0px 100px 0px 100px;
+  padding: 0px 150px 0px 150px;
 }
 
-h1 {}
+h1 {
+   text-align: center;
+   margin: 0;
+   font-size: 2rem; /* Ajuste do tamanho da fonte */
+}
+
+/* Ajustar o contêiner da barra de título */
+.title {
+   display: flex;
+   align-items: center;
+   justify-content:space-between; /* Coloca o botão e o título em extremos */
+   padding: 10px 20px; /* Ajusta o espaçamento */
+}
+
+
+/* Estilizar o botão */
+.back {
+   
+   font-size: 2rem; /* Ajusta o tamanho do ícone */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 48px; /* Largura do botão */
+   height: 48px; /* Altura do botão */
+   background-color: #f0f0f0; /* Cor de fundo */
+   border-radius: 50%; /* Faz um botão circular */
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
+   margin-left: 50px;
+
+   cursor: pointer; /* Define o cursor para um "pontinho de interrogação" */
+  margin-top: 2px;
+}
+
+
+/* Adiciona um efeito ao passar o mouse */
+.back:hover {
+   background-color: #e0e0e0;
+}
 </style>
+

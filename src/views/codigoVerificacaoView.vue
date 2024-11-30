@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 import { useRouter } from 'vue-router';
 
@@ -83,7 +83,6 @@ const inputs = ref([]);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: #f9f9f9;
 }
 .verification-container {

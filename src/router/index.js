@@ -20,11 +20,7 @@ const router = createRouter({
       component: BlankLayout,
       meta: { requiresAuth: true },
       children: [
-        {
-          path: '/home', // Corrigido: adicionada a barra no início
-          name: 'Página principal',
-          component: HomeView
-        },
+     
         {
           path: '/gerenciamento', 
           name: 'Gerenciamento',

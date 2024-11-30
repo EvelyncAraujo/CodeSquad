@@ -9,6 +9,7 @@ import BlankLayout from '@/layouts/BlankLayout.vue';
 import FullLayout from '@/layouts/FullLayout.vue';
 import gerenciamentoAcademicoView from '@/views/gerenciamentoAcademicoView.vue';
 import detalhesConselhoView from '@/views/detalhesConselhoView.vue';
+import nupeConselhoView from '@/views/nupeConselhoView.vue';
 
 
 const router = createRouter({
@@ -27,9 +28,14 @@ const router = createRouter({
           component: gerenciamentoAcademicoView
         },
         {
-          path: '/home', // Corrigido: adicionada a barra no início
+          path: '/home', 
           name: 'Página principal',
           component: HomeView
+        },
+        {
+          path: '/conselhoNupe', 
+          name: 'nupeconselho',
+          component: nupeConselhoView
         },
       ] 
     },
@@ -75,10 +81,19 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   const authStore = useAuthStore()
   if (to.meta.requiresAuth && !authStore.loggedIn) {
-    next({ path: '/login' })
+    if(localStorage.getItem('refresh_auth_token') !== null){
+        const response = await authStore.setRefreshToken({ "refresh": localStorage.getItem('refresh_auth_token')})        
+        if(response === 200){
+            next()
+      } else{
+        next({ path: '/login' })
+      }
+    } else {
+      next({ path: '/login' })
+    }
   } else {
     next()
   }

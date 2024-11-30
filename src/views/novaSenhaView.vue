@@ -137,7 +137,7 @@ function submitCode() {
 h2 {
   font-size: 24px;
   margin-bottom: 40px;
-  margin-left:5px;
+  margin-left:40px;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;

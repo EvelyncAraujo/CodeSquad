@@ -34,7 +34,7 @@ const students = ref([
   
 ]);
 
-const courses = ref(["Agropecuária", "Informática"]);
+const courses = ref(["Agropecuária", "Informática", "Química"]);
 const years = ref(["Primeiro", "Segundo", "Terceiro"]);
 
 const selectedCourse = ref("");

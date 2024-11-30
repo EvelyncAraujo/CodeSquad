@@ -91,7 +91,7 @@ onMounted(async () => {
           <div v-for="student in filteredStudents" :key="student.id" class="result-card">
             <p>{{ student.name }} - {{ student.team.name }}</p>
             <RouterLink to="/student">
-              <button class="view-details">Ver</button>
+              <button class="view-details" > <mdicon name="arrow-top-right"></mdicon></button>
             </RouterLink>
           </div>
         </div>
@@ -100,6 +100,7 @@ onMounted(async () => {
   </div>
 </template>
 <style scoped>
+
 .aside {
   min-width: 240px;
 }
@@ -196,17 +197,33 @@ option {
 
 .filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .filters select,
 .filters input {
   padding: 10px 20px;
-  border: 1px solid rgba(226, 174, 210, 1);
+  border: 1px solid #dfa5cd;
   border-radius: 20px;
-  color: rgb(255, 255, 255);
-  background-color: rgba(226, 174, 210, 1);
+  background-color: #e2aed2;
+  color: #ffffff;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.filters select:focus,
+.filters input:focus {
+  outline: none;
+  border-color: #d291bc;
+  background-color: #fff;
+}
+
+/* Adiciona estilos responsivos */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
 }
 
 .search-button {
@@ -227,20 +244,40 @@ option {
 }
 
 .result-card {
-  background: #f7e1e1;
-  padding: 15px;
-  border-radius: px;
+  background: #ffffff;
+  padding: 15px; /* Reduzir o preenchimento interno */
+  border-radius: 15px; /* Reduzir o arredondamento */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Suavizar a sombra */
+  margin-left: 10px; /* Ajustar a margem lateral */
+  gap: 10px;
+  font-size: 14px; /* Ajustar o tamanho da fonte */
 }
 
 .view-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
   background: #d291bc;
   color: white;
   border: none;
-  border-radius: 20px;
-  padding: 5px 10px;
+  border-radius: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.view-details:hover {
+  transform: scale(1.1);
+  background-color: #b06a9e;
+}
+
+.view-details i {
+  font-size: 18px;
 }
 
 .toggle-button {
@@ -249,7 +286,7 @@ option {
   font-size: 18px;
   border: none;
   cursor: pointer;
-  background: #f0f0f0;
+  background: #ffffff;
   border-radius: 20px;
   transition: background 0.3s, color 0.3s;
 }
@@ -259,6 +296,9 @@ option {
 }
 
 h2 {
-  font-size: xx-large;
+  margin-left: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 </style>

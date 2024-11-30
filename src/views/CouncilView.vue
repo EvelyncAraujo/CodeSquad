@@ -1,41 +1,51 @@
 <script setup>
 import AsideComponent from "@/components/AsideComponent.vue";
 </script>
-<template>
-  <div class="page">
-    <div class="aside">
-      <AsideComponent />
-    </div>
-  </div>
 
+<template>
+  <div class="containercomp">
   <div class="dropdownContainer">
-    <div class="dropdown1">
-      <button class="dropbtn">Dropdown <i class="fa fa-caret-down"></i></button>
-      <div class="dropdown-content1">
-        <a href="#">Agropecuaria</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        Agropecuária <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="#">Agropecuária</a>
         <a href="#">Informática</a>
         <a href="#">Química</a>
       </div>
     </div>
 
-    <div class="dropdown2">
+    <div class="dropdown">
       <button class="dropbtn">
-        Dropdown <i class="fa fa-caret-down"></i>
+        Primeiro <i class="fa fa-caret-down"></i>
       </button>
-      <div class="dropdown-content2">
+      <div class="dropdown-content">
         <a href="#">1 ano</a>
         <a href="#">2 ano</a>
         <a href="#">3 ano</a>
       </div>
     </div>
-    <button @click="applyFilters" class="search-button">Buscar</button>
-  </div>
 
-  <div class="results"></div>
+    <button @click="applyFilters" class="search-button">Buscar</button>
+ </div> 
+</div>
 </template>
+
 <style scoped>
-h3 {
-  color: black;
+.containercomp{
+   border-radius: 10rem;
+  padding: 2px;
+  margin-top: 10rem;
+  margin-left: 5rem;
+}
+.dropdownContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 50vh;
 }
 
 .dropbtn {
@@ -45,51 +55,37 @@ h3 {
   font-size: 18px;
   border: none;
   border-radius: 20rem;
-  /* margin-left: 50rem;
-  margin-top: 15rem; */
+  cursor: pointer;
 }
 
-.dropdownContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  height: 75vh;
-  align-items: center;
-  /* border: 1px solid black; */
-  gap: 2rem;
-}
-
-.dropdown1 .dropdown2 {
+.dropdown {
   position: relative;
-  display: flex;
-  gap: 2rem;
+  display: inline-block;
 }
 
-.dropdown-content1 .dropdown-content2 {
+.dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  border-radius: 10px;
 }
 
-.dropdown-content1 .dropdown-content2 a {
+.dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  border-radius: 5px;
 }
 
-.dropdown-content1 .dropdown-content2 a:hover {
+.dropdown-content a:hover {
   background-color: #f1f1f1;
 }
 
-.dropdown1:hover .dropdown-content1 {
-  display: block;
-}
-
-.dropdown2:hover .dropdown-content2 {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
@@ -97,8 +93,14 @@ h3 {
   background: #f28c8c;
   border: none;
   color: white;
-  padding: 10px 20px;
-  border-radius: 15px;
+  padding: 15px 25px;
+  font-size: 16px;
+  border-radius: 30px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #e76e6e;
 }
 </style>

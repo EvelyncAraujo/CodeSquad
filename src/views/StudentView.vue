@@ -176,22 +176,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-.conselhos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
 
-.conselho-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 1rem;
-  color: #333;
-}
 
 button {
   background-color: #f3d0e6;
@@ -327,7 +312,6 @@ gap: 15px;
   cursor: pointer;
 }
 
-/* Seções */
 .section-title {
   text-align: center;
   font-size: 18px;
